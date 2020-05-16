@@ -26,7 +26,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div>
+        <div className="homeContainer">
           <Navbar />
           <Switch>
             <ProtectedRoute exact path="/">

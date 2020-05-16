@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import { Form, Segment, Grid } from "semantic-ui-react";
 import { useAuth } from "../utils/auth";
 
 function Login() {
@@ -24,40 +25,49 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <h1>Login</h1>
-      <form onSubmit={handleFormSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Email address:</label>
-          <input
-            className="form-control"
-            placeholder="Email goes here..."
-            name="email"
-            type="email"
-            id="email"
-            value={email}
-            onChange={({ target }) => setEmail(target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            className="form-control"
-            placeholder="Password goes here..."
-            name="password"
-            type="password"
-            id="pwd"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-      <p>
-        <Link to="/signup">Go to Signup</Link>
-      </p>
+    <div>
+      <Grid centered>
+        <Segment centered raised compact inverted className="loginForm">
+          <h2 className="login">LOGIN</h2>
+          <Form size="small" inverted onSubmit={handleFormSubmit}>
+            <Form.Field>
+              <label>USERNAME</label>
+              <Form.Input
+                className="form-control"
+                name="email"
+                type="email"
+                id="email"
+                value={email}
+                onChange={({ target }) => setEmail(target.value)}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>PASSWORD</label>
+              <Form.Input
+                className="form-control"
+                name="password"
+                type="password"
+                id="pwd"
+                value={password}
+                onChange={({ target }) => setPassword(target.value)}
+              />
+              <Grid.Row>
+                <Form.Button className="MenuStyles">
+                  <p>EXPLORE</p>
+                </Form.Button>
+                <p>
+                  <Link to="/signup">Go to Signup</Link>
+                </p>
+              </Grid.Row>
+            </Form.Field>
+          </Form>
+        </Segment>
+      </Grid>
+
+      {/* <strong>onChange:</strong>
+    <pre>{JSON.stringify({ name, email }, null, 2)}</pre>
+    <strong>onSubmit:</strong>
+    <pre>{JSON.stringify({ submittedName, submittedEmail }, null, 2)}</pre> */}
     </div>
   );
 }
