@@ -43,6 +43,7 @@
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "semantic-ui-react": "^0.88.2"
   }
 }
