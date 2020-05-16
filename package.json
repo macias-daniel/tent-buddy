@@ -16,7 +16,8 @@
     "heroku-postbuild": "npm run build",
     "lint": "eslint . && cd client && npm run lint",
     "lint:fix": "eslint --fix . && cd client && npm run lint:fix",
-    "test": "cd client && npm run test"
+    "test": "cd client && npm run test",
+    "seed": "node seeders/seed.js"
   },
   "author": "Travis Thompson, John Desrosiers",
   "license": "ISC",
