@@ -34,7 +34,6 @@ function Login() {
               <label>USERNAME</label>
               <Form.Input
                 className="form-control"
-                placeholder="Email goes here..."
                 name="email"
                 type="email"
                 id="email"
@@ -46,7 +45,6 @@ function Login() {
               <label>PASSWORD</label>
               <Form.Input
                 className="form-control"
-                placeholder="Password goes here..."
                 name="password"
                 type="password"
                 id="pwd"

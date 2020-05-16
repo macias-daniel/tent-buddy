@@ -49,7 +49,6 @@ function Signup() {
               <label>USERNAME</label>
               <Form.Input
                 className="form-control"
-                placeholder="Username goes here..."
                 name="username"
                 type="text"
                 id="username"
@@ -60,7 +59,6 @@ function Signup() {
               <label>EMAIL</label>
               <Form.Input
                 className="form-control"
-                placeholder="Email goes here..."
                 name="email"
                 type="email"
                 id="email"
