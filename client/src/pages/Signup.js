@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import API from "./../utils/API";
-import {useAuth} from "../utils/auth";
+import { useAuth } from "../utils/auth";
+import { Form, Segment, Grid, Image } from "semantic-ui-react";
 
 
 function Signup() {
@@ -39,49 +40,55 @@ function Signup() {
   };
 
   return (
-    <div className="container">
-      <h1>Signup</h1>
-      <form onSubmit={handleFormSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            className="form-control"
-            placeholder="Username goes here..."
-            name="username"
-            type="text"
-            id="username"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email address:</label>
-          <input
-            className="form-control"
-            placeholder="Email goes here..."
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            className="form-control"
-            placeholder="Password goes here..."
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-      <p>
-        <Link to="/login">Go to Login</Link>
-      </p>
+    <div>
+      <Grid centered>
+        <Segment centered raised compact inverted className="signUpForm">
+          <h2 className="login">SIGN UP</h2>
+          <Form size="small" inverted onSubmit={handleFormSubmit}>
+            <Form.Field>
+              <label>USERNAME</label>
+              <Form.Input
+                className="form-control"
+                placeholder="Username goes here..."
+                name="username"
+                type="text"
+                id="username"
+                onChange={handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>EMAIL</label>
+              <Form.Input
+                className="form-control"
+                placeholder="Email goes here..."
+                name="email"
+                type="email"
+                id="email"
+                onChange={handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>PASSWORD</label>
+              <Form.Input
+                className="form-control"
+                placeholder="Password goes here..."
+                name="password"
+                type="password"
+                id="pwd"
+                onChange={handleChange}
+              />
+              <Grid.Row>
+                <Form.Button className="MenuStyles">
+                  <p>EXPLORE</p>
+                </Form.Button>
+                <p>
+                  <Link to="/login">Go to Login</Link>
+                </p>
+              </Grid.Row>
+            </Form.Field>
+          </Form>
+        </Segment>
+      </Grid>
     </div>
   );
 }

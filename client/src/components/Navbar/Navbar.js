@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../utils/auth";
+import { Header, Icon, List } from "semantic-ui-react";
 
 const createLink = ({ text, to, ...rest }) => {
   const className = "nav-link";
@@ -34,26 +35,26 @@ function NavLinks() {
     links.push({ text: "Login", to: "/login" });
   }
   return (
-    <ul className="navbar-nav">
-      {links.map((link, i) => (
-        <li key={i} className="nav-item">
-          {createLink(link)}
-        </li>
+    <List horizontal>
+      {links.map(link => (
+        <List.Item className="placeholder">{createLink(link)}</List.Item>
       ))}
-    </ul>
+    </List>
   );
 }
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-primary">
+    <Header inverted textAlign="center" block>
       <div className="container">
         <Link className="navbar-brand" to="/">
-          React JWT App
+          <h2 className="HeaderTitle">
+            Tent Buddy <Icon name="tree" />
+          </h2>
         </Link>
         <NavLinks />
       </div>
-    </nav>
+    </Header>
   );
 }
 
