@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import API from "./../utils/API";
 import { useAuth } from "../utils/auth";
-import { Form, Segment, Grid, Image } from "semantic-ui-react";
+import { Form, Segment, Grid } from "semantic-ui-react";
 
 
 function Signup() {

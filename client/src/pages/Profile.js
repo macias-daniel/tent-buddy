@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import API from "./../utils/API";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
-import { Form, Segment, Grid, Menu } from "semantic-ui-react";
-import WidgetSorter from "./WidgetSorter"
+import { Segment, Grid} from "semantic-ui-react";
+import WidgetSorter from "./WidgetSorter";
 
 function Profile() {
   const [username, setUsername] = useState("");

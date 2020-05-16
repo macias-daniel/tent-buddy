@@ -4,13 +4,11 @@ import {
   Menu,
   Header,
   Grid,
-  Card,
   Segment,
-  Image,
   Icon
 } from "semantic-ui-react";
 
-let widgets = {
+const widgets = {
   notes: {
     topic: "NOTES",
     class: "widgetDisplay",
@@ -91,7 +89,6 @@ export default class Projects extends Component {
                 centered
                 circular
                 style={square}
-                style={{ backgroundColor: "lightgrey" }}
               >
                 <Icon size="huge" name={this.state.currentPage.icon} />
               </Segment>
