@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-const userSeeds = require("./seedData")
+const userSeeds = require("./seedData");
 
 mongoose.connect("mongodb://localhost/tentBuddyDB", {
   useNewUrlParser: true,
