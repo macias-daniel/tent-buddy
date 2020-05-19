@@ -28,14 +28,14 @@ function NavLinks() {
   const { isLoggedIn, logout } = useAuth();
   const links = [];
   if (isLoggedIn) {
-    links.push({ text: "Profile", to: "/profile" });
-    links.push({ text: "Logout", onClick: () => logout() });
+    links.push({ text: "PROFILE", to: "/profile" });
+    links.push({ text: "LOGOUT", onClick: () => logout() });
   } else {
-    links.push({ text: "Signup", to: "/signup" });
-    links.push({ text: "Login", to: "/login" });
+    links.push({ text: "SIGN UP", to: "/signup" });
+    links.push({ text: "LOGIN", to: "/login" });
   }
   return (
-    <List horizontal>
+    <List horizontal >
       {links.map(link => (
         <List.Item className="placeholder">{createLink(link)}</List.Item>
       ))}
@@ -49,7 +49,8 @@ function Navbar() {
       <div className="container">
         <Link className="navbar-brand" to="/">
           <h2 className="HeaderTitle">
-            Tent Buddy <Icon name="tree" />
+            Tent Buddy 
+            <Icon name="tree" />
           </h2>
         </Link>
         <NavLinks />

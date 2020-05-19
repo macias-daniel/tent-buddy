@@ -6,7 +6,7 @@ import { useAuth } from "../utils/auth";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoggedIn, login } = useAuth();
+  const {isLoggedIn, login} = useAuth();
   const history = useHistory();
 
   if (isLoggedIn) {
@@ -31,7 +31,7 @@ function Login() {
           <h2 className="login">LOGIN</h2>
           <Form size="small" inverted onSubmit={handleFormSubmit}>
             <Form.Field>
-              <label>USERNAME</label>
+              <label>EMAIL</label>
               <Form.Input
                 className="form-control"
                 name="email"
@@ -55,8 +55,8 @@ function Login() {
                 <Form.Button className="MenuStyles">
                   <p>EXPLORE</p>
                 </Form.Button>
-                <p>
-                  <Link to="/signup">Go to Signup</Link>
+                <p >Need a your own buddy? 
+                  <Link className="MenuStyles" to="/signup"> sign up here.</Link>
                 </p>
               </Grid.Row>
             </Form.Field>
@@ -64,10 +64,6 @@ function Login() {
         </Segment>
       </Grid>
 
-      {/* <strong>onChange:</strong>
-    <pre>{JSON.stringify({ name, email }, null, 2)}</pre>
-    <strong>onSubmit:</strong>
-    <pre>{JSON.stringify({ submittedName, submittedEmail }, null, 2)}</pre> */}
     </div>
   );
 }
