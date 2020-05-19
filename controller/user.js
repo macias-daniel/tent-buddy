@@ -1,7 +1,7 @@
 const db = require("../models");
 
 const getUserWidgets = (username) => {
-  return db.User.findOne({ username: username }, "widget");
+  return db.User.findOne({ username: username });
 };
 
 const addUserWidget = (username, widgetType, widgetData) => {

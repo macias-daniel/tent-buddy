@@ -11,7 +11,10 @@ router.post("/api/login", (req, res) => {
       console.log(dbUser);
       res.json(dbUser);
     })
-    .catch((err) => res.status(400).json(err));
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 });
 
 router.post("/api/signup", (req, res) => {
