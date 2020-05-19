@@ -7,7 +7,7 @@ import { Form, Segment, Grid } from "semantic-ui-react";
 
 function Signup() {
   const [formState, setFormState] = useState({
-    username: "",
+    name: "",
     email: "",
     password: ""
   });
@@ -22,7 +22,7 @@ function Signup() {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    API.signUpUser(formState.username, formState.email, formState.password)
+    API.signUpUser(formState.name, formState.email, formState.password)
       .then(res => {
         // once the user has signed up
         // send them to the login page
@@ -46,12 +46,12 @@ function Signup() {
           <h2 className="login">SIGN UP</h2>
           <Form size="small" inverted onSubmit={handleFormSubmit}>
             <Form.Field>
-              <label>USERNAME</label>
+              <label>NAME</label>
               <Form.Input
                 className="form-control"
-                name="username"
+                name="name"
                 type="text"
-                id="username"
+                id="name"
                 onChange={handleChange}
               />
             </Form.Field>
@@ -69,7 +69,6 @@ function Signup() {
               <label>PASSWORD</label>
               <Form.Input
                 className="form-control"
-                placeholder="Password goes here..."
                 name="password"
                 type="password"
                 id="pwd"
@@ -77,10 +76,10 @@ function Signup() {
               />
               <Grid.Row>
                 <Form.Button className="MenuStyles">
-                  <p>EXPLORE</p>
+                  <p >GET STARTED</p>
                 </Form.Button>
-                <p>
-                  <Link to="/login">Go to Login</Link>
+                <p>Already have a buddy? 
+                  <Link to="/login" className="MenuStyles"> login here.</Link>
                 </p>
               </Grid.Row>
             </Form.Field>
