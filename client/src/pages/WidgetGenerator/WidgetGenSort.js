@@ -3,7 +3,7 @@ import WeatherWidgetGen from "./WeatherWidgetGen";
 import ParkWidgetGen from "./ParkWidgetGen";
 import NoteWidgetGen from "./NoteWidgetGen";
 
-import { Menu, Header, Grid, Segment, Icon } from "semantic-ui-react";
+import { Menu, Segment} from "semantic-ui-react";
 
 const widgets = {
   notes: {

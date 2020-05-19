@@ -12,7 +12,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
-import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome"
+import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome";
 import Navbar from "./components/Navbar";
 
 function ProtectedRoute({ children, ...rest }) {

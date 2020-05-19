@@ -6,7 +6,7 @@ import {
   Segment,
 } from "semantic-ui-react";
 
-export default class NewWeatherWidget extends Component {
+export default class NoteWidgetGen extends Component {
   render() {
     return (
       <div>
