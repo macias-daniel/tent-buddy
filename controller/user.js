@@ -1,7 +1,7 @@
 const db = require("../models");
 
-const getUser = (username) => {
-  return db.User.findOne({ username: username });
+const getUserWidgets = (username) => {
+  return db.User.findOne({ username: username }, "widget");
 };
 
-module.exports = { getUser };
+module.exports = { getUserWidgets };
