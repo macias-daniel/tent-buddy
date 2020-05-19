@@ -29,10 +29,12 @@ function NavLinks() {
   const links = [];
   if (isLoggedIn) {
     links.push({ text: "PROFILE", to: "/profile" });
+    links.push({ text: "WIDGET GENERATOR", to: "/widgetGenerator" });
     links.push({ text: "LOGOUT", onClick: () => logout() });
   } else {
     links.push({ text: "SIGN UP", to: "/signup" });
     links.push({ text: "LOGIN", to: "/login" });
+    links.push({ text: "WIDGET GENERATOR", to: "/widgetGenerator" });
   }
   return (
     <List horizontal >

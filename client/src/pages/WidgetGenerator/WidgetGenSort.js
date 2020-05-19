@@ -1,32 +1,29 @@
 import React, { Component } from "react";
-import NewWeatherWidget from "./NewWeatherWidget";
-import ParksWidget from "./ParksWidget";
+import WeatherWidgetGen from "./WeatherWidgetGen";
+import ParkWidgetGen from "./ParkWidgetGen";
+import NoteWidgetGen from "./NoteWidgetGen";
 
-import {
-  Menu,
-  Grid,
-  Segment
-} from "semantic-ui-react";
+import { Menu, Segment} from "semantic-ui-react";
 
 const widgets = {
   notes: {
     topic: "NOTES",
     class: "widgetDisplay",
-    widgetType: "",
-    about: "Compose a note"
+    widgetType: <NoteWidgetGen />,
+    about: "Compose a note",
   },
   weather: {
     topic: "WEATHER",
     class: "weatherDisplay",
-    widgetType: <NewWeatherWidget/>,
-    about: "Pick a City"
+    widgetType: <WeatherWidgetGen />,
+    about: "Pick a City",
   },
   parks: {
     topic: "PARKS",
     class: "widgetDisplay",
-    widgetType:  <ParksWidget/>,
-    about: "Pick a National Park"
-  }
+    widgetType: <ParkWidgetGen />,
+    about: "Pick a National Park",
+  },
 };
 
 export default class WidgetGeneratorSort extends Component {
@@ -44,48 +41,42 @@ export default class WidgetGeneratorSort extends Component {
     return (
       <>
         <div>
-          <Segment attached>Please select a widget</Segment>
-          <Grid className="ticker" divided="vertically">
-            <Grid.Row columns={1} className="ticker">
-              <Grid.Column centered className="ticker">
-                <Segment attached className="widgetForm" compact textAlign="center" inverted>
-                  <Menu inverted pointing secondary>
-                    <Menu.Item
-                      className="widgets"
-                      title="notes"
-                      name="NOTES"
-                      active={activeItem === "NOTES"}
-                      onClick={this.handleItemClick}
-                    />
-                    <Menu.Item
-                      className="widgets"
-                      title="weather"
-                      name="WEATHER"
-                      active={activeItem === "WEATHER"}
-                      onClick={this.handleItemClick}
-                    />
-                    <Menu.Item
-                      className="widgets"
-                      title="parks"
-                      name="PARKS"
-                      active={activeItem === "PARKS"}
-                      onClick={this.handleItemClick}
-                    />
-                  </Menu>
-                </Segment>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          <Segment
+            attached
+            className="widgetForm"
+            compact
+            textAlign="center"
+            inverted
+          >
+            <Menu inverted pointing secondary style={{ marginTop: "0px" }}>
+              <Menu.Item
+                as="menuSoter"
+                className="widgets"
+                title="notes"
+                name="NOTES"
+                active={activeItem === "NOTES"}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
+                as="menuSoter"
+                className="widgets"
+                title="weather"
+                name="WEATHER"
+                active={activeItem === "WEATHER"}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
+                as="menuSoter"
+                className="widgets"
+                title="parks"
+                name="PARKS"
+                active={activeItem === "PARKS"}
+                onClick={this.handleItemClick}
+              />
+            </Menu>
+          </Segment>
         </div>
-
-        <Grid verticalAlign="middle" centered>
-          <Grid.Row columns={1} className="ticker">
-            <Grid.Column centered>
-              {this.state.currentPage.widgetType}
-            </Grid.Column>
-        
-          </Grid.Row>
-        </Grid>
+        {this.state.currentPage.widgetType}
       </>
     );
   }

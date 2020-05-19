@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
+import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome";
 import Navbar from "./components/Navbar";
 
 function ProtectedRoute({ children, ...rest }) {
@@ -41,6 +42,9 @@ function App() {
             <ProtectedRoute exact path="/profile">
               <Profile />
             </ProtectedRoute>
+            <Route exact path="/widgetGenerator">
+              <WidgetGenHome />
+            </Route>
           </Switch>
         </div>
       </Router>
