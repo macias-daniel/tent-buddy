@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const initDb = require("./config/initDb");
 const authRouter = require("./routes/auth");
 const usersRouter = require("./routes/users");
-const apiRouter = require("./routes/api")
+const apiRouter = require("./routes/api");
 const errorMiddleware = require("./routes/errorMiddleware");
 
 const PORT = process.env.PORT || 3001;
