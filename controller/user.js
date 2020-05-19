@@ -1,12 +1,12 @@
 const db = require("../models");
 
-const getUserWidgets = (id) => {
-  return db.User.findOne({ _id: id }, "widget");
+const getUserWidgets = (username) => {
+  return db.User.findOne({ username: username }, "widget");
 };
 
-const addUserWidget = (id, widgetType, widgetData) => {
+const addUserWidget = (username, widgetType, widgetData) => {
   return db.User.updateOne(
-    { _id: id },
+    { username: username },
     { $push: { ["widget." + widgetType]: widgetData } }
   );
 };
