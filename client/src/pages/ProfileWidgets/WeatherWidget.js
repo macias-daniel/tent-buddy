@@ -3,7 +3,6 @@ import Moment from "react-moment";
 import WidgetBumper from "./WidgetBumper";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
-import ReactWeather from "react-open-weather";
 //Optional include of the default css styles
 import "react-open-weather/lib/css/ReactWeather.css";
 

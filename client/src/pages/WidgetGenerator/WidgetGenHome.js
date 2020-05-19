@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Segment, Grid, Menu } from "semantic-ui-react";
+import React from "react";
+import { Grid } from "semantic-ui-react";
 import WidgetGeneratorSort from "./WidgetGeneratorSort";
 
 function WidgetHome() {

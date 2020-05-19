@@ -4,10 +4,8 @@ import ParksWidget from "./ParksWidget";
 
 import {
   Menu,
-  Header,
   Grid,
-  Segment,
-  Icon
+  Segment
 } from "semantic-ui-react";
 
 const widgets = {
@@ -50,10 +48,9 @@ export default class WidgetGeneratorSort extends Component {
           <Grid className="ticker" divided="vertically">
             <Grid.Row columns={1} className="ticker">
               <Grid.Column centered className="ticker">
-                <Segment attached className="widgetForm"  compact textAlign="center" inverted>
+                <Segment attached className="widgetForm" compact textAlign="center" inverted>
                   <Menu inverted pointing secondary>
                     <Menu.Item
-                      as="menuSoter"
                       className="widgets"
                       title="notes"
                       name="NOTES"
@@ -61,7 +58,6 @@ export default class WidgetGeneratorSort extends Component {
                       onClick={this.handleItemClick}
                     />
                     <Menu.Item
-                      as="menuSoter"
                       className="widgets"
                       title="weather"
                       name="WEATHER"
@@ -69,7 +65,6 @@ export default class WidgetGeneratorSort extends Component {
                       onClick={this.handleItemClick}
                     />
                     <Menu.Item
-                      as="menuSoter"
                       className="widgets"
                       title="parks"
                       name="PARKS"
