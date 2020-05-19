@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../utils/auth";
-import { Header, Icon, List } from "semantic-ui-react";
+import { Header, Icon, List, Dropdown } from "semantic-ui-react";
 
 const createLink = ({ text, to, ...rest }) => {
   const className = "nav-link";
@@ -25,19 +25,43 @@ const createLink = ({ text, to, ...rest }) => {
 };
 
 function NavLinks() {
-  const { isLoggedIn, logout } = useAuth();
+  const { user, isLoggedIn, logout } = useAuth();
   const links = [];
+
   if (isLoggedIn) {
-    links.push({ text: "PROFILE", to: "/profile" });
-    links.push({ text: "WIDGET GENERATOR", to: "/widgetGenerator" });
-    links.push({ text: "LOGOUT", onClick: () => logout() });
+    const trigger = (
+      <span>
+        <Icon name="user" /> Hello, {user.email}
+      </span>
+    );
+
+    const options = [
+      {
+        key: "user",
+        text: (
+          <span>
+            Signed in as <strong>{user.email}</strong>
+          </span>
+        ),
+        disabled: true,
+      },
+      { key: "profile", text: "Your Profile", as: Link, to: "/profile" },
+      { key: "sign-out", text: "Sign Out", onClick: () => logout() },
+    ];
+    return (
+      <Dropdown
+        trigger={trigger}
+        options={options}
+        pointing="top left"
+        icon={null}
+      />
+    );
   } else {
     links.push({ text: "SIGN UP", to: "/signup" });
     links.push({ text: "LOGIN", to: "/login" });
-    links.push({ text: "WIDGET GENERATOR", to: "/widgetGenerator" });
   }
   return (
-    <List horizontal >
+    <List horizontal>
       {links.map(link => (
         <List.Item className="placeholder">{createLink(link)}</List.Item>
       ))}
@@ -51,7 +75,7 @@ function Navbar() {
       <div className="container">
         <Link className="navbar-brand" to="/">
           <h2 className="HeaderTitle">
-            Tent Buddy 
+            Tent Buddy
             <Icon name="tree" />
           </h2>
         </Link>
