@@ -1,14 +1,10 @@
 const db = require("../models");
 
-const getUserWidgets = (username) => {
-  return db.User.findOne({ username: username }).select("-password");
-};
-
-const addUserWidget = (username, widgetType, widgetData) => {
+const addUserWidget = (id, widgetType, widgetData) => {
   return db.User.updateOne(
-    { username: username },
+    { _id: id },
     { $push: { ["widget." + widgetType]: widgetData } }
   );
 };
 
-module.exports = { getUserWidgets, addUserWidget };
+module.exports = { addUserWidget };
