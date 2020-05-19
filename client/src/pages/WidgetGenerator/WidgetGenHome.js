@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
-import WidgetGeneratorSort from "./WidgetGeneratorSort";
+import WidgetGeneratorSort from "./WidgetGenSort";
 
 function WidgetHome() {
   return (
