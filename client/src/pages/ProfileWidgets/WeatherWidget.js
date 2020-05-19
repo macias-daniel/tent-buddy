@@ -3,12 +3,11 @@ import Moment from "react-moment";
 import WidgetBumper from "./WidgetBumper";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
+import ReactWeather from "react-open-weather";
+//Optional include of the default css styles
+import "react-open-weather/lib/css/ReactWeather.css";
 
-import {
-  Image,
-  Accordion,
-  Segment,
-} from "semantic-ui-react";
+import { Image, Accordion, Segment } from "semantic-ui-react";
 import API from "../../utils/API";
 
 function WeatherWidget() {
@@ -34,19 +33,21 @@ function WeatherWidget() {
       );
       setCurrentHumidity(results.data.main.humidity);
       setCurrentDescription(results.data.weather[0].description.toUpperCase());
-      setCurrentWind((results.data.wind.speed.toFixed()));
+      setCurrentWind(results.data.wind.speed.toFixed());
     });
 
     API.getWeatherForecast().then(results => {
+      const dailyData = results.data.list.filter(reading => {
+        return reading.dt_txt.includes("18:00:00");
+      });
+
       setCity(results.data.city.name);
-      setWeather(results.data.list);
+      setWeather(dailyData);
     });
   }, []);
 
-  var dateToFormat = new Date();
+  const dateToFormat = new Date();
 
-  // console.log(day)
- 
   useEffect(() => {
     setWeatherForecast(
       weather.map(weatherData => {
@@ -54,8 +55,8 @@ function WeatherWidget() {
           <ForecastContainer
             // key={weatherData.city.id}
             icon={weatherData.weather[0].icon}
-            temp={(weatherData.main.temp.toFixed())}
-            day={(new Date(weatherData.dt)*1000)}
+            temp={weatherData.main.temp.toFixed()}
+            day={new Date(weatherData.dt) * 1000}
             // humidity={weatherData.main.humidity}
           />
         );
@@ -64,8 +65,11 @@ function WeatherWidget() {
   }, [weather]);
 
   function doClick() {
-
     setClicked(true);
+  }
+
+  function dontClick() {
+    setClicked(false);
   }
   //Component to render
   return (
@@ -73,19 +77,20 @@ function WeatherWidget() {
       <WidgetBumper />
       <Segment attached inverted style={{ width: "225px" }}>
         <Accordion>
-          <Accordion.Title
-            index={0}
-            onClick={clicked ? undefined : doClick}
-          >
+          <Accordion.Title index={0} onClick={clicked ? undefined : doClick}>
             <p style={{ float: "right", fontWeight: "100" }}>
               <Image src={currentIcon} />
             </p>
             <p className="tempCity">{city}</p>
             <p className="tempDate">
-              <Moment format="dddd MM.DD"style={{ color: "white" }}>{dateToFormat}</Moment>
+              <Moment format="dddd MM.DD" style={{ color: "white" }}>
+                {dateToFormat}
+              </Moment>
             </p>
 
-            <p className="temp"style={{ color: "white" }}>{currentTemp}°F</p>
+            <p className="temp" style={{ color: "white" }}>
+              {currentTemp}°F
+            </p>
 
             <p
               className="tempInfo"
@@ -126,7 +131,10 @@ function WeatherWidget() {
             </p>
             <br></br>
           </Accordion.Title>
-          <Accordion.Content active={clicked}>
+          <Accordion.Content
+            active={clicked}
+            onClick={clicked ? true : dontClick}
+          >
             {weatherForecast}
           </Accordion.Content>
         </Accordion>
