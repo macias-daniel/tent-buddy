@@ -1,0 +1,161 @@
+
+.forecastDay {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  margin-bottom:10px;
+  padding-bottom:5px;
+  color: white;
+  color: white;
+}
+
+
+.forecastTemp {
+  font-weight: 100;
+  font-size: 15px;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.tempInfo {
+  font-family: "Roboto", sans-serif;
+  font-size: 10px;
+  font-weight: 100;
+  color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.tempCity {
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+color: white;
+  margin: 0px;
+  padding: 0px;
+}
+.date {
+  font-weight: 100;
+}
+
+.placeholder {
+  font-weight: 100;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.widgetDisplay {
+  font-family: "Bungee Inline", cursive;
+}
+.weatherDisplay {
+  font-family: "Bungee Inline", cursive;
+  transform: translateY(40%);
+}
+
+.widgetGrid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.widgetName {
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widgetGrid {
+  padding-left: 50px;
+  margin-left: 50px;
+}
+
+menuSoter {
+  font-weight: 100;
+  font-family: "Roboto", sans-serif;
+}
+.temp {
+  font-size: 35px;
+  margin-bottom: 0px;
+}
+
+.tempDate {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+forecast {
+  margin: 0px;
+  padding: 0px;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-weight: 100;
+  font-family: "Roboto", sans-serif;
+}
+
+.HeaderTitle {
+  font-family: "Bungee Inline", cursive;
+}
+
+.MenuStyles {
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+.login {
+  font-family: "Bungee Inline", cursive;
+  color: white;
+  opacity: 0.9;
+}
+
+.widgets {
+  font-family: "Bungee Inline", cursive;
+  color: rgb(1, 1, 20);
+  opacity: 0.9;
+}
+
+.loginForm {
+  opacity: 0.9;
+  position: relative;
+  transform: translateY(50%);
+  padding-left: 0px;
+}
+
+.widgetForm {
+  opacity: 0.9;
+  position: relative;
+  transform: translateY(35%);
+  padding-left: 0px;
+}
+
+.widgetTitle {
+  transform: translateY(50%);
+  padding-left: 0px;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: lightgray;
+}
+.ui.menu {
+  background: #e5e5e5;
+  margin-top: 80px;
+}
+
+@media (min-width: 424px) {
+  .widgetForm {
+    transform: translateY(85%) translateX(-24%);
+  }
+
+  .widgetTitle {
+    transform: translateY(50%) translateX(105%);
+  }
+}

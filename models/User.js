@@ -100,10 +100,7 @@ const UserSchema = new Schema({
         humidity: {
           type: String,
         },
-        precipitation: {
-          type: String,
-        },
-        clouds: {
+        description: {
           type: String,
         },
         windSpeed: {
