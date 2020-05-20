@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import CallToAction from "./pages/CallToAction/CallToAction.js";
 import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function ProtectedRoute({ children, ...rest }) {
   const { isLoggedIn } = useAuth();
@@ -50,6 +51,7 @@ function App() {
               <WidgetGenHome />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
