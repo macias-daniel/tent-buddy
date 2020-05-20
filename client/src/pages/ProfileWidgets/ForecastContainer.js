@@ -79,7 +79,7 @@ function ForecastContainer({ day, temp, icon }) {
             }}
             className="forecastTemp"
           >
-            <Image style={{ textAlign: "left" }} src={iconSrc} />
+            <Image style={{ textAlign: "left" }} src={iconSrc} />`
             {temp}°F
           </Menu.Item>
 

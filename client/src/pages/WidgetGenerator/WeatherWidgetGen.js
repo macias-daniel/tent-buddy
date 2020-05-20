@@ -22,7 +22,7 @@ function WeatherWidgetGen() {
   const [currentHumidity, setCurrentHumidity] = useState([]);
   const [currentDescription, setCurrentDescription] = useState([]);
   const [currentWind, setCurrentWind] = useState([]);
-  const [clicked, setClicked] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
@@ -71,15 +71,14 @@ function WeatherWidgetGen() {
       setCurrentWind(results.data.wind.speed.toFixed());
     });
 
-    OpenWeatherMap.getWeatherForecast(citySearch)
-      .then(results => {
-        setSpinner("");
-        setShowText(!showText);
-        const dailyData = results.data.list.filter(reading => {
-          return reading.dt_txt.includes("18:00:00");
-        });
-        renderForecast(dailyData);
+    OpenWeatherMap.getWeatherForecast(citySearch).then(results => {
+      setSpinner("");
+      setShowText(!showText);
+      const dailyData = results.data.list.filter(reading => {
+        return reading.dt_txt.includes("18:00:00");
       });
+      renderForecast(dailyData);
+    });
 
     function renderForecast(weather1) {
       setWeatherForecast(
@@ -98,10 +97,10 @@ function WeatherWidgetGen() {
     }
   }
 
-  function doClick() {
-    setClicked(true);
+  function handleClick() {
+    const newIndex = activeIndex === -1 ? 0 : -1;
+    setActiveIndex(newIndex);
   }
-
 
   const dateToFormat = new Date();
 
@@ -167,7 +166,7 @@ function WeatherWidgetGen() {
           {showText && (
             <>
               <Segment attached inverted>
-                <Accordion defaultActiveKey="0">
+                <Accordion>
                   <p
                     style={{
                       float: "right",
@@ -211,7 +210,11 @@ function WeatherWidgetGen() {
                       {currentDescription}
                     </p>
                   </div>
-                  <Accordion.Title>
+                  <Accordion.Title
+                    onClick={handleClick}
+                    index={0}
+                    active={activeIndex === 0}
+                  >
                     <div
                       className="tempInfo"
                       style={{
@@ -224,16 +227,12 @@ function WeatherWidgetGen() {
                       FORECAST <span>&nbsp;&nbsp;</span>
                       <p style={{ float: "right", fontWeight: "100" }}>
                         {" "}
-                        <Icon
-                          name="plus square outline"
-                          onClick={clicked ? undefined : doClick}
-                          inverted
-                        />
+                        <Icon name="plus square outline" inverted />
                       </p>
                     </div>
                     <br></br>
                   </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={clicked}>
+                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
                     {weatherForecast}
                   </Accordion.Content>
                 </Accordion>
