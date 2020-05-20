@@ -88,16 +88,9 @@ function WeatherWidget() {
               {currentTemp}°F
             </p>
 
-            <div
-              className="tempInfo"
-              style={{ float: "left", fontWeight: "bold" }}
-            >
-              {" "}
-              HUMIDITY:<span>&nbsp;&nbsp;</span>{" "}
-              <p style={{ float: "right", fontWeight: "100" }}>
-                {" "}
-                {currentHumidity}%
-              </p>
+            <div style={{ textAlign: "left", fontWeight: "bold" }}>
+              HUMIDITY: {currentHumidity}%
+           
             </div>
             <br></br>
 
