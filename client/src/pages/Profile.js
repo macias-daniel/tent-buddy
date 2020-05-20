@@ -21,6 +21,7 @@ function Profile() {
         }
       }); 
       setWidgets(widgetComponents);
+      console.log(widgets);
       console.log(widgetComponents);
     });
   }, [user]);
