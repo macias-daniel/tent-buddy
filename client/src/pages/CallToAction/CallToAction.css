@@ -1,0 +1,28 @@
+.intro {
+  margin-top: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+
+.intro1{
+  margin-top: 2.25rem;
+  padding-top: 2.25rem;
+}
+.intro2{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.intro3{
+  margin-top:0px;
+  padding-top:0;
+}
+
+.features {
+  margin-bottom: 2.5rem;
+}
+
+.text {
+  color: rgba(255, 255, 255, 0.9); 
+}
+
