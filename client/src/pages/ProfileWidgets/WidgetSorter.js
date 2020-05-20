@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import WeatherWidget from "./WeatherWidget";
 // import ParksWidget from "./ParksWidget";
 
-import { Menu, Grid, Segment } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 
 const widgets = {
   notes: {
@@ -40,54 +40,42 @@ export default class Projects extends Component {
     return (
       <>
         <div>
-          <Grid className="ticker" divided="vertically">
-            <Grid.Row columns={1} className="ticker">
-              <Grid.Column centered className="ticker">
-                <Segment
-                  className="widgetForm"
-                  compact
-                  textAlign="center"
-                  inverted
-                >
-                  <Menu inverted pointing secondary>
-                    <Menu.Item
-       
-                      className="widgets"
-                      title="notes"
-                      name="NOTES"
-                      active={activeItem === "NOTES"}
-                      onClick={this.handleItemClick}
-                    />
-                    <Menu.Item
-       
-                      className="widgets"
-                      title="weather"
-                      name="WEATHER"
-                      active={activeItem === "WEATHER"}
-                      onClick={this.handleItemClick}
-                    />
-                    <Menu.Item
-       
-                      className="widgets"
-                      title="parks"
-                      name="PARKS"
-                      active={activeItem === "PARKS"}
-                      onClick={this.handleItemClick}
-                    />
-                  </Menu>
-                </Segment>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </div>
+          <Segment
+            attached
+            className="widgetForm"
+            compact
+            textAlign="center"
+            inverted
+          >
+            <Menu inverted pointing secondary style={{ marginTop: "0px" }}>
+              <Menu.Item
 
-        <Grid verticalAlign="middle" centered>
-          <Grid.Row columns={1} className="ticker">
-            <Grid.Column centered>
-              {this.state.currentPage.widgetType}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+                className="widgets"
+                title="notes"
+                name="NOTES"
+                active={activeItem === "NOTES"}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
+
+                className="widgets"
+                title="weather"
+                name="WEATHER"
+                active={activeItem === "WEATHER"}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
+
+                className="widgets"
+                title="parks"
+                name="PARKS"
+                active={activeItem === "PARKS"}
+                onClick={this.handleItemClick}
+              />
+            </Menu>
+          </Segment>
+        </div>
+        {this.state.currentPage.widgetType}
       </>
     );
   }
