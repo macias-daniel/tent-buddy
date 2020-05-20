@@ -17,7 +17,7 @@ class WidgetBumper extends Component {
       <div>
         <Button
           onClick={this.closeConfigShow(false, true)}
-          style={{ width: "225px", fontFamily: "Roboto", backgroundColor:"black", fontWeight: "100", textAlign: "right" }}
+          style={{ width: "225px",marginTop:"25px", fontFamily: "Roboto", backgroundColor:"black", fontWeight: "100", textAlign: "right" }}
           attached="top"
         >
           {" "}

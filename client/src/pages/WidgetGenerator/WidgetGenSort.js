@@ -50,7 +50,6 @@ export default class WidgetGeneratorSort extends Component {
           >
             <Menu inverted pointing secondary style={{ marginTop: "0px" }}>
               <Menu.Item
-                as="menuSoter"
                 className="widgets"
                 title="notes"
                 name="NOTES"
@@ -58,7 +57,6 @@ export default class WidgetGeneratorSort extends Component {
                 onClick={this.handleItemClick}
               />
               <Menu.Item
-                as="menuSoter"
                 className="widgets"
                 title="weather"
                 name="WEATHER"
@@ -66,7 +64,6 @@ export default class WidgetGeneratorSort extends Component {
                 onClick={this.handleItemClick}
               />
               <Menu.Item
-                as="menuSoter"
                 className="widgets"
                 title="parks"
                 name="PARKS"
