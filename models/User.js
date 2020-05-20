@@ -26,11 +26,15 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  widget: {
-    park: [],
-    weather: [],
-    note: [],
-  },
+  widgets: [
+    {
+      type: {
+        type: String,
+        required: true,
+      },
+      data: {},
+    },
+  ],
 });
 
 // Execute before each user.save() call
