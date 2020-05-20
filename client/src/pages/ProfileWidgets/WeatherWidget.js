@@ -4,7 +4,6 @@ import WidgetBumper from "./WidgetBumper";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
 //Optional include of the default css styles
-import "react-open-weather/lib/css/ReactWeather.css";
 
 import { Image, Accordion, Segment } from "semantic-ui-react";
 import API from "../../utils/API";
