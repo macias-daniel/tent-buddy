@@ -48,8 +48,6 @@
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.7.2",
     "react-moment": "^0.9.7",
-    "react-open-weather": "^0.6.2",
-    "react-visibility-sensor": "^5.1.1",
     "semantic-ui-react": "^0.88.2"
   }
 }

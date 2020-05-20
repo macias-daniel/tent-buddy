@@ -3,7 +3,6 @@ import Moment from "react-moment";
 import WidgetBumper from "./WidgetBumper";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
-import "react-open-weather/lib/css/ReactWeather.css";
 import { Image, Accordion, Segment } from "semantic-ui-react";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
