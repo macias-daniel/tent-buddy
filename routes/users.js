@@ -7,6 +7,7 @@ const router = express.Router();
 // use isAuthenticated middleware to protect this route
 router.get("/api/user/:id", isAuthenticated, (req, res) => {
   db.User.findById(req.params.id)
+    .select("-password")
     .then((data) => {
       if (data) {
         res.json(data);

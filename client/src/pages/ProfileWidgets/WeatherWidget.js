@@ -3,10 +3,8 @@ import Moment from "react-moment";
 import WidgetBumper from "./WidgetBumper";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
-//Optional include of the default css styles
-
 import { Image, Accordion, Segment } from "semantic-ui-react";
-import API from "../../utils/API";
+import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidget() {
   const [weather, setWeather] = useState([]);
@@ -22,7 +20,7 @@ function WeatherWidget() {
   // const [search, setSearch] = useState("")
 
   useEffect(() => {
-    API.getCurrent().then(results => {
+    OpenWeatherMap.getCurrent().then(results => {
       setCurrentTemp(results.data.main.temp.toFixed());
       setCurrentIcon(
         "https://openweathermap.org/img/wn/" +
@@ -34,7 +32,7 @@ function WeatherWidget() {
       setCurrentWind(results.data.wind.speed.toFixed());
     });
 
-    API.getWeatherForecast().then(results => {
+    OpenWeatherMap.getWeatherForecast().then(results => {
       const dailyData = results.data.list.filter(reading => {
         return reading.dt_txt.includes("18:00:00");
       });
@@ -90,7 +88,7 @@ function WeatherWidget() {
               {currentTemp}°F
             </p>
 
-            <p
+            <div
               className="tempInfo"
               style={{ float: "left", fontWeight: "bold" }}
             >
@@ -100,10 +98,10 @@ function WeatherWidget() {
                 {" "}
                 {currentHumidity}%
               </p>
-            </p>
+            </div>
             <br></br>
 
-            <p
+            <div
               className="tempInfo"
               style={{ float: "left", fontWeight: "bold" }}
             >
@@ -113,10 +111,10 @@ function WeatherWidget() {
                 {" "}
                 {currentDescription}
               </p>
-            </p>
+            </div>
             <br></br>
 
-            <p
+            <div
               className="tempInfo"
               style={{ float: "left", fontWeight: "bold" }}
             >
@@ -126,7 +124,7 @@ function WeatherWidget() {
                 {" "}
                 {currentWind} MPH
               </p>
-            </p>
+            </div>
             <br></br>
           </Accordion.Title>
           <Accordion.Content

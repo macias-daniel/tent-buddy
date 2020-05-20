@@ -110,7 +110,7 @@ p{
 .loginForm {
   opacity: .90;
   position: relative;
-  transform: translateY(50%);
+  transform: translateY(30%);
   padding-left:0px;
 }
 
