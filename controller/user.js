@@ -1,10 +1,9 @@
 const db = require("../models");
 
-const addUserWidget = (id, widgetType, widgetData) => {
-  return db.User.updateOne(
-    { _id: id },
-    { $push: { ["widget." + widgetType]: widgetData } }
-  );
+const addUserWidget = ({ userID, type, data }) => {
+  return db.User.findByIdAndUpdate(userID, {
+    $push: { widgets: { type, data } },
+  });
 };
 
 module.exports = { addUserWidget };

@@ -10,46 +10,24 @@ function Profile() {
 
   useEffect(() => {
     API.getUser(user.id).then(response => {
-      console.log(user);
-      const widgetsToRender = response.data.widget;
-      const widgetList = [];
-      Object.keys(widgetsToRender).forEach(key => {
-        widgetsToRender[key].forEach(item => {
-          
-          //Push note component with note data
-          if(key === "note"){
-            console.log("Note");
-            widgetList.push(item);
-          
-          //Push weather component with weather data
-          } else if(key === "weather"){
-            console.log("weather");
-            widgetList.push(item);
-
-          //Push park component with park data
-          }else if(key === "park"){
-            console.log("park");
-            widgetList.push(item);
-          }
-        });
-      });
-      setWidgets(widgetList);
-      
+      const widgetsToRender = response.data.widgets;
+      const widgetComponents = widgetsToRender.map((widget) => {
+        if(widget.type === "note"){
+          return "Note Component";
+        } else if(widget.type === "weather"){
+          return "weather Component";
+        } else if(widget.type === "park"){
+          return "park Component";
+        }
+      }); 
+      setWidgets(widgetComponents);
+      console.log(widgetComponents);
     });
   }, [user]);
 
   return (
-    <div>
+    <div>å
       <Grid centered>
-        {/* <Segment
-          compact
-          className="widgetTitle"
-          style={{ backgroundColor: "rgba(144, 238, 144, 0)" }}
-        >
-          <p>Username: {username}</p>
-          <p>Email: {email}</p>
-          <Link to="/">Go home</Link>
-        </Segment> */}
         <WidgetSorter />
       </Grid>
     </div>
