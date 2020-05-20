@@ -10,12 +10,12 @@ import {
   Dimmer,
   Loader,
   Segment,
+  Button,
 } from "semantic-ui-react";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidgetGen() {
   const [citySearch, setCity] = useState("");
-  const [weather, setWeather] = useState([]);
   const [weatherForecast, setWeatherForecast] = useState([]);
   const [currentTemp, setCurrentTemp] = useState([]);
   const [currentIcon, setCurrentIcon] = useState([]);
@@ -25,6 +25,7 @@ function WeatherWidgetGen() {
   const [clicked, setClicked] = useState(false);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
+  const [button, setButton] = useState("");
 
   useEffect(() => {
     setSpinner(
@@ -48,6 +49,7 @@ function WeatherWidgetGen() {
         </Step>
       </Step.Group>,
     );
+    setButton("Add Widget");
   }, []);
 
   function handleCitySearch() {
@@ -69,53 +71,37 @@ function WeatherWidgetGen() {
       setCurrentWind(results.data.wind.speed.toFixed());
     });
 
-    OpenWeatherMap.getWeatherForecast(citySearch).then(results => {
-      setSpinner(<Step.Group>
-        <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-          <Icon name="cloud" style={{ color: "white" }} />
-          <Step.Content>
-            <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
-              WEATHER
-            </Step.Title>
-            <Step.Description
-              style={{
-                fontWeight: "100",
-                color: "white",
-                fontFamily: "Roboto",
-              }}
-            >
-              ENTER A CITY
-            </Step.Description>
-          </Step.Content>
-        </Step>
-      </Step.Group>);
-      setShowText(!showText);
-      const dailyData = results.data.list.filter(reading => {
-        return reading.dt_txt.includes("18:00:00");
+    OpenWeatherMap.getWeatherForecast(citySearch)
+      .then(results => {
+        setSpinner("");
+        setShowText(!showText);
+        const dailyData = results.data.list.filter(reading => {
+          return reading.dt_txt.includes("18:00:00");
+        });
+        renderForecast(dailyData);
       });
 
-      setCity(results.data.city.name.toUpperCase());
-      setWeather(dailyData);
-      console.log(dailyData);
-    });
-
-    setWeatherForecast(
-      weather.map(weatherData => {
-        return (
-          <ForecastContainer
-            // key={weatherData.city.id}
-            icon={weatherData.weather[0].icon}
-            temp={weatherData.main.temp.toFixed()}
-            day={new Date(weatherData.dt) * 1000}
-            // humidity={weatherData.main.humidity}
-          />
-        );
-      }),
-    );
+    function renderForecast(weather1) {
+      setWeatherForecast(
+        weather1.map(weatherData => {
+          return (
+            <ForecastContainer
+              // key={weatherData.city.id}
+              icon={weatherData.weather[0].icon}
+              temp={weatherData.main.temp.toFixed()}
+              day={new Date(weatherData.dt) * 1000}
+              // humidity={weatherData.main.humidity}
+            />
+          );
+        }),
+      );
+    }
   }
+
   function doClick() {
     setClicked(true);
   }
+
 
   const dateToFormat = new Date();
 
@@ -141,6 +127,30 @@ function WeatherWidgetGen() {
           }
           placeholder="ENTER CITY"
           onChange={event => {
+            setSpinner(
+              <Step.Group>
+                <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                  <Icon name="cloud" style={{ color: "white" }} />
+                  <Step.Content>
+                    <Step.Title
+                      style={{ color: "white", fontFamily: "Roboto" }}
+                    >
+                      WEATHER
+                    </Step.Title>
+                    <Step.Description
+                      style={{
+                        fontWeight: "100",
+                        color: "white",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      ENTER A CITY
+                    </Step.Description>
+                  </Step.Content>
+                </Step>
+              </Step.Group>,
+            );
+            setButton("Add Widget");
             setShowText("");
             setCity(event.target.value.toUpperCase());
           }}
@@ -157,7 +167,7 @@ function WeatherWidgetGen() {
           {showText && (
             <>
               <Segment attached inverted>
-                <Accordion>
+                <Accordion defaultActiveKey="0">
                   <p
                     style={{
                       float: "right",
@@ -168,21 +178,17 @@ function WeatherWidgetGen() {
                   >
                     <Image src={currentIcon} />
                   </p>
-                  <p style={{ float: "left" }} className="tempCity">
-                    {citySearch}
-                  </p>
-                  <p className="tempDate">
-                    <Moment
-                      format="dddd"
-                      style={{ float: "left", margin: "0px", color: "white" }}
-                    >
-                      {dateToFormat}
-                    </Moment>
-                  </p>
+                  <>
+                    <p className="tempCity">{citySearch}</p>
+                    <p className="tempDate">
+                      <Moment format="dddd">{dateToFormat}</Moment>
+                    </p>
+                  </>
+
                   <p className="tempDate">
                     <Moment
                       format="MM.DD"
-                      style={{ float: "left", color: "white" }}
+                      style={{ textAlign: "left", color: "white" }}
                     >
                       {dateToFormat}
                     </Moment>
@@ -190,45 +196,21 @@ function WeatherWidgetGen() {
                   <p className="temp" style={{ color: "white" }}>
                     {currentTemp}°F
                   </p>
-
-                  <div
-                    className="tempInfo"
-                    style={{ float: "left", fontWeight: "bold" }}
-                  >
-                    {" "}
-                    HUMIDITY:<span>&nbsp;&nbsp;</span>{" "}
-                    <p style={{ float: "right", fontWeight: "100" }}>
-                      {" "}
+                  <div style={{ textAlign: "left", fontWeight: "bold" }}>
+                    <p className="tempInfo">
+                      HUMIDITY:<span>&nbsp;&nbsp;</span>
                       {currentHumidity}%
                     </p>
-                  </div>
-                  <br></br>
+                    <p className="wind">
+                      WIND SPEED:<span>&nbsp;&nbsp;</span>
+                      {currentWind} MPH{" "}
+                    </p>
 
-                  <div
-                    className="tempInfo"
-                    style={{ float: "left", fontWeight: "bold" }}
-                  >
-                    {" "}
-                    CONDITIONS: <span>&nbsp;&nbsp;</span>
-                    <p style={{ float: "right", fontWeight: "100" }}>
-                      {" "}
+                    <p className="tempInfo">
+                      CONDITIONS:<span>&nbsp;&nbsp;</span>
                       {currentDescription}
                     </p>
                   </div>
-                  <br></br>
-
-                  <div
-                    className="tempInfo"
-                    style={{ float: "left", fontWeight: "bold" }}
-                  >
-                    {" "}
-                    WIND SPEED: <span>&nbsp;&nbsp;</span>
-                    <p style={{ float: "right", fontWeight: "100" }}>
-                      {" "}
-                      {currentWind} MPH
-                    </p>
-                  </div>
-                  <br></br>
                   <Accordion.Title>
                     <div
                       className="tempInfo"
@@ -251,11 +233,22 @@ function WeatherWidgetGen() {
                     </div>
                     <br></br>
                   </Accordion.Title>
-                  <Accordion.Content style={{margin:"0px"}} active={clicked}>
+                  <Accordion.Content style={{ margin: "0px" }} active={clicked}>
                     {weatherForecast}
                   </Accordion.Content>
                 </Accordion>
               </Segment>
+              <Button
+                secondary
+                inverted
+                fluid
+                style={{ fontFamily: "Roboto", color: "white" }}
+                onClick={event => {
+                  setButton("Widget Added");
+                }}
+              >
+                {button}
+              </Button>
             </>
           )}
           , {spinner}

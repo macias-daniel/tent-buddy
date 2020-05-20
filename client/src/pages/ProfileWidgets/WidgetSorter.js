@@ -27,8 +27,8 @@ const widgets = {
 
 export default class Projects extends Component {
   state = {
-    activeItem: "WEATHER",
-    currentPage: widgets.weather,
+    activeItem: false,
+    currentPage: "",
   };
 
   handleItemClick = (e, { name, title }) =>
