@@ -11,25 +11,26 @@ function Profile() {
   useEffect(() => {
     API.getUser(user.id).then(response => {
       const widgetsToRender = response.data.widgets;
-      const widgetComponents = widgetsToRender.map((widget) => {
-        if(widget.type === "note"){
-          return "Note Component";
-        } else if(widget.type === "weather"){
-          return "weather Component";
-        } else if(widget.type === "park"){
-          return "park Component";
+      const widgetComponents = widgetsToRender.map(widget => {
+        let component;
+        if (widget.type === "note") {
+          component = "Note Component";
+        } else if (widget.type === "weather") {
+          component = "weather Component";
+        } else if (widget.type === "park") {
+          component = "park Component";
         }
-      }); 
+        return component;
+      });
       setWidgets(widgetComponents);
-      console.log(widgets);
-      console.log(widgetComponents);
     });
   }, [user]);
 
   return (
-    <div>å
+    <div>
       <Grid centered>
         <WidgetSorter />
+        {console.log(widgets)}
       </Grid>
     </div>
   );
