@@ -8,28 +8,43 @@ function ForecastContainer({ day, temp, icon }) {
 
   return (
     <>
-    <Menu secondary
-      style={{
-        height: "1px",
-        marginTop: "0px",
-        marginBottom: "0px",
-        paddingTop: "0px",
-        paddingBottom: "0px",
-        fontSize: "12px",
-      }}>
+      <Menu
+        secondary
+        style={{
+          height: "1px",
+          marginTop: "0px",
+          marginBottom: "0px",
+          paddingTop: "0px",
+          paddingBottom: "0px",
+          fontSize: "12px",
+        }}
+      >
         <Menu.Item style={{ textAlign: "left" }}>
-        <Moment format="dddd" style={{marginLeft:"0px",color:"white", fontFamily:"Roboto", textAlign: "left" }}>
+          <Moment
+            format="dddd"
+            style={{
+              marginLeft: "0px",
+              color: "white",
+              fontFamily: "Roboto",
+              textAlign: "left",
+            }}
+          >
             {day}
           </Moment>
-          </Menu.Item>
-        <Menu.Menu position='right'>
-          <Menu.Item position='right' style={{ color:"white", fontFamily:"Roboto"}}> 
-          <Image position='right' src={iconSrc} />
-         <p position='right' style={{fontSize: "15px",}}>{temp}°F</p>
+        </Menu.Item>
+        <Menu.Menu position="right">
+          <Menu.Item
+            position="right"
+            style={{ color: "white", fontFamily: "Roboto" }}
+          >
+            <Image position="right" src={iconSrc} />
+            <p position="right" style={{ fontSize: "15px" }}>
+              {temp}°F
+            </p>
           </Menu.Item>
         </Menu.Menu>
       </Menu>
-      
+
       {/* <Menu
         pointing
         secondary
