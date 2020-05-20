@@ -28,7 +28,7 @@ const widgets = {
 
 export default class WidgetGeneratorSort extends Component {
   state = {
-    activeItem: null,
+    activeItem: false,
     currentPage: "",
   };
 

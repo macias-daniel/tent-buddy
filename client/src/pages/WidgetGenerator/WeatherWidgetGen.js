@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import ForecastContainer from "../ProfileWidgets/ForecastContainer";
-import "react-open-weather/lib/css/ReactWeather.css";
 import {
   Image,
   Icon,
@@ -71,7 +70,25 @@ function WeatherWidgetGen() {
     });
 
     OpenWeatherMap.getWeatherForecast(citySearch).then(results => {
-      setSpinner("");
+      setSpinner(<Step.Group>
+        <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+          <Icon name="cloud" style={{ color: "white" }} />
+          <Step.Content>
+            <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+              WEATHER
+            </Step.Title>
+            <Step.Description
+              style={{
+                fontWeight: "100",
+                color: "white",
+                fontFamily: "Roboto",
+              }}
+            >
+              ENTER A CITY
+            </Step.Description>
+          </Step.Content>
+        </Step>
+      </Step.Group>);
       setShowText(!showText);
       const dailyData = results.data.list.filter(reading => {
         return reading.dt_txt.includes("18:00:00");
@@ -174,7 +191,7 @@ function WeatherWidgetGen() {
                     {currentTemp}°F
                   </p>
 
-                  <p
+                  <div
                     className="tempInfo"
                     style={{ float: "left", fontWeight: "bold" }}
                   >
@@ -184,10 +201,10 @@ function WeatherWidgetGen() {
                       {" "}
                       {currentHumidity}%
                     </p>
-                  </p>
+                  </div>
                   <br></br>
 
-                  <p
+                  <div
                     className="tempInfo"
                     style={{ float: "left", fontWeight: "bold" }}
                   >
@@ -197,10 +214,10 @@ function WeatherWidgetGen() {
                       {" "}
                       {currentDescription}
                     </p>
-                  </p>
+                  </div>
                   <br></br>
 
-                  <p
+                  <div
                     className="tempInfo"
                     style={{ float: "left", fontWeight: "bold" }}
                   >
@@ -210,10 +227,10 @@ function WeatherWidgetGen() {
                       {" "}
                       {currentWind} MPH
                     </p>
-                  </p>
+                  </div>
                   <br></br>
                   <Accordion.Title>
-                    <p
+                    <div
                       className="tempInfo"
                       style={{
                         float: "left",
@@ -231,7 +248,7 @@ function WeatherWidgetGen() {
                           inverted
                         />
                       </p>
-                    </p>
+                    </div>
                     <br></br>
                   </Accordion.Title>
                   <Accordion.Content style={{margin:"0px"}} active={clicked}>
