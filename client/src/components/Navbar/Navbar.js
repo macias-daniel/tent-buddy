@@ -74,10 +74,12 @@ function Navbar() {
     <Header inverted textAlign="center" block>
       <div className="container">
         <Link className="navbar-brand" to="/">
-          <h2 className="HeaderTitle">
-            Tent Buddy
-            <Icon name="tree" />
-          </h2>
+          <img
+            className="headerLogo"
+            alt="Tent logo"
+            src="/Icons/android-chrome-192x192.png"
+          ></img>
+          <h2 className="HeaderTitle">Tent Buddy</h2>
         </Link>
         <NavLinks />
       </div>
