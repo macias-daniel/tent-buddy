@@ -9,4 +9,15 @@ router.post("/api/widget", (req, res) => {
   });
 });
 
+router.delete("/api/user/widget", (req, res) => {
+  userController
+    .replaceUserWidgets(req.body)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 module.exports = router;

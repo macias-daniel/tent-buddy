@@ -6,4 +6,8 @@ const addUserWidget = ({ userID, type, data }) => {
   });
 };
 
-module.exports = { addUserWidget };
+const replaceUserWidgets = ({ userID, widgets }) => {
+  return db.User.findByIdAndUpdate(userID, { widgets: widgets });
+};
+
+module.exports = { addUserWidget, replaceUserWidgets };
