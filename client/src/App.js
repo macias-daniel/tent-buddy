@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
+import CallToAction from "./pages/CallToAction/CallToAction.js";
 import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome";
 import Navbar from "./components/Navbar";
 
@@ -33,6 +34,9 @@ function App() {
             <ProtectedRoute exact path="/">
               <Home />
             </ProtectedRoute>
+            <Route exact path="/aboutus">
+              <CallToAction/>
+            </Route>
             <Route exact path="/login">
               <Login />
             </Route>
