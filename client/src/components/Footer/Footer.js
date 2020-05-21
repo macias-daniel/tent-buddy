@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, List, Segment } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -26,7 +27,7 @@ function Footer() {
             </div>
             <div className="column">
               <List horizontal inverted divided link size="small">
-                <List.Item as="a" href="#">
+                <List.Item as= {Link} to="/contact">
                   Contact Us
                 </List.Item>
                 <List.Item as="a" href="https://github.com/macias-daniel">
