@@ -12,6 +12,7 @@ import {
   Segment,
   Button,
 } from "semantic-ui-react";
+import API from "../../utils/API";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidgetGen() {
@@ -96,6 +97,16 @@ function WeatherWidgetGen() {
       );
     }
   }
+
+  const addWeatherWidget = event => {
+    event.preventDefault();
+    setButton("Widget Added");
+    API.addWeatherWidget({
+      type: "weather",
+      data: {city: citySearch}
+    })
+      .catch(err => alert(err));
+  };
 
   function handleClick() {
     const newIndex = activeIndex === -1 ? 0 : -1;
@@ -242,9 +253,7 @@ function WeatherWidgetGen() {
                 inverted
                 fluid
                 style={{ fontFamily: "Roboto", color: "white" }}
-                onClick={event => {
-                  setButton("Widget Added");
-                }}
+                onClick={addWeatherWidget}
               >
                 {button}
               </Button>

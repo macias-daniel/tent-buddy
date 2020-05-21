@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default {
-
   // Gets a single user by id
   getUser: id => {
     return axios.get(`/api/user/${id}`, {
@@ -24,5 +23,9 @@ export default {
         },
       },
     );
+  },
+
+  addWeatherWidget: function (weatherData) {
+    return axios.post("/api/user/widget", weatherData);
   },
 };

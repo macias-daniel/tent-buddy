@@ -7,7 +7,7 @@ const createLink = ({ text, to, ...rest }) => {
   const className = "nav-link";
   if (to) {
     return (
-      <Link className={className} to={to} {...rest}>
+      <Link className="placeholder"to={to} {...rest}>
         {text}
       </Link>
     );
@@ -30,8 +30,8 @@ function NavLinks() {
 
   if (isLoggedIn) {
     const trigger = (
-      <span>
-        <Icon name="user" /> Hello, {user.email}
+      <span className="placeholder">
+        <Icon name="user" />Welcome, Buddy.
       </span>
     );
 
@@ -40,17 +40,23 @@ function NavLinks() {
         key: "user",
         text: (
           <span>
-            Signed in as <strong>{user.email}</strong>
+            <p className="placeholder2"> Signed in as {user.email}</p>
           </span>
         ),
         disabled: true,
       },
-      { key: "profile", text: "Your Profile", as: Link, to: "/profile" },
-      { key: "widgetGenerator", text: "Widget Generator", as: Link, to: "/widgetGenerator" },
+      { key: "profile", text: "Your Profile", as: Link, to: "/profile"},
+      {
+        key: "widgetGenerator",
+        text: "Widget Generator",
+        as: Link,
+        to: "/widgetGenerator",
+      },
       { key: "sign-out", text: "Sign Out", onClick: () => logout() },
     ];
     return (
       <Dropdown
+        as="Dropdown"
         trigger={trigger}
         options={options}
         pointing="top left"
@@ -64,7 +70,7 @@ function NavLinks() {
   return (
     <List horizontal>
       {links.map(link => (
-        <List.Item className="placeholder">{createLink(link)}</List.Item>
+        <List.Item>{createLink(link)}</List.Item>
       ))}
     </List>
   );
@@ -82,7 +88,7 @@ function Navbar() {
           ></img>
           <h2 className="HeaderTitle">Tent Buddy</h2>
         </Link>
-        <NavLinks />
+        <NavLinks className="placeholder2"/>
       </div>
     </Header>
   );
