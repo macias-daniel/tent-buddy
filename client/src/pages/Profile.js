@@ -27,10 +27,11 @@ function Profile() {
         }
 
         return component;
-      });
 
+      });
       //Save the users widgets as components
       setWidgets(widgetComponents);
+
     });
   }, [user]);
 
