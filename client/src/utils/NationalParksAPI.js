@@ -1,6 +1,7 @@
 import axios from "axios";
 class NationalParks {
 
+
   constructor(){
     this.client = axios.create({
       baseURL: "https://developer.nps.gov/api/v1",
@@ -12,7 +13,7 @@ class NationalParks {
 
   getInfo = citySearch => {
     return this.client.get(
-      "/parks?parkCode=acad&api_key=84TrQplVnjoIMiehR0TLPbSAjfmq2QR9DLJabiqG",
+      "/campgrounds?stateCode=CA&api_key=84TrQplVnjoIMiehR0TLPbSAjfmq2QR9DLJabiqG",
     );
   };
 
