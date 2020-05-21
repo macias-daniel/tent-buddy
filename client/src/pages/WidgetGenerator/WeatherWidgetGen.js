@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
+import { useAuth } from "../../utils/auth";
 import ForecastContainer from "../ProfileWidgets/ForecastContainer";
 import {
   Image,
@@ -12,9 +13,11 @@ import {
   Segment,
   Button,
 } from "semantic-ui-react";
+import API from "../../utils/API";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidgetGen() {
+  const { user } = useAuth();
   const [citySearch, setCity] = useState("");
   const [weatherForecast, setWeatherForecast] = useState([]);
   const [currentTemp, setCurrentTemp] = useState([]);
@@ -22,7 +25,7 @@ function WeatherWidgetGen() {
   const [currentHumidity, setCurrentHumidity] = useState([]);
   const [currentDescription, setCurrentDescription] = useState([]);
   const [currentWind, setCurrentWind] = useState([]);
-  const [clicked, setClicked] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
@@ -71,15 +74,14 @@ function WeatherWidgetGen() {
       setCurrentWind(results.data.wind.speed.toFixed());
     });
 
-    OpenWeatherMap.getWeatherForecast(citySearch)
-      .then(results => {
-        setSpinner("");
-        setShowText(!showText);
-        const dailyData = results.data.list.filter(reading => {
-          return reading.dt_txt.includes("18:00:00");
-        });
-        renderForecast(dailyData);
+    OpenWeatherMap.getWeatherForecast(citySearch).then(results => {
+      setSpinner("");
+      setShowText(!showText);
+      const dailyData = results.data.list.filter(reading => {
+        return reading.dt_txt.includes("18:00:00");
       });
+      renderForecast(dailyData);
+    });
 
     function renderForecast(weather1) {
       setWeatherForecast(
@@ -98,10 +100,17 @@ function WeatherWidgetGen() {
     }
   }
 
-  function doClick() {
-    setClicked(true);
-  }
+  const addWeatherWidget = event => {
+    event.preventDefault();
+    setButton("Widget Added");
+    API.addUserWidget(user.id,"weather", {city: citySearch})
+      .catch(err => alert(err));
+  };
 
+  function handleClick() {
+    const newIndex = activeIndex === -1 ? 0 : -1;
+    setActiveIndex(newIndex);
+  }
 
   const dateToFormat = new Date();
 
@@ -167,7 +176,7 @@ function WeatherWidgetGen() {
           {showText && (
             <>
               <Segment attached inverted>
-                <Accordion defaultActiveKey="0">
+                <Accordion>
                   <p
                     style={{
                       float: "right",
@@ -211,7 +220,11 @@ function WeatherWidgetGen() {
                       {currentDescription}
                     </p>
                   </div>
-                  <Accordion.Title>
+                  <Accordion.Title
+                    onClick={handleClick}
+                    index={0}
+                    active={activeIndex === 0}
+                  >
                     <div
                       className="tempInfo"
                       style={{
@@ -224,16 +237,12 @@ function WeatherWidgetGen() {
                       FORECAST <span>&nbsp;&nbsp;</span>
                       <p style={{ float: "right", fontWeight: "100" }}>
                         {" "}
-                        <Icon
-                          name="plus square outline"
-                          onClick={clicked ? undefined : doClick}
-                          inverted
-                        />
+                        <Icon name="plus square outline" inverted />
                       </p>
                     </div>
                     <br></br>
                   </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={clicked}>
+                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
                     {weatherForecast}
                   </Accordion.Content>
                 </Accordion>
@@ -243,9 +252,7 @@ function WeatherWidgetGen() {
                 inverted
                 fluid
                 style={{ fontFamily: "Roboto", color: "white" }}
-                onClick={event => {
-                  setButton("Widget Added");
-                }}
+                onClick={addWeatherWidget}
               >
                 {button}
               </Button>
