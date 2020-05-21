@@ -10,6 +10,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "server": "nodemon index.js",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
@@ -17,7 +18,8 @@
     "lint": "eslint . && cd client && npm run lint",
     "lint:fix": "eslint --fix . && cd client && npm run lint:fix",
     "test": "cd client && npm run test",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeders/seed.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Travis Thompson, John Desrosiers",
   "license": "ISC",
