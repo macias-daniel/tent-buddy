@@ -17,6 +17,7 @@ import API from "../../utils/API";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidgetGen() {
+  //Set Hook for weather API
   const { user } = useAuth();
   const [citySearch, setCity] = useState("");
   const [weatherForecast, setWeatherForecast] = useState([]);
@@ -31,6 +32,7 @@ function WeatherWidgetGen() {
   const [button, setButton] = useState("");
 
   useEffect(() => {
+    //Display add card when Page renders
     setSpinner(
       <Step.Group>
         <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
@@ -52,16 +54,19 @@ function WeatherWidgetGen() {
         </Step>
       </Step.Group>,
     );
+    //Widget is set to Add when page renders
     setButton("Add Widget");
   }, []);
 
   function handleCitySearch() {
+    //When search begins, sipnner appears
     setSpinner(
       <Dimmer active>
         <Loader />
       </Dimmer>,
     );
 
+    //API call for single day weather
     OpenWeatherMap.getCurrent(citySearch).then(results => {
       setCurrentTemp(results.data.main.temp.toFixed());
       setCurrentIcon(
@@ -74,7 +79,9 @@ function WeatherWidgetGen() {
       setCurrentWind(results.data.wind.speed.toFixed());
     });
 
+    //API call for forecast
     OpenWeatherMap.getWeatherForecast(citySearch).then(results => {
+      //when results are rendered spinner turns off and results are displayed
       setSpinner("");
       setShowText(!showText);
       const dailyData = results.data.list.filter(reading => {
@@ -83,6 +90,7 @@ function WeatherWidgetGen() {
       renderForecast(dailyData);
     });
 
+    //Render the container after the API call
     function renderForecast(weather1) {
       setWeatherForecast(
         weather1.map(weatherData => {
@@ -100,6 +108,7 @@ function WeatherWidgetGen() {
     }
   }
 
+  //POST request to DB
   const addWeatherWidget = event => {
     event.preventDefault();
     setButton("Widget Added");
@@ -107,11 +116,13 @@ function WeatherWidgetGen() {
       .catch(err => alert(err));
   };
 
+  //Accordion
   function handleClick() {
     const newIndex = activeIndex === -1 ? 0 : -1;
     setActiveIndex(newIndex);
   }
 
+  //Get current Date
   const dateToFormat = new Date();
 
   return (

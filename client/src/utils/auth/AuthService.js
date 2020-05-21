@@ -39,7 +39,6 @@ export default class AuthService {
 
     setToken(idToken) {
       // Saves user token to localStorage
-      axios.defaults.headers.common.Authorization = `Bearer ${idToken}`;
       localStorage.setItem("id_token", idToken);
     }
 
