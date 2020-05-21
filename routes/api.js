@@ -23,7 +23,7 @@ router.post("/api/user/widget", isAuthenticated, (req, res) => {
 });
 
 //Deletes a specific widget
-router.delete("/api/user/widget", (req, res) => {
+router.delete("/api/user/widget", isAuthenticated, (req, res) => {
   const userID = req.body.userID;
   const widgetID = req.body.widgetID;
 

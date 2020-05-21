@@ -42,4 +42,19 @@ export default {
       },
     );
   },
+
+  //Delete a specific id by id from a specific user
+  deleteUserWidget: (userID, widgetID)=>{
+    return axios.delete(
+      {
+        userID:  userID, 
+        widgetID:  widgetID
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+        },
+      }
+    );
+  }
 };
