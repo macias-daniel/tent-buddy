@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import CallToAction from "./pages/CallToAction/CallToAction.js";
+import ContactUs from "./pages/ContactUs/ContactUs";
 import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -49,6 +50,9 @@ function App() {
             </ProtectedRoute>
             <Route exact path="/widgetGenerator">
               <WidgetGenHome />
+            </Route>
+            <Route exact path="/contact">
+              <ContactUs/>
             </Route>
           </Switch>
           <Footer />
