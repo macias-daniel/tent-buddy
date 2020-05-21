@@ -29,30 +29,28 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="homeContainer">
-          <Navbar />
-          <Switch>
-            <ProtectedRoute exact path="/">
-              <Home />
-            </ProtectedRoute>
-            <Route exact path="/aboutus">
-              <CallToAction/>
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
-            <ProtectedRoute exact path="/profile">
-              <Profile />
-            </ProtectedRoute>
-            <Route exact path="/widgetGenerator">
-              <WidgetGenHome />
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
+        <Navbar />
+        <Switch>
+          <ProtectedRoute exact path="/">
+            <Home />
+          </ProtectedRoute>
+          <Route exact path="/aboutus">
+            <CallToAction />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/signup">
+            <Signup />
+          </Route>
+          <ProtectedRoute exact path="/profile">
+            <Profile />
+          </ProtectedRoute>
+          <Route exact path="/widgetGenerator">
+            <WidgetGenHome />
+          </Route>
+        </Switch>
+        <Footer />
       </Router>
     </AuthProvider>
   );
