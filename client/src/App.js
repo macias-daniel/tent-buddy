@@ -32,10 +32,7 @@ function App() {
         <div className="homeContainer">
           <Navbar />
           <Switch>
-            <ProtectedRoute exact path="/">
-              <Home />
-            </ProtectedRoute>
-            <Route exact path="/aboutus">
+            <Route exact path="/">
               <CallToAction/>
             </Route>
             <Route exact path="/login">
