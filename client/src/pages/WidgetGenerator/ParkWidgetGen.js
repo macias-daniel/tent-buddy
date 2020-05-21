@@ -67,11 +67,11 @@ function ParkWidgetGen() {
     NationalParksAPI.getInfo(parkSearch).then(results => {
       // make results path for hours
       setHours(results);
-      setPhone();
-      setDescription();
-      setUrl();
-      setAddress();
-      setLatlon();
+      setPhone(results);
+      setDescription(results);
+      setUrl(results);
+      setAddress(results);
+      setLatlon(results);
       
     });
 
@@ -80,9 +80,9 @@ function ParkWidgetGen() {
     NationalParksAPI.getAlerts(parkSearch).then(results => {
       setSpinner("");
       setShowText(!showText);
-      setAlertTitle();
-      setAlertCategory();
-      setAlertDescription();
+      setAlertTitle(results);
+      setAlertCategory(results);
+      setAlertDescription(results);
       const dailyData = results.data.list.filter(reading => {
         return reading.dt_txt.includes("18:00:00");
       });
@@ -129,12 +129,30 @@ function ParkWidgetGen() {
           onChange={event => {
             setSpinner(
               <Step.Group>
-                <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)"}}>
-                  <Icon name
-
+                <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                  <Icon name="cloud" style={{ color: "white" }} />
+                  <Step.Content>
+                    <Step.Title
+                      style={{ color: "white", fontFamily: "Roboto" }}
+                    >
+                      PARK
+                    </Step.Title>
+                    <Step.Description
+                      style={{
+                        fontWeight: "100",
+                        color: "white",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      ENTER A PARK
+                    </Step.Description>
+                  </Step.Content>
                 </Step>
-              </Step.Group>
-            )
+              </Step.Group>,
+            );
+            setButton("Add Widget");
+            setShowText("");
+            setCity(event.target.value.toUpperCase());
           }}
 
         />
@@ -147,7 +165,106 @@ function ParkWidgetGen() {
             backgroundColor: "rgba(27, 27, 27, 0.76)",
           }}
         >
+          {showText && (
+            <>
+            <Segment attached inverted>
+                <Accordion defaultActiveKey="0">
+                  <p
+                    style={{
+                      float: "right",
+                      margin: "0px",
+                      fontWeight: "100",
+                      padding: "0px",
+                    }}
+                  >
+                    {/* hours */}
+                    <div>
+                      <h4 >Hours: {hours}</h4>
+                    </div>
+                  </p>
+                  <>
+                    <p className="tempCity">{parkSearch}</p>
+                    <p className="tempDate">
+                      <Moment format="dddd">{dateToFormat}</Moment>
+                    </p>
+                  </>
 
+                  <p className="tempDate">
+                    <Moment
+                      format="MM.DD"
+                      style={{ textAlign: "left", color: "white" }}
+                    >
+                      {dateToFormat}
+                    </Moment>
+                  </p>
+                  {/* phone number */}
+                  <p className="temp" style={{ color: "white" }}>
+                    {phone}
+                  </p>
+                  <div style={{ textAlign: "left", fontWeight: "bold" }}>
+                    {/* url */}
+                    <p className="tempInfo">
+                      URL:<span>&nbsp;&nbsp;</span>
+                      {url}
+                    </p>
+                    {/* address */}
+                    <p className="wind">
+                      Address:<span>&nbsp;&nbsp;</span>
+                      {address} MPH{" "}
+                    </p>
+                    {/* lat lon */}
+                    <p className="tempInfo">
+                      Latlon:<span>&nbsp;&nbsp;</span>
+                      {latlon}
+                    </p>
+                    {/* park description */}
+                    <p className="tempImfo">
+                      Description:<span>&nbsp;&nbsp;</span>
+                      {description}
+                    </p>
+                  </div>
+                  <Accordion.Title>
+                    <div
+                      className="tempInfo"
+                      style={{
+                        float: "left",
+                        fontWeight: "bold",
+                        fontSize: "15px",
+                      }}
+                    >
+                      {" "}
+                      ALERTS <span>&nbsp;&nbsp;</span>
+                      <p style={{ float: "right", fontWeight: "100" }}>
+                        {" "}
+                        <Icon
+                          name="plus square outline"
+                          onClick={clicked ? undefined : doClick}
+                          inverted
+                        />
+                      </p>
+                    </div>
+                    <br></br>
+                  </Accordion.Title>
+                  <Accordion.Content style={{ margin: "0px" }} active={clicked}>
+                    {/* park info */}
+                    {parkInfo}
+                  </Accordion.Content>
+                </Accordion>
+              </Segment>
+              <Button
+                secondary
+                inverted
+                fluid
+                style={{ fontFamily: "Roboto", color: "white" }}
+                onClick={event => {
+                  setButton("Widget Added");
+                }}
+              >
+                {button}
+              </Button>
+            </>
+          )},
+          {spinner}
         </Segment>
       </Segment>
     </div>
