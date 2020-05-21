@@ -9,7 +9,6 @@ import axios from "axios";
 //   "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&units=imperial&APPID=3f3bd037aeac95efcd0304fb293c1edd&cnt=40";
 
 export default {
-
   // Gets a single user by id
   getUser: id => {
     return axios.get(`/api/user/${id}`, {
@@ -25,6 +24,22 @@ export default {
         username: username,
         email: email,
         password: password,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+        },
+      },
+    );
+  },
+  
+  addUserWidget: (userID, widgetType, widgetData) => {
+    return axios.post(
+      "/api/user/widget",
+      { 
+        userID:  userID, 
+        widgetType: widgetType, 
+        widgetData: widgetData 
       },
       {
         headers: {
