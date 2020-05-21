@@ -25,6 +25,7 @@ export default {
     );
   },
   
+  //Create a new widget for the user
   addUserWidget: (userID, widgetType, widgetData) => {
     return axios.post(
       "/api/user/widget",

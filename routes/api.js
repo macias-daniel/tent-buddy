@@ -8,10 +8,12 @@ router.post("/api/user/widget", (req, res) => {
   const widgetType = req.body.widgetType;
   const widgetData = req.body.widgetData;
 
+  //Checks if widget data is an object an will throw a error otherwise
   if (typeof widgetData !== "object") {
     throw new Error("widgetData must be an object");
   }
 
+  //Calls user controller function
   userController
     .addUserWidget(userID, widgetType, widgetData)
     .then((response) => {
@@ -19,9 +21,12 @@ router.post("/api/user/widget", (req, res) => {
     });
 });
 
+//Deletes a specific widget
 router.delete("/api/user/widget", (req, res) => {
   const userID = req.body.userID;
   const widgetID = req.body.widgetID;
+
+  //Calls user controller function
   userController.deleteUserWidgets(userID, widgetID).then((response) => {
     res.send(response);
   });

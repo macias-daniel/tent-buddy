@@ -10,9 +10,15 @@ function Profile() {
 
   useEffect(() => {
     API.getUser(user.id).then(response => {
+
+      //Save the users list of widgets to render
       const widgetsToRender = response.data.widgets;
+
+      //Saves and calculates an array of widget components
       const widgetComponents = widgetsToRender.map(widget => {
         let component;
+
+        //Depending on the widgets type return that widgets corresponding components
         if (widget.type === "note") {
           component = "Note Component";
         } else if (widget.type === "weather") {
@@ -20,8 +26,11 @@ function Profile() {
         } else if (widget.type === "park") {
           component = "park Component";
         }
+
         return component;
       });
+
+      //Save the users widgets
       setWidgets(widgetComponents);
     });
   }, [user]);
