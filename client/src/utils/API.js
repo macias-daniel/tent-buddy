@@ -24,8 +24,26 @@ export default {
       },
     );
   },
+<<<<<<< HEAD
 
   addWeatherWidget: function (weatherData) {
     return axios.post("/api/user/widget", weatherData);
+=======
+  
+  addUserWidget: (userID, widgetType, widgetData) => {
+    return axios.post(
+      "/api/user/widget",
+      { 
+        userID:  userID, 
+        widgetType: widgetType, 
+        widgetData: widgetData 
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+        },
+      },
+    );
+>>>>>>> 62a3a6ae35aecee810d090bf89efa7b47e6e7857
   },
 };

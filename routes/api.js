@@ -5,8 +5,8 @@ const userController = require("../controller/user");
 //Post a new widget to user
 router.post("/api/user/widget", (req, res) => {
   const userID = req.body.userID;
-  const widgetType = req.body.type;
-  const widgetData = req.body.data;
+  const widgetType = req.body.widgetType;
+  const widgetData = req.body.widgetData;
   userController
     .addUserWidget(userID, widgetType, widgetData)
     .then((response) => {
