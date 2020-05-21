@@ -26,7 +26,7 @@ router.post("/api/user/widget", isAuthenticated, (req, res) => {
 router.delete("/api/user/widget", isAuthenticated, (req, res) => {
   const userID = req.body.userID;
   const widgetID = req.body.widgetID;
-
+  console.log({ userID, widgetID });
   //Calls user controller function
   userController.deleteUserWidgets(userID, widgetID).then((response) => {
     res.send(response);

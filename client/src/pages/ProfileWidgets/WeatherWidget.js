@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
-import WidgetBumper from "./WidgetBumper";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
-import { Image, Accordion, Segment } from "semantic-ui-react";
+import { Image, Accordion, Icon, Segment } from "semantic-ui-react";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
-function WeatherWidget() {
-  const [weather, setWeather] = useState([]);
+function WeatherWidget({ key, city }) {
   const [weatherForecast, setWeatherForecast] = useState([]);
-  const [city, setCity] = useState([]);
-  // const [day, setDay] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const [currentTemp, setCurrentTemp] = useState([]);
   const [currentIcon, setCurrentIcon] = useState([]);
   const [currentHumidity, setCurrentHumidity] = useState([]);
   const [currentDescription, setCurrentDescription] = useState([]);
   const [currentWind, setCurrentWind] = useState([]);
-  const [clicked, setClicked] = useState(false);
-  // const [search, setSearch] = useState("")
 
   useEffect(() => {
-    OpenWeatherMap.getCurrent().then(results => {
+    //API call for single day weather
+    OpenWeatherMap.getCurrent(city).then(results => {
       setCurrentTemp(results.data.main.temp.toFixed());
       setCurrentIcon(
         "https://openweathermap.org/img/wn/" +
@@ -32,101 +28,126 @@ function WeatherWidget() {
       setCurrentWind(results.data.wind.speed.toFixed());
     });
 
-    OpenWeatherMap.getWeatherForecast().then(results => {
+    //API call for forecast
+    OpenWeatherMap.getWeatherForecast(city).then(results => {
+      //when results are rendered spinner turns off and results are displayed
       const dailyData = results.data.list.filter(reading => {
         return reading.dt_txt.includes("18:00:00");
       });
-
-      setCity(results.data.city.name);
-      setWeather(dailyData);
+      renderForecast(dailyData);
     });
-  }, []);
+
+    //Render the container after the API call
+    function renderForecast(weather1) {
+      setWeatherForecast(
+        weather1.map(weatherData => {
+          return (
+            <ForecastContainer
+              key={key}
+              icon={weatherData.weather[0].icon}
+              temp={weatherData.main.temp.toFixed()}
+              day={new Date(weatherData.dt) * 1000}
+              // humidity={weatherData.main.humidity}
+            />
+          );
+        }),
+      );
+    }
+  }, [city, key]);
 
   const dateToFormat = new Date();
 
-  useEffect(() => {
-    setWeatherForecast(
-      weather.map(weatherData => {
-        return (
-          <ForecastContainer
-            // key={weatherData.city.id}
-            icon={weatherData.weather[0].icon}
-            temp={weatherData.main.temp.toFixed()}
-            day={new Date(weatherData.dt) * 1000}
-            // humidity={weatherData.main.humidity}
-          />
-        );
-      }),
-    );
-  }, [weather]);
-
-  function doClick() {
-    setClicked(true);
+  //Accordion
+  function handleClick() {
+    const newIndex = activeIndex === -1 ? 0 : -1;
+    setActiveIndex(newIndex);
   }
 
-  function dontClick() {
-    setClicked(false);
-  }
   //Component to render
   return (
     <>
-      <WidgetBumper />
-      <Segment attached inverted style={{ width: "225px" }}>
-        <Accordion>
-          <Accordion.Title index={0} onClick={clicked ? undefined : doClick}>
-            <p style={{ float: "right", fontWeight: "100" }}>
-              <Image src={currentIcon} />
-            </p>
-            <p className="tempCity">{city}</p>
-            <p className="tempDate">
-              <Moment format="dddd MM.DD" style={{ color: "white" }}>
-                {dateToFormat}
-              </Moment>
-            </p>
-
-            <p className="temp" style={{ color: "white" }}>
-              {currentTemp}°F
-            </p>
-
-            <div style={{ textAlign: "left", fontWeight: "bold" }}>
-              HUMIDITY: {currentHumidity}%
-           
-            </div>
-            <br></br>
-
-            <div
-              className="tempInfo"
-              style={{ float: "left", fontWeight: "bold" }}
-            >
-              {" "}
-              DESCRIPTION: <span>&nbsp;&nbsp;</span>
-              <p style={{ float: "right", fontWeight: "100" }}>
-                {" "}
-                {currentDescription}
+      <Segment
+        attached
+        inverted
+        style={{ width: "225px", backgroundColor: "rgba(27, 27, 27, 0.76)" }}
+      >
+        <>
+          <Segment attached inverted>
+            <Accordion>
+              <p
+                style={{
+                  float: "right",
+                  margin: "0px",
+                  fontWeight: "100",
+                  padding: "0px",
+                }}
+              >
+                <Image src={currentIcon} />
               </p>
-            </div>
-            <br></br>
+              <>
+                <p className="tempCity">{city}</p>
+                <p className="tempDate">
+                  <Moment format="dddd">{dateToFormat}</Moment>
+                </p>
+              </>
 
-            <div
-              className="tempInfo"
-              style={{ float: "left", fontWeight: "bold" }}
-            >
-              {" "}
-              WIND SPEED: <span>&nbsp;&nbsp;</span>
-              <p style={{ float: "right", fontWeight: "100" }}>
-                {" "}
-                {currentWind} MPH
+              <p className="tempDate">
+                <Moment
+                  format="MM.DD"
+                  style={{ textAlign: "left", color: "white" }}
+                >
+                  {dateToFormat}
+                </Moment>
               </p>
-            </div>
-            <br></br>
-          </Accordion.Title>
-          <Accordion.Content
-            active={clicked}
-            onClick={clicked ? true : dontClick}
-          >
-            {weatherForecast}
-          </Accordion.Content>
-        </Accordion>
+              <p className="temp" style={{ color: "white" }}>
+                {currentTemp}°F
+              </p>
+              <div style={{ textAlign: "left", fontWeight: "bold" }}>
+                <p className="tempInfo">
+                  HUMIDITY:<span>&nbsp;&nbsp;</span>
+                  {currentHumidity}%
+                </p>
+                <p className="wind">
+                  WIND SPEED:<span>&nbsp;&nbsp;</span>
+                  {currentWind} MPH{" "}
+                </p>
+
+                <p className="tempInfo">
+                  CONDITIONS:<span>&nbsp;&nbsp;</span>
+                  {currentDescription}
+                </p>
+              </div>
+              <Accordion.Title
+                onClick={handleClick}
+                index={0}
+                active={activeIndex === 0}
+              >
+                <div
+                  className="tempInfo"
+                  style={{
+                    float: "left",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                  }}
+                >
+                  {" "}
+                  FORECAST <span>&nbsp;&nbsp;</span>
+                  <p style={{ float: "right", fontWeight: "100" }}>
+                    {" "}
+                    <Icon name="plus square outline" inverted />
+                  </p>
+                </div>
+                <br></br>
+              </Accordion.Title>
+              <Accordion.Content
+                style={{ margin: "0px" }}
+                active={activeIndex === 0}
+              >
+                {weatherForecast}
+              </Accordion.Content>
+            </Accordion>
+          </Segment>
+        </>
       </Segment>
     </>
   );
