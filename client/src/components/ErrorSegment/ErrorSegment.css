@@ -1,0 +1,8 @@
+.errorText{
+  color: #721c24;
+}
+.errorBody{
+  border-radius: 0px !important;
+  border: 1px solid#f5c6cb !important;
+  background-color: #f8d7da !important;
+}
