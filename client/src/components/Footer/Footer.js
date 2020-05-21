@@ -10,7 +10,7 @@ function Footer() {
         style={{
           margin: "2em 0em 0em",
           padding: "0em 0em",
-          position: "absolute",
+          position: "fixed",
           bottom: 0,
           width: "100%",
         }}

@@ -47,7 +47,7 @@ function NavLinks() {
       },
       { key: "profile", text: "Your Profile", as: Link, to: "/profile" },
       { key: "widgetGenerator", text: "Widget Generator", as: Link, to: "/widgetGenerator" },
-      { key: "sign-out", text: "Sign Out", onClick: () => logout() },
+      { key: "sign-out", text: "Sign Out", onClick: () => logout()},
     ];
     return (
       <Dropdown
@@ -75,7 +75,7 @@ function Navbar() {
   return (
     <Header inverted textAlign="center" block>
       <div className="container">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/profile">
           <img
             className="headerLogo"
             alt="Tent logo"

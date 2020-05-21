@@ -26,13 +26,13 @@
 .homeContainer {
   /* The image used */
   background-image: url("./mountain.jpg");
-
+  background-attachment: scroll;
   /* Full height */
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   width: 100%;
   height: 100%;
-
+  padding-bottom: 100px;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;

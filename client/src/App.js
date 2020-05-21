@@ -15,7 +15,6 @@ import Home from "./pages/Home";
 import CallToAction from "./pages/CallToAction/CallToAction.js";
 import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 function ProtectedRoute({ children, ...rest }) {
   const { isLoggedIn } = useAuth();
@@ -29,30 +28,27 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="homeContainer">
-          <Navbar />
-          <Switch>
-            <ProtectedRoute exact path="/">
-              <Home />
-            </ProtectedRoute>
-            <Route exact path="/aboutus">
-              <CallToAction/>
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
-            <ProtectedRoute exact path="/profile">
-              <Profile />
-            </ProtectedRoute>
-            <Route exact path="/widgetGenerator">
-              <WidgetGenHome />
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
+        <Navbar />
+        <Switch>
+          <ProtectedRoute exact path="/">
+            <Home />
+          </ProtectedRoute>
+          <Route exact path="/aboutus">
+            <CallToAction />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/signup">
+            <Signup />
+          </Route>
+          <ProtectedRoute exact path="/profile">
+            <Profile />
+          </ProtectedRoute>
+          <Route exact path="/widgetGenerator">
+            <WidgetGenHome />
+          </Route>
+        </Switch>
       </Router>
     </AuthProvider>
   );

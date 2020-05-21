@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import Footer from "./components/Footer";
 
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -14,9 +15,12 @@ import registerServiceWorker from "./registerServiceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="homeContainer">
+      <App />
+    </div>
+    <Footer />
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 
 registerServiceWorker();
