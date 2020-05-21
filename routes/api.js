@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controller/user");
+const isAuthenticated = require("../config/isAuthenticated");
 
 //Post a new widget to user
-router.post("/api/user/widget", (req, res) => {
+router.post("/api/user/widget", isAuthenticated, (req, res) => {
   const userID = req.body.userID;
   const widgetType = req.body.widgetType;
   const widgetData = req.body.widgetData;

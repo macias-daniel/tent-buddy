@@ -10,7 +10,6 @@ function Profile() {
 
   useEffect(() => {
     API.getUser(user.id).then(response => {
-
       //Save the users list of widgets to render
       const widgetsToRender = response.data.widgets;
 
@@ -30,7 +29,7 @@ function Profile() {
         return component;
       });
 
-      //Save the users widgets
+      //Save the users widgets as components
       setWidgets(widgetComponents);
     });
   }, [user]);
@@ -39,6 +38,7 @@ function Profile() {
     <div>
       <Grid centered>
         <WidgetSorter />
+        {/* Console.log widget so travis will shut up about unused variables */}
         {console.log(widgets)}
       </Grid>
     </div>
