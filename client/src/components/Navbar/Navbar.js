@@ -46,6 +46,7 @@ function NavLinks() {
         disabled: true,
       },
       { key: "profile", text: "Your Profile", as: Link, to: "/profile" },
+      { key: "widgetGenerator", text: "Widget Generator", as: Link, to: "/widgetGenerator" },
       { key: "sign-out", text: "Sign Out", onClick: () => logout() },
     ];
     return (
