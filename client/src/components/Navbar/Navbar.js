@@ -72,10 +72,13 @@ function NavLinks() {
 }
 
 function Navbar() {
+  const { isLoggedIn } = useAuth();
+  
   return (
     <Header inverted textAlign="center" block>
       <div className="container">
-        <Link className="navbar-brand" to="/profile">
+        {/* If the user is logged in take them to profile page else take them to landing*/}
+        <Link className="navbar-brand" to= {isLoggedIn ?"/profile":"/"}>
           <img
             className="headerLogo"
             alt="Tent logo"
