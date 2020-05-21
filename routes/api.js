@@ -7,6 +7,11 @@ router.post("/api/user/widget", (req, res) => {
   const userID = req.body.userID;
   const widgetType = req.body.widgetType;
   const widgetData = req.body.widgetData;
+
+  if (typeof widgetData !== "object") {
+    throw new Error("widgetData must be an object");
+  }
+
   userController
     .addUserWidget(userID, widgetType, widgetData)
     .then((response) => {
