@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import ParkInfoContainer from "../ProfileWidgets/ParkInfoContainer";
 import {
-  Image,
   Icon,
   Step,
   Input,
@@ -22,10 +21,7 @@ function ParkWidgetGen() {
   const [description, setDescription] = useState([]);
   const [url, setUrl] = useState([])
   const [address, setAddress] = useState([]);
-  const [latlon, setLatlon] = usestate([]);
-  const [alertTitle, setAlertTitle] = useState([]);
-  const [alertCategory, setAlertCategory] = useState([]);
-  const [alertDescription, setAlertDescription] = useState([]);
+  const [latlon, setLatlon] = useState([]);
   const [clicked, setClicked] = useState(false);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
@@ -80,9 +76,6 @@ function ParkWidgetGen() {
     NationalParksAPI.getAlerts(parkSearch).then(results => {
       setSpinner("");
       setShowText(!showText);
-      setAlertTitle(results);
-      setAlertCategory(results);
-      setAlertDescription(results);
       const dailyData = results.data.list.filter(reading => {
         return reading.dt_txt.includes("18:00:00");
       });
@@ -96,9 +89,7 @@ function ParkWidgetGen() {
           return (
             <ParkInfoContainer
             // key={parkData.}
-            icon={}
-            temp={}
-            day={}
+
             />
           );
         }),
@@ -152,7 +143,7 @@ function ParkWidgetGen() {
             );
             setButton("Add Widget");
             setShowText("");
-            setCity(event.target.value.toUpperCase());
+            setPark(event.target.value.toUpperCase());
           }}
 
         />
