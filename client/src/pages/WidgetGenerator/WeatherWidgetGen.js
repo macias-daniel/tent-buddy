@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
+import { useAuth } from "../../utils/auth";
 import ForecastContainer from "../ProfileWidgets/ForecastContainer";
 import {
   Image,
@@ -16,6 +17,7 @@ import API from "../../utils/API";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidgetGen() {
+  const { user } = useAuth();
   const [citySearch, setCity] = useState("");
   const [weatherForecast, setWeatherForecast] = useState([]);
   const [currentTemp, setCurrentTemp] = useState([]);
@@ -101,10 +103,7 @@ function WeatherWidgetGen() {
   const addWeatherWidget = event => {
     event.preventDefault();
     setButton("Widget Added");
-    API.addWeatherWidget({
-      type: "weather",
-      data: {city: citySearch}
-    })
+    API.addUserWidget(user.id,"weather", {city: citySearch})
       .catch(err => alert(err));
   };
 

@@ -24,11 +24,6 @@ export default {
       },
     );
   },
-<<<<<<< HEAD
-
-  addWeatherWidget: function (weatherData) {
-    return axios.post("/api/user/widget", weatherData);
-=======
   
   addUserWidget: (userID, widgetType, widgetData) => {
     return axios.post(
@@ -44,6 +39,5 @@ export default {
         },
       },
     );
->>>>>>> 62a3a6ae35aecee810d090bf89efa7b47e6e7857
   },
 };
