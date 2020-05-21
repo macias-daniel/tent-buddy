@@ -40,14 +40,14 @@
 }
 
 .placeholder{
-  font-family: "Roboto", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .widgetDisplay{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
 }
 .weatherDisplay{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
 
 }
 
@@ -73,30 +73,30 @@ body,
 html {
   height: 100%;
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .HeaderTitle{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
 }
 
 .MenuStyles{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
   
 }
 
 p{
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .login{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
   color:white;
   opacity:.90;
 }
 
 .widgets{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
   color:rgb(1, 1, 20);
   opacity:.90;
 }
