@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  overflow: scroll;
 }
 
 .App-logo {
@@ -9,7 +8,7 @@
 }
 
 .App-header {
-
+  background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
@@ -22,4 +21,137 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.homeContainer {
+  /* The image used */
+  background-image: url("../src/assets/mountain.jpg");
+  background-attachment: scroll;
+  /* Full height */
+  /* position: fixed; */
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 100px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.placeholder{
+  font-family: "Roboto", sans-serif;
+}
+
+.widgetDisplay{
+  font-family: 'Bungee Inline', cursive;
+}
+.weatherDisplay{
+  font-family: 'Bungee Inline', cursive;
+
+}
+
+.widgetGrid{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.widgetName{
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center 
+}
+
+.widgetGrid{
+  padding-left: 50px;
+  margin-left: 50px;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.HeaderTitle{
+  font-family: 'Bungee Inline', cursive;
+}
+
+.MenuStyles{
+  font-family: 'Bungee Inline', cursive;
+  
+}
+
+p{
+  font-family: 'Roboto', sans-serif;
+}
+
+.login{
+  font-family: 'Bungee Inline', cursive;
+  color:white;
+  opacity:.90;
+}
+
+.widgets{
+  font-family: 'Bungee Inline', cursive;
+  color:rgb(1, 1, 20);
+  opacity:.90;
+}
+
+
+.loginForm {
+  opacity: .90;
+  position: relative;
+  transform: translateY(30%);
+  padding-left:0px;
+}
+
+.signUpForm {
+  opacity: .90;
+  position: relative;
+  transform: translateY(30%);
+  padding-left:0px;
+}
+
+.widgetForm {
+  opacity: .90;
+  position: relative;
+  transform: translateY(15%);
+  padding-left:0px;
+}
+
+.widgetTitle{
+
+  position: relative;
+  transform: translateY(50%);
+  padding-left:0px;
+}
+
+a{
+  color:white;
+}
+
+a:hover{
+  color:lightgray;
+}
+.ui.menu{
+  background: #E5E5E5;
+  margin-top: 80px;
+  }
+
+
+@media (min-width: 424px) {
+  .widgetForm {
+
+    transform: translateY(85%) translateX(-24%);
+
+  }
+  
+  .widgetTitle{
+    transform: translateY(50%) translateX(105%);
+
+  }
 }

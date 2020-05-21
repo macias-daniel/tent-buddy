@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import Footer from "./components/Footer";
+import "./App.css";
 
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -18,7 +18,6 @@ ReactDOM.render(
     <div className="homeContainer">
       <App />
     </div>
-    <Footer />
   </React.StrictMode>,
   document.getElementById("root"),
 );
