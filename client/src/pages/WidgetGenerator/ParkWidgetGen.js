@@ -58,43 +58,27 @@ function ParkWidgetGen() {
         <Loader/>
       </Dimmer>
     );
-      // get park info
-      // no return
+    // get park info
+    // no return
     NationalParksAPI.getInfo(parkSearch).then(results => {
       // make results path for hours
-      setHours(results);
+      console.log(results);
+      
+      setHours(results.data[0].operatingHours);
       setPhone(results);
       setDescription(results);
       setUrl(results);
       setAddress(results);
       setLatlon(results);
-      
+      setSpinner("");
+      setShowText(!showText);
     });
 
       // get park alerts
       // return reading.dt_txt??
-    NationalParksAPI.getAlerts(parkSearch).then(results => {
-      setSpinner("");
-      setShowText(!showText);
-      const dailyData = results.data.list.filter(reading => {
-        return reading.dt_txt.includes("18:00:00");
-      });
-      renderInfo(dailyData);
-    });
+    // NationalParksAPI.getAlerts(parkSearch).then(results => {
 
-    // return Park Info Container 
-    function renderInfo (info1) {
-      setParkInfo(
-        info1.map(parkData => {
-          return (
-            <ParkInfoContainer
-            // key={parkData.}
-
-            />
-          );
-        }),
-      );
-    }
+    // });
   }
   
   function doClick() {
