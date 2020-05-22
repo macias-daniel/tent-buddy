@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import "./App.css";
 
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -14,9 +15,11 @@ import registerServiceWorker from "./registerServiceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div className="homeContainer">
+      <App />
+    </div>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 
 registerServiceWorker();

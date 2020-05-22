@@ -1,15 +1,6 @@
 import axios from "axios";
 
-// const query = "irvine"
-
-// const SINGLE_URL =
-//   "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=" + query + "&&units=imperial&appid=3f3bd037aeac95efcd0304fb293c1edd";
-
-// const BASE_URL =
-//   "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&units=imperial&APPID=3f3bd037aeac95efcd0304fb293c1edd&cnt=40";
-
 export default {
-
   // Gets a single user by id
   getUser: id => {
     return axios.get(`/api/user/${id}`, {
@@ -31,6 +22,36 @@ export default {
           Authorization: `Bearer ${localStorage.getItem("id_token")}`,
         },
       },
+    );
+  },
+
+  //Create a new widget for the user
+  addUserWidget: (userID, widgetType, widgetData) => {
+    return axios.post(
+      "/api/user/widget",
+      {
+        userID: userID,
+        widgetType: widgetType,
+        widgetData: widgetData,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+        },
+      },
+    );
+  },
+
+  //Delete a specific id by id from a specific user
+  deleteUserWidget: (userID, widgetID) => {
+    return axios.delete(
+      "/api/user/widget",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+        },
+        data: { userID: userID, widgetID: widgetID },
+      }
     );
   },
 };

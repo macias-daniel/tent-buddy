@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Moment from "react-moment";
-import WidgetBumper from "./WidgetBumper";
-import ParkInfoContainer from "./ParkInfoContainer";
 // can import style sheet
 import { Accordion, Segment } from "semantic-ui-react";
 import NationalParksAPI from "../../utils/OpenWeatherMap";
@@ -16,7 +13,9 @@ function ParkWidget() {
   const [url, setUrl] = useState([]);
   const [address, setAddress] = useState([]);
   const [latlon, setLatlon] = useState([]);
-  const [clicked, setClicked] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+
 
   useEffect(() => {
     NationalParksAPI.getInfo().then(results => {
@@ -36,67 +35,35 @@ function ParkWidget() {
     // need helps implementing 
     NationalParksAPI.getAlerts().then(results => {
       // results.data.list.filter
-      const dailyData = results.data.list.filter(reading => {
-        return reading.dt_txt.includes("18:00:00");
-      });
 
       // setAlertTitle(results);
       // setAlertCategory(results);
       // setAlertDescription(results);
       setPark(results.data.city.name);
-      setParkInfoData( dailyData );
     });
   }, []);
 
-  const dateToFormat = new Date();
-
-  useEffect(() => {
-    setParkInfo(
-      parkInfoData.map(weatherData => {
-        return (
-          <ParkInfoContainer
-
-          // was icon temp and day
-          // now its park info 
-          // hours of operation
-          // phone number
-          // park description
-          // park url
-          // park address
-          // lat and longigute
-          // alerts title
-          // alerts category
-          // alerts description
-          />
-        );
-      }),
-    );
-  }, [parkInfoData]);
-
-  function doClick() {
-    setClicked(true);
+  function handleClick() {
+    const newIndex = activeIndex === -1 ? 0 : -1;
+    setActiveIndex(newIndex);
   }
   
-  function dontClick() {
-    setClicked(false);
-  }
+
   return(
     <>
-      <WidgetBumper/>
       <Segment attached inverted style={{ width: "225px"}}>
         <Accordion>
-          <Accordion.Title index={0} onClick={clicked ? undefined : doClick}>
+          <Accordion.Title                 
+            onClick={handleClick}
+            index={0}
+            active={activeIndex === 0}>
             <p style={{ float: "right", fontWeight: "100" }}>
               <div>
                 <h4>Hours: {hours}</h4>
               </div>
             </p>
             <p className="tempCity">{park}</p>
-            <p className="tempDate">
-              <Moment format="dddd MM.DD" style={{ color: "white" }}>
-                {dateToFormat}
-              </Moment>
-            </p>
+            <p className="tempDate"></p>
             {/* phone number */}
             <p className="temp" style={{ color: "white" }}>
               {phone}
@@ -141,8 +108,7 @@ function ParkWidget() {
             <br></br>
           </Accordion.Title>
           <Accordion.Content 
-            active={clicked} 
-            onClick={clicked ? true : dontClick}
+            active={activeIndex === 0} 
           >
             {parkInfo}            
           </Accordion.Content>

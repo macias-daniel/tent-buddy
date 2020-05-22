@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
+import { useAuth } from "../../utils/auth";
 import ForecastContainer from "../ProfileWidgets/ForecastContainer";
 import {
   Image,
@@ -12,9 +13,12 @@ import {
   Segment,
   Button,
 } from "semantic-ui-react";
+import API from "../../utils/API";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidgetGen() {
+  //Set Hook for weather API
+  const { user } = useAuth();
   const [citySearch, setCity] = useState("");
   const [weatherForecast, setWeatherForecast] = useState([]);
   const [currentTemp, setCurrentTemp] = useState([]);
@@ -22,12 +26,13 @@ function WeatherWidgetGen() {
   const [currentHumidity, setCurrentHumidity] = useState([]);
   const [currentDescription, setCurrentDescription] = useState([]);
   const [currentWind, setCurrentWind] = useState([]);
-  const [clicked, setClicked] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
 
   useEffect(() => {
+    //Display add card when Page renders
     setSpinner(
       <Step.Group>
         <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
@@ -49,16 +54,19 @@ function WeatherWidgetGen() {
         </Step>
       </Step.Group>,
     );
+    //Widget is set to Add when page renders
     setButton("Add Widget");
   }, []);
 
   function handleCitySearch() {
+    //When search begins, sipnner appears
     setSpinner(
       <Dimmer active>
         <Loader />
       </Dimmer>,
     );
 
+    //API call for single day weather
     OpenWeatherMap.getCurrent(citySearch).then(results => {
       setCurrentTemp(results.data.main.temp.toFixed());
       setCurrentIcon(
@@ -71,16 +79,18 @@ function WeatherWidgetGen() {
       setCurrentWind(results.data.wind.speed.toFixed());
     });
 
-    OpenWeatherMap.getWeatherForecast(citySearch)
-      .then(results => {
-        setSpinner("");
-        setShowText(!showText);
-        const dailyData = results.data.list.filter(reading => {
-          return reading.dt_txt.includes("18:00:00");
-        });
-        renderForecast(dailyData);
+    //API call for forecast
+    OpenWeatherMap.getWeatherForecast(citySearch).then(results => {
+      //when results are rendered spinner turns off and results are displayed
+      setSpinner("");
+      setShowText(!showText);
+      const dailyData = results.data.list.filter(reading => {
+        return reading.dt_txt.includes("18:00:00");
       });
+      renderForecast(dailyData);
+    });
 
+    //Render the container after the API call
     function renderForecast(weather1) {
       setWeatherForecast(
         weather1.map(weatherData => {
@@ -98,11 +108,21 @@ function WeatherWidgetGen() {
     }
   }
 
-  function doClick() {
-    setClicked(true);
+  //POST request to DB
+  const addWeatherWidget = event => {
+    event.preventDefault();
+    setButton("Widget Added");
+    API.addUserWidget(user.id,"weather", {city: citySearch})
+      .catch(err => alert(err));
+  };
+
+  //Accordion
+  function handleClick() {
+    const newIndex = activeIndex === -1 ? 0 : -1;
+    setActiveIndex(newIndex);
   }
 
-
+  //Get current Date
   const dateToFormat = new Date();
 
   return (
@@ -167,7 +187,7 @@ function WeatherWidgetGen() {
           {showText && (
             <>
               <Segment attached inverted>
-                <Accordion defaultActiveKey="0">
+                <Accordion>
                   <p
                     style={{
                       float: "right",
@@ -211,7 +231,11 @@ function WeatherWidgetGen() {
                       {currentDescription}
                     </p>
                   </div>
-                  <Accordion.Title>
+                  <Accordion.Title
+                    onClick={handleClick}
+                    index={0}
+                    active={activeIndex === 0}
+                  >
                     <div
                       className="tempInfo"
                       style={{
@@ -224,16 +248,12 @@ function WeatherWidgetGen() {
                       FORECAST <span>&nbsp;&nbsp;</span>
                       <p style={{ float: "right", fontWeight: "100" }}>
                         {" "}
-                        <Icon
-                          name="plus square outline"
-                          onClick={clicked ? undefined : doClick}
-                          inverted
-                        />
+                        <Icon name="plus square outline" inverted />
                       </p>
                     </div>
                     <br></br>
                   </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={clicked}>
+                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
                     {weatherForecast}
                   </Accordion.Content>
                 </Accordion>
@@ -243,9 +263,7 @@ function WeatherWidgetGen() {
                 inverted
                 fluid
                 style={{ fontFamily: "Roboto", color: "white" }}
-                onClick={event => {
-                  setButton("Widget Added");
-                }}
+                onClick={addWeatherWidget}
               >
                 {button}
               </Button>

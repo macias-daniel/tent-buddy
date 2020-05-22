@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import WeatherWidget from "./WeatherWidget";
+// import WeatherWidget from "./WeatherWidget";
 // import ParksWidget from "./ParksWidget";
 
 import { Menu, Segment } from "semantic-ui-react";
@@ -14,7 +14,7 @@ const widgets = {
   weather: {
     topic: "WEATHER",
     class: "weatherDisplay",
-    widgetType: <WeatherWidget />,
+    // widgetType: <WeatherWidget />,
     about: "Pick a City",
   },
   parks: {

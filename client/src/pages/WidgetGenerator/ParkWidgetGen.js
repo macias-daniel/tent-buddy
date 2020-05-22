@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Moment from "react-moment";
-import ParkInfoContainer from "../ProfileWidgets/ParkInfoContainer";
+import { useAuth } from "../../utils/auth";
 import {
   Icon,
   Step,
@@ -12,20 +11,22 @@ import {
   Button,
 } from "semantic-ui-react";
 import NationalParksAPI from "../../utils/NationalParksAPI";
+import API from "../../utils/API";
 
 function ParkWidgetGen() {
+  const { user } = useAuth();
   const [parkSearch, setPark] = useState("");
-  const [parkInfo, setParkInfo] = useState([]);
+  // const [alertInfo, setAlertInfo] = useState([]);
   const [hours, setHours] = useState([]);
   const [phone, setPhone] = useState([]);
   const [description, setDescription] = useState([]);
-  const [url, setUrl] = useState([])
+  const [url, setUrl] = useState([]);
   const [address, setAddress] = useState([]);
   const [latlon, setLatlon] = useState([]);
-  const [clicked, setClicked] = useState(false);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   useEffect(() => {
     setSpinner(
@@ -58,34 +59,42 @@ function ParkWidgetGen() {
         <Loader/>
       </Dimmer>
     );
-    // get park info
-    // no return
+
+
     NationalParksAPI.getInfo(parkSearch).then(results => {
       // make results path for hours
-      console.log(results);
       
-      setHours(results.data[0].operatingHours);
-      setPhone(results);
-      setDescription(results);
-      setUrl(results);
-      setAddress(results);
-      setLatlon(results);
-      setSpinner("");
-      setShowText(!showText);
+      // console.log(results);
+
+      results.data.data.map(result => {
+        return (
+          setPhone(result)
+        );
+      });
+
+      
+      // setHours(results.data[0].);
+      // setPhone(results);
+      // setDescription(results);
+      // setUrl(results);
+      // setAddress(results);
+      // setLatlon(results);
+      // setSpinner("");
+      // setShowText(!showText);
     });
-
-      // get park alerts
-      // return reading.dt_txt??
-    // NationalParksAPI.getAlerts(parkSearch).then(results => {
-
-    // });
   }
   
-  function doClick() {
-    setClicked(true);
-  }
+  const addParkWidget = event => {
+    event.preventDefault();
+    setButton("Widget Added");
+    API.addUserWidget(user.id,"park", {park: setPark})
+      .catch(err => alert(err));
+  };
 
-  const dateToFormat = new Date();
+  function handleClick() {
+    const newIndex = activeIndex === -1 ? 0 : -1;
+    setActiveIndex(newIndex);
+  }
 
   return (
     <div>
@@ -142,7 +151,7 @@ function ParkWidgetGen() {
         >
           {showText && (
             <>
-            <Segment attached inverted>
+              <Segment attached inverted>
                 <Accordion defaultActiveKey="0">
                   <p
                     style={{
@@ -157,21 +166,10 @@ function ParkWidgetGen() {
                       <h4 >Hours: {hours}</h4>
                     </div>
                   </p>
-                  <>
-                    <p className="tempCity">{parkSearch}</p>
-                    <p className="tempDate">
-                      <Moment format="dddd">{dateToFormat}</Moment>
-                    </p>
-                  </>
 
-                  <p className="tempDate">
-                    <Moment
-                      format="MM.DD"
-                      style={{ textAlign: "left", color: "white" }}
-                    >
-                      {dateToFormat}
-                    </Moment>
-                  </p>
+                  <p className="tempCity">{parkSearch}</p>
+
+
                   {/* phone number */}
                   <p className="temp" style={{ color: "white" }}>
                     {phone}
@@ -185,7 +183,7 @@ function ParkWidgetGen() {
                     {/* address */}
                     <p className="wind">
                       Address:<span>&nbsp;&nbsp;</span>
-                      {address} MPH{" "}
+                      {address}
                     </p>
                     {/* lat lon */}
                     <p className="tempInfo">
@@ -198,7 +196,11 @@ function ParkWidgetGen() {
                       {description}
                     </p>
                   </div>
-                  <Accordion.Title>
+                  <Accordion.Title
+                    onClick={handleClick}
+                    index={0}
+                    active={activeIndex === 0}
+                  >
                     <div
                       className="tempInfo"
                       style={{
@@ -213,16 +215,15 @@ function ParkWidgetGen() {
                         {" "}
                         <Icon
                           name="plus square outline"
-                          onClick={clicked ? undefined : doClick}
                           inverted
                         />
                       </p>
                     </div>
                     <br></br>
                   </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={clicked}>
+                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
                     {/* park info */}
-                    {parkInfo}
+                    {/* {alertInfo} */}
                   </Accordion.Content>
                 </Accordion>
               </Segment>
@@ -231,9 +232,7 @@ function ParkWidgetGen() {
                 inverted
                 fluid
                 style={{ fontFamily: "Roboto", color: "white" }}
-                onClick={event => {
-                  setButton("Widget Added");
-                }}
+                onClick={addParkWidget}
               >
                 {button}
               </Button>

@@ -8,9 +8,9 @@ function Footer() {
         inverted
         vertical
         style={{
-          margin: "5em 0em 0em",
-          padding: "5em 0em",
-          position: "absolute",
+          margin: "2em 0em 0em",
+          padding: "0em 0em",
+          position: "fixed",
           bottom: 0,
           width: "100%",
         }}

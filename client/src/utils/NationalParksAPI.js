@@ -1,6 +1,7 @@
 import axios from "axios";
 class NationalParks {
 
+
   constructor(){
     this.client = axios.create({
       baseURL: "https://developer.nps.gov/api/v1",

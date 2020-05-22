@@ -36,6 +36,7 @@
   padding: 0px;
 }
 
+
 .tempCity {
   margin:5px;
   font-size: 13px;
@@ -51,6 +52,12 @@ color: white;
 .placeholder {
   font-weight: 100;
   color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.placeholder2 {
+  font-weight: 100;
+  color: black;
   font-family: "Roboto", sans-serif;
 }
 

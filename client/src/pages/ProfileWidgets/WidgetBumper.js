@@ -15,7 +15,7 @@ class WidgetBumper extends Component {
 
     return (
       <div>
-        <Button
+        <Button compact
           onClick={this.closeConfigShow(false, true)}
           style={{ width: "225px",marginTop:"25px", fontFamily: "Roboto", backgroundColor:"black", fontWeight: "100", textAlign: "right" }}
           attached="top"
@@ -37,7 +37,7 @@ class WidgetBumper extends Component {
             <p>Are you sure you want to delete your widget?</p>
           </Modal.Content>
           <Modal.Actions>
-            <Button style={{fontFamily:"Roboto"}} onClick={this.close} inverted color="red">
+            <Button style={{fontFamily:"Roboto"}} onClick={this.props.handleDeleteWidget} inverted color="red">
               DELETE
             </Button>
             <Button onClick={this.close} inverted icon>
