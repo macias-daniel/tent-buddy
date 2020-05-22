@@ -9,11 +9,15 @@ const addUserWidget = (userID, type, data) => {
 
 //Deletes a specific widget using the users id and the widgets id
 const deleteUserWidgets = (userID, widgetID) => {
-  console.log(userID, widgetID);
   return db.User.updateOne(
     { _id: userID },
     { $pull: { widgets: { _id: widgetID } } }
   );
 };
 
-module.exports = { addUserWidget, deleteUserWidgets };
+//Change a specific user's role
+const changeUserRole = (userID, userRole) => {
+  return db.User.updateOne({ _id: userID }, { role: userRole });
+};
+
+module.exports = { addUserWidget, deleteUserWidgets, changeUserRole };
