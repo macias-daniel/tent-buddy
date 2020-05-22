@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Container,
-  List,
-  Segment,
-  Image,
-} from "semantic-ui-react";
+import { Container, List, Segment, Image } from "semantic-ui-react";
 
 function Footer() {
   return (
@@ -14,7 +9,7 @@ function Footer() {
         vertical
         style={{
           margin: "2em 0em 0em",
-          padding: "0em 0em",
+          padding: "2em 0em 3em",
           position: "fixed",
           bottom: 0,
           width: "100%",
@@ -29,12 +24,10 @@ function Footer() {
           ></Image>
 
           <List horizontal inverted divided link size="small">
-            <p>CONTACT US</p>{" "}
-            <List.Item
-              horizontal
-              as="a"
-              href="https://github.com/macias-daniel"
-            >
+            <List.Item as="a" href="https://github.com/macias-daniel">
+              Contact Us
+            </List.Item>
+            <List.Item as="a" href="https://github.com/macias-daniel">
               @macias-daniel
             </List.Item>
             <List.Item as="a" href="https://github.com/charrmountain">

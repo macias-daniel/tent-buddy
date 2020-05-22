@@ -3,6 +3,7 @@ import API from "../utils/API";
 import { useAuth } from "../utils/auth";
 import { Grid } from "semantic-ui-react";
 import WeatherWidget from "./ProfileWidgets/WeatherWidget";
+import NoteWidget from "./ProfileWidgets/NoteWidget";
 import WidgetSorter from "./ProfileWidgets/WidgetSorter";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 
@@ -27,6 +28,7 @@ function Profile() {
   return (
     <div>
       <Grid centered>
+        <NoteWidget />
         <WidgetSorter />
         {widgets.map(widget => {
           let component;
