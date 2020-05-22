@@ -11,7 +11,6 @@ import { AuthProvider, useAuth } from "./utils/auth";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
-import Home from "./pages/Home";
 import CallToAction from "./pages/CallToAction/CallToAction.js";
 import WidgetGenHome from "./pages/WidgetGenerator/WidgetGenHome";
 import Navbar from "./components/Navbar";
@@ -31,10 +30,7 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <ProtectedRoute exact path="/">
-            <Home />
-          </ProtectedRoute>
-          <Route exact path="/aboutus">
+          <Route exact path="/">
             <CallToAction />
           </Route>
           <Route exact path="/login">
