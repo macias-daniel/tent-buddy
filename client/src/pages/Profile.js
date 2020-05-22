@@ -6,6 +6,7 @@ import WeatherWidget from "./ProfileWidgets/WeatherWidget";
 import WidgetSorter from "./ProfileWidgets/WidgetSorter";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 
+
 function Profile() {
   const [widgets, setWidgets] = useState([]);
   const { user } = useAuth();

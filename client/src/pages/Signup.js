@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import API from "./../utils/API";
 import { useAuth } from "../utils/auth";
+import Footer from "../components/Footer/Footer";
 import { Form, Segment, Grid } from "semantic-ui-react";
 
 
@@ -86,6 +87,7 @@ function Signup() {
           </Form>
         </Segment>
       </Grid>
+      <Footer/>
     </div>
   );
 }
