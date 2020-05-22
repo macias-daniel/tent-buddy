@@ -11,6 +11,7 @@ import {
   Table,
   Header,
   Button,
+  Dropdown
 } from "semantic-ui-react";
 import NationalParksAPI from "../../utils/NationalParksAPI";
 import API from "../../utils/API";
@@ -170,6 +171,9 @@ function ParkWidgetGen() {
                     >
                       ENTER A PARK
                     </Step.Description>
+                    <Step.Description>
+                      {/* space for dropdown */}
+                    </Step.Description>
                   </Step.Content>
                 </Step>
               </Step.Group>,
@@ -257,201 +261,201 @@ function ParkWidgetGen() {
                       </div>
                     </Segment>
                   </Accordion.Content>
-                </Accordion>
 
 
-                {/* accordian for park description */}
-                <Accordion defaultActiveKey="0">
-                  <Accordion.Title
-                    onClick={handleClick}
-                    index={1}
-                    active={activeIndex === 0}
-                  >
-                    <div
-                      className="tempInfo"
-                      style={{
-                        float: "left",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                      }}
+                  {/* accordian for park description */}
+                  <Accordion defaultActiveKey="0">
+                    <Accordion.Title
+                      onClick={handleClick}
+                      index={1}
+                      active={activeIndex === 0}
                     >
-                      {" "}
+                      <div
+                        className="tempInfo"
+                        style={{
+                          float: "left",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
+                      >
+                        {" "}
                       Park Description <span>&nbsp;&nbsp;</span>
-                      <p 
-                        style={{ float: "right", fontWeight: "100" }}
+                        <p 
+                          style={{ float: "right", fontWeight: "100" }}
     
-                      >
-                        {" "}
-                        <Icon
-                          name="plus square outline"
-                          inverted
-                        />
-                      </p>
-                    </div>
-                    <br></br>
-                  </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
-                    <Segment inverted
-                      style={{
-                        fontWeight: "600",
-                        color: "white",
-                        fontFamily: "Roboto",
-                        paddingTop: "0",
-                        paddingBottom: "1rem",
+                        >
+                          {" "}
+                          <Icon
+                            name="plus square outline"
+                            inverted
+                          />
+                        </p>
+                      </div>
+                      <br></br>
+                    </Accordion.Title>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                      <Segment inverted
+                        style={{
+                          fontWeight: "600",
+                          color: "white",
+                          fontFamily: "Roboto",
+                          paddingTop: "0",
+                          paddingBottom: "1rem",
 
-                      }}>
-                      {/* Description */}
-                      <p>
+                        }}>
+                        {/* Description */}
+                        <p>
                       Description:<span>&nbsp;&nbsp;</span>
-                        {description}
-                      </p>
-                    </Segment>
-                  </Accordion.Content>
-                </Accordion>
+                          {description}
+                        </p>
+                      </Segment>
+                    </Accordion.Content>
+                  </Accordion>
 
 
-                {/* accordian for lat lon */}
-                <Accordion defaultActiveKey="0">
-                  <Accordion.Title
-                    onClick={handleClick}
-                    index={1}
-                    active={activeIndex === 0}
-                  >
-                    <div
-                      className="tempInfo"
-                      style={{
-                        float: "left",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                      }}
+                  {/* accordian for lat lon */}
+                  <Accordion defaultActiveKey="0">
+                    <Accordion.Title
+                      onClick={handleClick}
+                      index={1}
+                      active={activeIndex === 0}
                     >
-                      {" "}
+                      <div
+                        className="tempInfo"
+                        style={{
+                          float: "left",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
+                      >
+                        {" "}
                       Lat and Lon <span>&nbsp;&nbsp;</span>
-                      <p 
-                        style={{ float: "right", fontWeight: "100" }}
+                        <p 
+                          style={{ float: "right", fontWeight: "100" }}
     
-                      >
-                        {" "}
-                        <Icon
-                          name="plus square outline"
-                          inverted
-                        />
-                      </p>
-                    </div>
-                    <br></br>
-                  </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
-                    <Segment inverted
-                      style={{
-                        margin: "0px",
-                        fontWeight: "100",
-                        padding: "0px",
-                      }}>
-                      {/* Lat and Long */}  
-                      <p>
+                        >
+                          {" "}
+                          <Icon
+                            name="plus square outline"
+                            inverted
+                          />
+                        </p>
+                      </div>
+                      <br></br>
+                    </Accordion.Title>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                      <Segment inverted
+                        style={{
+                          margin: "0px",
+                          fontWeight: "100",
+                          padding: "0px",
+                        }}>
+                        {/* Lat and Long */}  
+                        <p>
                       Latitude:<span>&nbsp;&nbsp;</span>
-                        {lat}
-                      </p>
-                      <p>
+                          {lat}
+                        </p>
+                        <p>
                       Longitude:<span>&nbsp;&nbsp;</span>
-                        {lon}
-                      </p>
-                    </Segment>
-                  </Accordion.Content>
-                </Accordion>
+                          {lon}
+                        </p>
+                      </Segment>
+                    </Accordion.Content>
+                  </Accordion>
 
-                {/* Contact Park Accordian */}
-                <Accordion defaultActiveKey="0">
-                  <Accordion.Title
-                    onClick={handleClick}
-                    index={1}
-                    active={activeIndex === 0}
-                  >
-                    <div
-                      className="tempInfo"
-                      style={{
-                        float: "left",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                      }}
+                  {/* Contact Park Accordian */}
+                  <Accordion defaultActiveKey="0">
+                    <Accordion.Title
+                      onClick={handleClick}
+                      index={1}
+                      active={activeIndex === 0}
                     >
-                      {" "}
+                      <div
+                        className="tempInfo"
+                        style={{
+                          float: "left",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
+                      >
+                        {" "}
                       Contact Park <span>&nbsp;&nbsp;</span>
-                      <p 
-                        style={{ float: "right", fontWeight: "100" }}
+                        <p 
+                          style={{ float: "right", fontWeight: "100" }}
     
-                      >
-                        {" "}
-                        <Icon
-                          name="plus square outline"
-                          inverted
-                        />
-                      </p>
-                    </div>
-                    <br></br>
-                  </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
-                    <Segment inverted
-                      style={{
-                        margin: "0px",
-                        fontWeight: "100",
-                        padding: "0px",
-                      }}>
-                      {/* Lat and Long */}  
-                      <p>
+                        >
+                          {" "}
+                          <Icon
+                            name="plus square outline"
+                            inverted
+                          />
+                        </p>
+                      </div>
+                      <br></br>
+                    </Accordion.Title>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                      <Segment inverted
+                        style={{
+                          margin: "0px",
+                          fontWeight: "100",
+                          padding: "0px",
+                        }}>
+                        {/* Lat and Long */}  
+                        <p>
                       Phone :<span>&nbsp;&nbsp;</span>
-                        {phone}
-                      </p>
-                    </Segment>
-                  </Accordion.Content>
-                </Accordion>
+                          {phone}
+                        </p>
+                      </Segment>
+                    </Accordion.Content>
+                  </Accordion>
 
-                {/* Park Website */}
-                <Accordion defaultActiveKey="0">
-                  <Accordion.Title
-                    onClick={handleClick}
-                    index={1}
-                    active={activeIndex === 0}
-                  >
-                    <div
-                      className="tempInfo"
-                      style={{
-                        float: "left",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                      }}
+                  {/* Park Website */}
+                  <Accordion defaultActiveKey="0">
+                    <Accordion.Title
+                      onClick={handleClick}
+                      index={1}
+                      active={activeIndex === 0}
                     >
-                      {" "}
-                      Park Website <span>&nbsp;&nbsp;</span>
-                      <p 
-                        style={{ float: "right", fontWeight: "100" }}
-    
+                      <div
+                        className="tempInfo"
+                        style={{
+                          float: "left",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
                       >
                         {" "}
-                        <Icon
-                          name="plus square outline"
-                          inverted
-                        />
-                      </p>
-                    </div>
-                    <br></br>
-                  </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
-                    <Segment inverted
-                      style={{
-                        margin: "0px",
-                        fontWeight: "100",
-                        padding: "0px",
-                      }}>
-                      {/* url */}  
-                      <p>
+                      Park Website <span>&nbsp;&nbsp;</span>
+                        <p 
+                          style={{ float: "right", fontWeight: "100" }}
+    
+                        >
+                          {" "}
+                          <Icon
+                            name="plus square outline"
+                            inverted
+                          />
+                        </p>
+                      </div>
+                      <br></br>
+                    </Accordion.Title>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                      <Segment inverted
+                        style={{
+                          margin: "0px",
+                          fontWeight: "100",
+                          padding: "0px",
+                        }}>
+                        {/* url */}  
+                        <p>
                       Url:<span>&nbsp;&nbsp;</span>
-                        {url}
-                      </p>
-                    </Segment>
-                  </Accordion.Content>
-                </Accordion>
+                          {url}
+                        </p>
+                      </Segment>
+                    </Accordion.Content>
+                  </Accordion>
                 
+                </Accordion>
               </Segment>
               
               <Button
