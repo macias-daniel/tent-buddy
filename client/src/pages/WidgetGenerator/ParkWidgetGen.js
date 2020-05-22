@@ -8,13 +8,13 @@ import {
   Dimmer,
   Loader,
   Segment,
-  Table,
-  Header,
   Button,
   Dropdown,
 } from "semantic-ui-react";
 import NationalParksAPI from "../../utils/NationalParksAPI";
 import API from "../../utils/API";
+import faker from "faker";
+import _ from "lodash";
 
 function ParkWidgetGen() {
   // search Hooks
@@ -81,7 +81,7 @@ function ParkWidgetGen() {
     );
 
 
-    NationalParksAPI.getInfo(stateSearch, parkSearch).then(results => {
+    NationalParksAPI.getInfo(parkSearch, stateSearch).then(results => {
       // main path for nationalParksApi data
       const starter = results.data.data[0];
       
@@ -133,45 +133,60 @@ function ParkWidgetGen() {
   const addParkWidget = event => {
     event.preventDefault();
     setButton("Widget Added");
-    API.addUserWidget(user.id,"park", {park: setPark})
+    API.addUserWidget(user.id,"park", {park: parkSearch, state: stateSearch})
       .catch(err => alert(err));
   };
 
+  // handle popdown clicks
   function handleClick() {
     const newIndex = activeIndex === -1 ? 0 : -1;
     setActiveIndex(newIndex);
   }
-
   function handleClick1() {
     const newIndex1 = activeIndex1 === -1 ? 0 : -1;
     setActiveIndex1(newIndex1);
   }
-
   function handleClick2() {
     const newIndex2 = activeIndex2 === -1 ? 0 : -1;
     setActiveIndex2(newIndex2);
   }
-
   function handleClick3() {
     const newIndex3 = activeIndex3 === -1 ? 0 : -1;
     setActiveIndex3(newIndex3);
   }
-
   function handleClick4() {
     const newIndex4 = activeIndex4 === -1 ? 0 : -1;
     setActiveIndex4(newIndex4);
   }
 
+  // Dropdown text values
+  const addressDefinitions = faker.definitions.address;
+  const stateOptions = _.map(addressDefinitions.state_abbr, (state, index) => ({
+    key: addressDefinitions.state_abbr[index],
+    text: state,
+    value: addressDefinitions.state_abbr[index],
+  }));
 
+  // Page Being Returned
   return (
     <div>
       <br />
-      <Segment
-        attached
-        block
-        inverted
+      <Segment attached block inverted
         style={{ backgroundColor: "rgba(27, 27, 27, 0.76)", width: "250px" }}
       >
+
+        {/* Segment For State Dropdown */}
+        <Segment>
+          <Dropdown placeholder='State' search selection options={stateOptions}
+            onChange={event => {
+
+              // Set State Hook 
+              setStateSearch(event.target.textContent);
+            }}
+          />
+        </Segment>
+
+        {/* Segment For Park Input */}
         <Input
           style={{ margin: "10px" }}
           icon={<Icon name="search" inverted circular link onClick={handleParkSearch} />
@@ -197,64 +212,48 @@ function ParkWidgetGen() {
                     >
                       ENTER A PARK
                     </Step.Description>
-                    <Step.Description>
-                      {/* space for dropdown */}
-                    </Step.Description>
                   </Step.Content>
                 </Step>
               </Step.Group>,
             );
             setButton("Add Widget");
             setShowText("");
-            setPark(event.target.value.toUpperCase());
-          }}
 
+            // Set Park Hook
+            setPark(event.target.value.toLowerCase());
+          }}
         />
 
-        <Segment
-          compact
-          attached
-          style={{
-            width: "225px",
-            backgroundColor: "rgba(27, 27, 27, 0.76)",
-          }}
+        <Segment compact attached
+          style={{ width: "225px", backgroundColor: "rgba(27, 27, 27, 0.76)",}}
         >
           {showText && (
             <>
               <Segment attached inverted>
-                <Accordion defaultActiveKey="0">
+                <Accordion>
 
                   {/* Park Name Segment */}
                   <Segment inverted 
-                    style={{
-                      fontWeight: "500",
-                      color: "white",
-                      fontFamily: "Roboto",
-                      paddingTop: "0",
-                      paddingBottom: "0"
-                    }}>
+                    style={{ fontWeight: "500", color: "white", fontFamily: "Roboto",
+                      paddingTop: "0", paddingBottom: "0"}}
+                  >
                     <h2>{name}</h2>
                   </Segment>
 
-                  
-                  <Accordion.Title
-                    onClick={handleClick}
+                  {/* Accordion Title For Hours */}
+                  <Accordion.Title 
+                    onClick={handleClick} 
                     index={0}
                     active={activeIndex === 0}
                   >
                     <div
                       className="tempInfo"
-                      style={{
-                        float: "left",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                      }}
+                      style={{ float: "left", fontWeight: "bold", fontSize: "15px",}}
                     >
                       {" "}
                       Hours of Operation <span>&nbsp;&nbsp;</span>
                       <p 
                         style={{ float: "right", fontWeight: "100" }}
-                      
                       >
                         {" "}
                         <Icon
@@ -265,17 +264,15 @@ function ParkWidgetGen() {
                     </div>
                     <br></br>
                   </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                  {/* Accordion Content For Hours */}
+                  <Accordion.Content 
+                    style={{ margin: "0px" }} 
+                    active={activeIndex === 0}>
                     <Segment inverted
-                      style={{
-                        fontWeight: "400",
-                        color: "white",
-                        fontFamily: "Roboto",
-                        paddingTop: "0",
-                        paddingBottom: "1rem",
-
-                      }}>
-                      {/* hours */}
+                      style={{fontWeight: "400", color: "white", fontFamily: "Roboto", 
+                        paddingTop: "0", paddingBottom: "1rem",}}
+                    >
+                      {/* Hours From API Displayed */}
                       <div>
                         <h5>Mon: {mon}</h5>
                         <h5>Tues: {tues}</h5>
@@ -289,8 +286,9 @@ function ParkWidgetGen() {
                   </Accordion.Content>
 
 
-                  {/* accordian for park description */}
+                  {/* Accordion for Park Description */}
                   <Accordion>
+                    {/* Accordion Title For Description */}
                     <Accordion.Title
                       onClick={handleClick1}
                       index={0}
@@ -298,17 +296,12 @@ function ParkWidgetGen() {
                     >
                       <div
                         className="tempInfo"
-                        style={{
-                          float: "left",
-                          fontWeight: "bold",
-                          fontSize: "15px",
-                        }}
+                        style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
                       >
                         {" "}
-                      Park Description <span>&nbsp;&nbsp;</span>
+                        Park Description <span>&nbsp;&nbsp;</span>
                         <p 
                           style={{ float: "right", fontWeight: "100" }}
-    
                         >
                           {" "}
                           <Icon
@@ -319,19 +312,18 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex1 === 0}>
+                    {/* Accordion Content For Description */}
+                    <Accordion.Content 
+                      active={activeIndex1 === 0}
+                      style={{ margin: "0px" }} 
+                    >
                       <Segment inverted
-                        style={{
-                          fontWeight: "600",
-                          color: "white",
-                          fontFamily: "Roboto",
-                          paddingTop: "0",
-                          paddingBottom: "1rem",
-
-                        }}>
-                        {/* Description */}
+                        style={{fontWeight: "600", color: "white", fontFamily: "Roboto",
+                          paddingTop: "0", paddingBottom: "1rem",}}
+                      >
+                        {/* Description From API Displayed */}
                         <p>
-                      Description:<span>&nbsp;&nbsp;</span>
+                          Description:<span>&nbsp;&nbsp;</span>
                           {description}
                         </p>
                       </Segment>
@@ -339,8 +331,9 @@ function ParkWidgetGen() {
                   </Accordion>
 
 
-                  {/* accordian for lat lon */}
+                  {/* Accordion for Lat and Lon */}
                   <Accordion defaultActiveKey="0">
+                    {/* Accordion Title For Lat and Long */}
                     <Accordion.Title
                       onClick={handleClick2}
                       index={1}
@@ -348,17 +341,12 @@ function ParkWidgetGen() {
                     >
                       <div
                         className="tempInfo"
-                        style={{
-                          float: "left",
-                          fontWeight: "bold",
-                          fontSize: "15px",
-                        }}
+                        style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
                       >
                         {" "}
-                      Lat and Lon <span>&nbsp;&nbsp;</span>
+                        Lat and Lon <span>&nbsp;&nbsp;</span>
                         <p 
                           style={{ float: "right", fontWeight: "100" }}
-    
                         >
                           {" "}
                           <Icon
@@ -369,20 +357,20 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex2 === 0}>
+                    {/* Accordion Content For Lat and Long */}
+                    <Accordion.Content 
+                      active={activeIndex2 === 0}
+                      style={{ margin: "0px" }}>
                       <Segment inverted
-                        style={{
-                          margin: "0px",
-                          fontWeight: "100",
-                          padding: "0px",
-                        }}>
+                        style={{margin: "0px", fontWeight: "100", padding: "0px",}}
+                      >
                         {/* Lat and Long */}  
                         <p>
-                      Latitude:<span>&nbsp;&nbsp;</span>
+                        Latitude:<span>&nbsp;&nbsp;</span>
                           {lat}
                         </p>
                         <p>
-                      Longitude:<span>&nbsp;&nbsp;</span>
+                        Longitude:<span>&nbsp;&nbsp;</span>
                           {lon}
                         </p>
                       </Segment>
@@ -391,6 +379,7 @@ function ParkWidgetGen() {
 
                   {/* Contact Park Accordian */}
                   <Accordion defaultActiveKey="0">
+                    {/* Accordion Title For Contact */}
                     <Accordion.Title
                       onClick={handleClick3}
                       index={1}
@@ -398,17 +387,12 @@ function ParkWidgetGen() {
                     >
                       <div
                         className="tempInfo"
-                        style={{
-                          float: "left",
-                          fontWeight: "bold",
-                          fontSize: "15px",
-                        }}
+                        style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
                       >
                         {" "}
-                      Contact Park <span>&nbsp;&nbsp;</span>
+                        Contact Park <span>&nbsp;&nbsp;</span>
                         <p 
                           style={{ float: "right", fontWeight: "100" }}
-    
                         >
                           {" "}
                           <Icon
@@ -419,24 +403,25 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex3 === 0}>
+                    {/* Accordion Content For Contact */}
+                    <Accordion.Content 
+                      active={activeIndex3 === 0}
+                      style={{ margin: "0px" }}>
                       <Segment inverted
-                        style={{
-                          margin: "0px",
-                          fontWeight: "100",
-                          padding: "0px",
-                        }}>
-                        {/* Lat and Long */}  
+                        style={{margin: "0px", fontWeight: "100", padding: "0px",}}
+                      >
+                        {/* Display Phone from API */}  
                         <p>
-                      Phone :<span>&nbsp;&nbsp;</span>
+                        Phone :<span>&nbsp;&nbsp;</span>
                           {phone}
                         </p>
                       </Segment>
                     </Accordion.Content>
                   </Accordion>
 
-                  {/* Park Website */}
+                  {/* Accordion for Park URL */}
                   <Accordion defaultActiveKey="0">
+                    {/* Accordion Title for Park URL */}
                     <Accordion.Title
                       onClick={handleClick4}
                       index={1}
@@ -444,17 +429,12 @@ function ParkWidgetGen() {
                     >
                       <div
                         className="tempInfo"
-                        style={{
-                          float: "left",
-                          fontWeight: "bold",
-                          fontSize: "15px",
-                        }}
+                        style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
                       >
                         {" "}
-                      Park Website <span>&nbsp;&nbsp;</span>
+                        Park Website <span>&nbsp;&nbsp;</span>
                         <p 
                           style={{ float: "right", fontWeight: "100" }}
-    
                         >
                           {" "}
                           <Icon
@@ -465,14 +445,14 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex4 === 0}>
+                    {/* Accordion Content for Park URL */}
+                    <Accordion.Content 
+                      active={activeIndex4 === 0}
+                      style={{ margin: "0px" }}> 
                       <Segment inverted
-                        style={{
-                          margin: "0px",
-                          fontWeight: "100",
-                          padding: "0px",
-                        }}>
-                        {/* url */}  
+                        style={{margin: "0px", fontWeight: "100", padding: "0px",}}
+                      >
+                        {/* Display URL from API */}  
                         <a href={url} rel="noreferrer" target="_blank" style={{fontSize: "10px"}}>
                           <span>&nbsp;&nbsp;</span>
                           {name} website
@@ -484,12 +464,10 @@ function ParkWidgetGen() {
                 </Accordion>
               </Segment>
               
-              <Button
-                secondary
-                inverted
-                fluid
-                style={{ fontFamily: "Roboto", color: "white" }}
+              {/* Add Widget Button */}
+              <Button secondary inverted fluid
                 onClick={addParkWidget}
+                style={{ fontFamily: "Roboto", color: "white" }}
               >
                 {button}
               </Button>

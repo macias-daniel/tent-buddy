@@ -1,155 +1,342 @@
 import React, { useState, useEffect } from "react";
-// can import style sheet
-import { Icon, Label, Menu, Table, Accordion, Segment } from "semantic-ui-react";
-import NationalParksAPI from "../../utils/OpenWeatherMap";
+import {
+  Icon,
+  Accordion,
+  Segment,
+} from "semantic-ui-react";
+import NationalParksAPI from "../../utils/NationalParksAPI";
 
-function ParkWidget() {
-  const [parkInfoData, setParkInfoData] = useState([]);
-  const [parkInfo, setParkInfo] = useState([]);
-  const [park, setPark] = useState([]);
-  const [hours, setHours] = useState([]);
+function ParkWidget( {key, state, park}) {
+  // Api Data Hooks
+  const [mon, setMon] = useState([]);
+  const [tues, setTues] = useState([]);
+  const [wed, setWed] = useState([]);
+  const [thu, setThu] = useState([]);
+  const [fri, setFri] = useState([]);
+  const [sat, setSat] = useState([]);
+  const [sun, setSun] = useState([]);
   const [phone, setPhone] = useState([]);
   const [description, setDescription] = useState([]);
   const [url, setUrl] = useState([]);
-  const [address, setAddress] = useState([]);
-  const [latlon, setLatlon] = useState([]);
+  const [lat, setLat] = useState([]);
+  const [lon, setLon] = useState([]);
+  const [name, setName] = useState([]);
+
+  // page apperance Hooks
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeIndex1, setActiveIndex1] = useState(-1);
+  const [activeIndex2, setActiveIndex2] = useState(-1);
+  const [activeIndex3, setActiveIndex3] = useState(-1);
+  const [activeIndex4, setActiveIndex4] = useState(-1);
+
 
   useEffect(() => {
-    NationalParksAPI.getInfo().then(results => {
-      setHours(results);
-      setPhone(results);
-      setDescription(results);
-      setUrl(results);
-      setAddress(results);
-      setLatlon(results);
-      // result.data.main.park info
-      // set above constants
+    // must take state and park
+    NationalParksAPI.getInfo(state, park).then(results => {
+      
+      // main path for nationalParksApi data
+      const starter = results.data.data[0];
+      
+      // returns for hours
+      const hoursstarter = starter.operatingHours[0].standardHours;
+      const mondayHours = hoursstarter.monday;
+      const tuesdayHours = hoursstarter.tuesday;
+      const wednesdayHours = hoursstarter.wednesday;
+      const thursdayHours = hoursstarter.thursday;
+      const fridayHours = hoursstarter.friday;
+      const saturdayHours = hoursstarter.saturday;
+      const sundayHours = hoursstarter.sunday;
+            
+      // return for phone number
+      const phoneNumber = starter.contacts.phoneNumbers[0].phoneNumber;
+      
+      // return for parkDescription
+      const parkDescription = starter.directionsInfo;
+      
+      // return for urlPath
+      const urlPath = starter.url;
+      
+      // latLong returns
+      const longitutdePath = starter.longitude;
+      const latitudePath = starter.latitude;
+      
+      setMon(mondayHours);
+      setTues(tuesdayHours);
+      setWed(wednesdayHours);
+      setThu(thursdayHours);
+      setFri(fridayHours);
+      setSat(saturdayHours);
+      setSun(sundayHours);
+      setPhone(phoneNumber);
+      setDescription(parkDescription);
+      setUrl(urlPath);
+      setLat(longitutdePath);
+      setLon(latitudePath);
+      setName(starter.name);
     });
+  }, [key, state, park]);
 
-    // this api call needs work
-    // not sure about how the 180000 works or the reading.dt_txt
-    // need helps implementing 
-    NationalParksAPI.getAlerts().then(results => {
-      // results.data.list.filter
-
-      // setAlertTitle(results);
-      // setAlertCategory(results);
-      // setAlertDescription(results);
-      setPark(results.data.city.name);
-    });
-  }, []);
-
+  
+  // handle popdown clicks
   function handleClick() {
     const newIndex = activeIndex === -1 ? 0 : -1;
     setActiveIndex(newIndex);
   }
-  
+  function handleClick1() {
+    const newIndex1 = activeIndex1 === -1 ? 0 : -1;
+    setActiveIndex1(newIndex1);
+  }
+  function handleClick2() {
+    const newIndex2 = activeIndex2 === -1 ? 0 : -1;
+    setActiveIndex2(newIndex2);
+  }
+  function handleClick3() {
+    const newIndex3 = activeIndex3 === -1 ? 0 : -1;
+    setActiveIndex3(newIndex3);
+  }
+  function handleClick4() {
+    const newIndex4 = activeIndex4 === -1 ? 0 : -1;
+    setActiveIndex4(newIndex4);
+  }
 
   return(
-    <>
-      <Segment attached inverted style={{ width: "225px", backgroundColor: "rgba(27, 27, 27, 0.76)"}}>
-        <Segment attached inverted>
+    <Segment attached inverted>
+      {/* Accordion For all Sub Accordions */}
+      <Accordion>
 
-          <Table celled>
-            <Table.Header>
+        {/* Park Name Segment */}
+        <Segment inverted 
+          style={{ fontWeight: "500", color: "white", fontFamily: "Roboto",
+            paddingTop: "0", paddingBottom: "0"}}
+        >
+          <h2>{name}</h2>
+        </Segment>
 
-              <Table.Row>
-                <Table.HeaderCell>Operation Hours</Table.HeaderCell>
-                <Table.HeaderCell> </Table.HeaderCell>
-              </Table.Row>
-
-              <Table.Body>
-                <Table.Row>
-                  <Table.Cell>
-                    <Label ribbon> Mon </Label>
-                  </Table.Cell>
-                  <Table.Cell>Tue</Table.Cell>
-                  <Table.Cell>Wed</Table.Cell>
-                  <Table.Cell>Thu</Table.Cell>
-                  <Table.Cell>Fri</Table.Cell>
-                  <Table.Cell>Sat</Table.Cell>
-                  <Table.Cell>Sun</Table.Cell>
-                </Table.Row>
-
-
-                
-              </Table.Body>
-
-            </Table.Header>
-
-          </Table>
-
-
-
-          <Accordion>
-            <Accordion.Title                 
-              onClick={handleClick}
-              index={0}
-              active={activeIndex === 0}>
-
-
-              <p style={{ float: "right", fontWeight: "100" }}>
-                <div>
-                  <h4>Hours: {hours}</h4>
-                </div>
+        {/* Accordion For Hours */}
+        <Accordion>
+          {/* Accordion Title For Hours */}
+          <Accordion.Title 
+            onClick={handleClick} 
+            index={0}
+            active={activeIndex === 0}
+          >
+            <div
+              className="tempInfo"
+              style={{ float: "left", fontWeight: "bold", fontSize: "15px",}}
+            >
+              {" "}
+                      Hours of Operation <span>&nbsp;&nbsp;</span>
+              <p 
+                style={{ float: "right", fontWeight: "100" }}
+              >
+                {" "}
+                <Icon
+                  name="plus square outline"
+                  inverted
+                />
               </p>
-              <p className="tempCity">{park}</p>
-              <p className="tempDate"></p>
-              {/* phone number */}
-              <p className="temp" style={{ color: "white" }}>
+            </div>
+            <br></br>
+          </Accordion.Title>
+          {/* Accordion Content For Hours */}
+          <Accordion.Content 
+            style={{ margin: "0px" }} 
+            active={activeIndex === 0}>
+            <Segment inverted
+              style={{fontWeight: "400", color: "white", fontFamily: "Roboto", 
+                paddingTop: "0", paddingBottom: "1rem",}}
+            >
+              {/* Hours From API Displayed */}
+              <div>
+                <h5>Mon: {mon}</h5>
+                <h5>Tues: {tues}</h5>
+                <h5>Wed: {wed}</h5>
+                <h5>Thu: {thu}</h5>
+                <h5>Fri: {fri}</h5>
+                <h5>Sat: {sat}</h5>
+                <h5>Sun: {sun}</h5>
+              </div>
+            </Segment>
+          </Accordion.Content>
+        </Accordion>
+
+        {/* Accordion for Park Description */}
+        <Accordion>
+          {/* Accordion Title For Description */}
+          <Accordion.Title
+            onClick={handleClick1}
+            index={0}
+            active={activeIndex1 === 0}
+          >
+            <div
+              className="tempInfo"
+              style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
+            >
+              {" "}
+              Park Description <span>&nbsp;&nbsp;</span>
+              <p 
+                style={{ float: "right", fontWeight: "100" }}
+              >
+                {" "}
+                <Icon
+                  name="plus square outline"
+                  inverted
+                />
+              </p>
+            </div>
+            <br></br>
+          </Accordion.Title>
+          {/* Accordion Content For Description */}
+          <Accordion.Content 
+            active={activeIndex1 === 0}
+            style={{ margin: "0px" }} 
+          >
+            <Segment inverted
+              style={{fontWeight: "600", color: "white", fontFamily: "Roboto",
+                paddingTop: "0", paddingBottom: "1rem",}}
+            >
+              {/* Description From API Displayed */}
+              <p>
+                Description:<span>&nbsp;&nbsp;</span>
+                {description}
+              </p>
+            </Segment>
+          </Accordion.Content>
+        </Accordion>
+
+
+        {/* Accordion for Lat and Lon */}
+        <Accordion defaultActiveKey="0">
+          {/* Accordion Title For Lat and Long */}
+          <Accordion.Title
+            onClick={handleClick2}
+            index={1}
+            active={activeIndex2 === 0}
+          >
+            <div
+              className="tempInfo"
+              style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
+            >
+              {" "}
+              Lat and Lon <span>&nbsp;&nbsp;</span>
+              <p 
+                style={{ float: "right", fontWeight: "100" }}
+              >
+                {" "}
+                <Icon
+                  name="plus square outline"
+                  inverted
+                />
+              </p>
+            </div>
+            <br></br>
+          </Accordion.Title>
+          {/* Accordion Content For Lat and Long */}
+          <Accordion.Content 
+            active={activeIndex2 === 0}
+            style={{ margin: "0px" }}>
+            <Segment inverted
+              style={{margin: "0px", fontWeight: "100", padding: "0px",}}
+            >
+              {/* Lat and Long */}  
+              <p>
+                Latitude:<span>&nbsp;&nbsp;</span>
+                {lat}
+              </p>
+              <p>
+                Longitude:<span>&nbsp;&nbsp;</span>
+                {lon}
+              </p>
+            </Segment>
+          </Accordion.Content>
+        </Accordion>
+
+        {/* Contact Park Accordian */}
+        <Accordion defaultActiveKey="0">
+          {/* Accordion Title For Contact */}
+          <Accordion.Title
+            onClick={handleClick3}
+            index={1}
+            active={activeIndex3 === 0}
+          >
+            <div
+              className="tempInfo"
+              style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
+            >
+              {" "}
+                        Contact Park <span>&nbsp;&nbsp;</span>
+              <p 
+                style={{ float: "right", fontWeight: "100" }}
+              >
+                {" "}
+                <Icon
+                  name="plus square outline"
+                  inverted
+                />
+              </p>
+            </div>
+            <br></br>
+          </Accordion.Title>
+          {/* Accordion Content For Contact */}
+          <Accordion.Content 
+            active={activeIndex3 === 0}
+            style={{ margin: "0px" }}>
+            <Segment inverted
+              style={{margin: "0px", fontWeight: "100", padding: "0px",}}
+            >
+              {/* Display Phone from API */}  
+              <p>
+                Phone :<span>&nbsp;&nbsp;</span>
                 {phone}
               </p>
-              {/* url */}
-              <div style={{ textAlign: "left", fontWeight: "bold" }}>
-              URL: {url}
-          
-              </div>
-              <p className="wind">
-              Address:<span>&nbsp;&nbsp;</span>
-                {address} MPH{" "}
-              </p>
-              <br></br>
+            </Segment>
+          </Accordion.Content>
+        </Accordion>
 
-              <div
-                className="tempInfo"
-                style={{ float: "left", fontWeight: "bold" }}
-              >
-                {" "}
-                {/* description */}
-              DESCRIPTION: <span>&nbsp;&nbsp;</span>
-                <p style={{ float: "right", fontWeight: "100" }}>
-                  {" "}
-                  {description}
-                </p>
-              </div>
-              <br></br>
-
-              <div
-                className="tempInfo"
-                style={{ float: "left", fontWeight: "bold" }}
-              >
-                {" "}
-                {/* lat lon */}
-              Lat Lon: <span>&nbsp;&nbsp;</span>
-                <p style={{ float: "right", fontWeight: "100" }}>
-                  {" "}
-                  {latlon} 
-                </p>
-              </div>
-              <br></br>
-            </Accordion.Title>
-            <Accordion.Content 
-              active={activeIndex === 0} 
+        {/* Accordion for Park URL */}
+        <Accordion defaultActiveKey="0">
+          {/* Accordion Title for Park URL */}
+          <Accordion.Title
+            onClick={handleClick4}
+            index={1}
+            active={activeIndex4 === 0}
+          >
+            <div
+              className="tempInfo"
+              style={{float: "left", fontWeight: "bold", fontSize: "15px",}}
             >
-              {parkInfo}            
-            </Accordion.Content>
-          </Accordion>
-
-
-        </Segment>
-      </Segment>
-    </>
+              {" "}
+                        Park Website <span>&nbsp;&nbsp;</span>
+              <p 
+                style={{ float: "right", fontWeight: "100" }}
+              >
+                {" "}
+                <Icon
+                  name="plus square outline"
+                  inverted
+                />
+              </p>
+            </div>
+            <br></br>
+          </Accordion.Title>
+          {/* Accordion Content for Park URL */}
+          <Accordion.Content 
+            active={activeIndex4 === 0}
+            style={{ margin: "0px" }}> 
+            <Segment inverted
+              style={{margin: "0px", fontWeight: "100", padding: "0px",}}
+            >
+              {/* Display URL from API */}  
+              <a href={url} rel="noreferrer" target="_blank" style={{fontSize: "10px"}}>
+                <span>&nbsp;&nbsp;</span>
+                {name} website
+              </a>
+            </Segment>
+          </Accordion.Content>
+        </Accordion>
+                
+      </Accordion>
+    </Segment>
   );
 }
 export default ParkWidget;

@@ -1,8 +1,6 @@
 import axios from "axios";
 class NationalParks {
 
-  // https://developer.nps.gov/api/v1/parks?parkCode=&stateCode=WY&q=yellowstone&api_key=Vaic6U19mBB69aCykE0xEsU4LEjCQCyFwe7oepd6
-
   constructor(){
     this.client = axios.create({
       baseURL: "https://developer.nps.gov/api/v1/",
@@ -10,21 +8,12 @@ class NationalParks {
     });
   }
 
-  // need to implement stateSearch and parkSearch
-  getInfo = () => {
+  getInfo = (parkSearch, stateSearch) => {
     return this.client.get(
-      "parks?parkCode=&stateCode=WY&q=yellowstone&api_key=Vaic6U19mBB69aCykE0xEsU4LEjCQCyFwe7oepd6"
 
+      // use yellowstone
+      "parks?parkCode=&stateCode=" + stateSearch + "&q=" + parkSearch + "&api_key=Vaic6U19mBB69aCykE0xEsU4LEjCQCyFwe7oepd6"
 
-      // // park search should be WY
-      // "parks?parkCode=&stateCode="+ parkSearch +"WY&q=yellowstone" +
-      // "&api_key=84TrQplVnjoIMiehR0TLPbSAjfmq2QR9DLJabiqG",
-    );
-  };
-
-  getAlerts = parkSearch => {
-    return this.client.get(
-      // "park alerts go here"
     );
   };
 
