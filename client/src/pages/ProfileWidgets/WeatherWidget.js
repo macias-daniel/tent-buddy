@@ -69,7 +69,7 @@ function WeatherWidget({ key, city }) {
       <Segment
         attached
         inverted
-        style={{ width: "225px", marginTop:"25px",backgroundColor: "rgba(27, 27, 27, 0.76)" }}
+        style={{ width: "225px",backgroundColor: "rgba(27, 27, 27, 0.76)" }}
       >
         <>
           <Segment attached inverted>
