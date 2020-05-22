@@ -11,7 +11,7 @@ import {
   Table,
   Header,
   Button,
-  Dropdown
+  Dropdown,
 } from "semantic-ui-react";
 import NationalParksAPI from "../../utils/NationalParksAPI";
 import API from "../../utils/API";
@@ -42,6 +42,11 @@ function ParkWidgetGen() {
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeIndex1, setActiveIndex1] = useState(-1);
+  const [activeIndex2, setActiveIndex2] = useState(-1);
+  const [activeIndex3, setActiveIndex3] = useState(-1);
+  const [activeIndex4, setActiveIndex4] = useState(-1);
+
 
   useEffect(() => {
     setSpinner(
@@ -136,6 +141,27 @@ function ParkWidgetGen() {
     const newIndex = activeIndex === -1 ? 0 : -1;
     setActiveIndex(newIndex);
   }
+
+  function handleClick1() {
+    const newIndex1 = activeIndex1 === -1 ? 0 : -1;
+    setActiveIndex1(newIndex1);
+  }
+
+  function handleClick2() {
+    const newIndex2 = activeIndex2 === -1 ? 0 : -1;
+    setActiveIndex2(newIndex2);
+  }
+
+  function handleClick3() {
+    const newIndex3 = activeIndex3 === -1 ? 0 : -1;
+    setActiveIndex3(newIndex3);
+  }
+
+  function handleClick4() {
+    const newIndex4 = activeIndex4 === -1 ? 0 : -1;
+    setActiveIndex4(newIndex4);
+  }
+
 
   return (
     <div>
@@ -264,11 +290,11 @@ function ParkWidgetGen() {
 
 
                   {/* accordian for park description */}
-                  <Accordion defaultActiveKey="0">
+                  <Accordion>
                     <Accordion.Title
-                      onClick={handleClick}
-                      index={1}
-                      active={activeIndex === 0}
+                      onClick={handleClick1}
+                      index={0}
+                      active={activeIndex1 === 0}
                     >
                       <div
                         className="tempInfo"
@@ -293,7 +319,7 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex1 === 0}>
                       <Segment inverted
                         style={{
                           fontWeight: "600",
@@ -316,9 +342,9 @@ function ParkWidgetGen() {
                   {/* accordian for lat lon */}
                   <Accordion defaultActiveKey="0">
                     <Accordion.Title
-                      onClick={handleClick}
+                      onClick={handleClick2}
                       index={1}
-                      active={activeIndex === 0}
+                      active={activeIndex2 === 0}
                     >
                       <div
                         className="tempInfo"
@@ -343,7 +369,7 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex2 === 0}>
                       <Segment inverted
                         style={{
                           margin: "0px",
@@ -366,9 +392,9 @@ function ParkWidgetGen() {
                   {/* Contact Park Accordian */}
                   <Accordion defaultActiveKey="0">
                     <Accordion.Title
-                      onClick={handleClick}
+                      onClick={handleClick3}
                       index={1}
-                      active={activeIndex === 0}
+                      active={activeIndex3 === 0}
                     >
                       <div
                         className="tempInfo"
@@ -393,7 +419,7 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex3 === 0}>
                       <Segment inverted
                         style={{
                           margin: "0px",
@@ -412,9 +438,9 @@ function ParkWidgetGen() {
                   {/* Park Website */}
                   <Accordion defaultActiveKey="0">
                     <Accordion.Title
-                      onClick={handleClick}
+                      onClick={handleClick4}
                       index={1}
-                      active={activeIndex === 0}
+                      active={activeIndex4 === 0}
                     >
                       <div
                         className="tempInfo"
@@ -439,7 +465,7 @@ function ParkWidgetGen() {
                       </div>
                       <br></br>
                     </Accordion.Title>
-                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
+                    <Accordion.Content style={{ margin: "0px" }} active={activeIndex4 === 0}>
                       <Segment inverted
                         style={{
                           margin: "0px",
@@ -447,10 +473,10 @@ function ParkWidgetGen() {
                           padding: "0px",
                         }}>
                         {/* url */}  
-                        <p>
-                      Url:<span>&nbsp;&nbsp;</span>
-                          {url}
-                        </p>
+                        <a href={url} rel="noreferrer" target="_blank" style={{fontSize: "10px"}}>
+                          <span>&nbsp;&nbsp;</span>
+                          {name} website
+                        </a>
                       </Segment>
                     </Accordion.Content>
                   </Accordion>
