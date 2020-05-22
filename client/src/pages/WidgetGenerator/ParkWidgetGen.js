@@ -453,7 +453,7 @@ function ParkWidgetGen() {
                         style={{margin: "0px", fontWeight: "100", padding: "0px",}}
                       >
                         {/* Display URL from API */}  
-                        <a href={url} rel="noreferrer" target="_blank" style={{fontSize: "10px"}}>
+                        <a href={url} rel="noopener noreferrer" target="_blank" style={{fontSize: "10px"}}>
                           <span>&nbsp;&nbsp;</span>
                           {name} website
                         </a>
