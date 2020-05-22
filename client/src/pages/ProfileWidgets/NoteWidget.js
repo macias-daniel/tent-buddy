@@ -3,8 +3,9 @@ import { Form } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
+
 class NoteWidget extends Component {
-  //not title and text as part of state
+  //note title and text as part of state
   state = {
     noteTitle: "",
     noteText: "",
@@ -22,11 +23,13 @@ class NoteWidget extends Component {
     const newNote = {
       title: noteTitle,
       text: noteText,
-      id: id,
+      id: id
     };
 
     this.saveNote(newNote);
   };
+
+
 
   saveNote = note => {
     return axios.post("/api/notes", note);

@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Icon, Input, Step, Segment } from "semantic-ui-react";
+import API from "../../utils/API";
+import { useAuth } from "../../utils/auth";
 
 function NoteWidgetGen() {
+  const { user } = useAuth();
+  const [button, setButton] = useState("");
+  const [title, setTitle] = useState([]);
+
+  const addNoteWidget = event => {
+    event.preventDefault();
+    setButton("Widget Added");
+    API.addUserWidget(user.id, "note", { title }).catch(err => alert(err));
+  };
+
+  useEffect(() => {
+    alert("hello");
+  });
+
   return (
     <div>
       <br />
@@ -15,7 +31,11 @@ function NoteWidgetGen() {
           style={{ margin: "10px" }}
           icon={<Icon name="plus square outline" inverted circular link />}
           placeholder="ENTER TITLE "
-          onClick
+          onClick={addNoteWidget}
+          onChange={event => {
+            setTitle(event.target.value);
+            console.log(title);
+          }}
         />
 
         <Segment
