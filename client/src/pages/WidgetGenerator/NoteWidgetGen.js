@@ -1,20 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Icon, Input, Step, Segment } from "semantic-ui-react";
+import { Icon, Input, Step, Segment, Button, Form } from "semantic-ui-react";
 import API from "../../utils/API";
 import { useAuth } from "../../utils/auth";
 
 function NoteWidgetGen() {
   const { user } = useAuth();
-  const [title, setTitle] = useState([]);
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [savedTitle, setSavedTitle] = useState([]);
+  const [button, setButton] = useState("Add Widget");
 
   const addNoteWidget = event => {
     event.preventDefault();
-    API.addUserWidget(user.id, "note", { title }).catch(err => alert(err));
+    setButton("Widget Added");
+    API.addUserWidget(user.id, "note", { title, text }).catch(err =>
+      alert(err),
+    );
   };
 
   useEffect(() => {
-    alert("hello");
-  });
+    API.getUser(user.id).then(response => {
+      console.log(response);
+      response.data.widgets.forEach(element => {
+        if (element.type === "note") {
+          console.log(element.data.title);
+          savedTitle.push({
+            title: element.data.title,
+            text: element.data.text,
+            id: element._id,
+          });
+          console.log(savedTitle);
+        }
+      });
+    });
+  }, [user.id, savedTitle]);
 
   return (
     <div>
@@ -27,12 +46,28 @@ function NoteWidgetGen() {
       >
         <Input
           style={{ margin: "10px" }}
-          icon={<Icon name="plus square outline" inverted circular link />}
+          icon={
+            <Icon
+              name="plus square outline"
+              inverted
+              circular
+              link
+              // onClick={console.log("works")}
+            />
+          }
           placeholder="ENTER TITLE "
-          onClick={addNoteWidget}
+          value={title}
           onChange={event => {
             setTitle(event.target.value);
-            console.log(title);
+            setButton("Add Widget");
+          }}
+        />
+        <Form.TextArea
+          placeholder="Note Text"
+          name="noteText"
+          value={text}
+          onChange={event => {
+            setText(event.target.value);
           }}
         />
 
@@ -45,25 +80,27 @@ function NoteWidgetGen() {
           }}
         >
           <Step.Group>
-            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-              <Icon name="pencil" style={{ color: "white" }} />
-              <Step.Content>
-                <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
-                  NOTES
-                </Step.Title>
-                <Step.Description
-                  style={{
-                    fontWeight: "100",
-                    color: "white",
-                    fontFamily: "Roboto",
-                  }}
-                >
-                  ENTER A TITLE
-                </Step.Description>
-              </Step.Content>
-            </Step>
+            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}></Step>
+            <span style={{ color: "white" }}>
+              {savedTitle.map(element => {
+                return (
+                  <h3 key={element.id} id={element.id}>
+                    {element.title}
+                  </h3>
+                );
+              })}
+            </span>
           </Step.Group>
         </Segment>
+        <Button
+          secondary
+          inverted
+          fluid
+          style={{ fontFamily: "Roboto", color: "white" }}
+          onClick={addNoteWidget}
+        >
+          {button}
+        </Button>
       </Segment>
     </div>
   );

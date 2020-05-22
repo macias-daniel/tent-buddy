@@ -3,7 +3,6 @@ import { Form } from "semantic-ui-react";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
-
 class NoteWidget extends Component {
   //note title and text as part of state
   state = {
@@ -23,13 +22,11 @@ class NoteWidget extends Component {
     const newNote = {
       title: noteTitle,
       text: noteText,
-      id: id
+      id: id,
     };
 
     this.saveNote(newNote);
   };
-
-
 
   saveNote = note => {
     return axios.post("/api/notes", note);
@@ -39,14 +36,13 @@ class NoteWidget extends Component {
     return axios.get("/api/notes");
   };
 
-  deleteNote = (id) => {
-    return axios.delete("/api/notes/"+ id);
-  };
-  
-  updateNote = (id) => {
-    return axios.patch("/api/notes/"+ id);
+  deleteNote = id => {
+    return axios.delete("/api/notes/" + id);
   };
 
+  updateNote = id => {
+    return axios.patch("/api/notes/" + id);
+  };
 
   render() {
     const { noteTitle, noteText } = this.state;
