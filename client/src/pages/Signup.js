@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Form, Segment, Grid } from "semantic-ui-react";
-
 import API from "./../utils/API";
 import { useAuth } from "../utils/auth";
 import ErrorSegment from "../components/ErrorSegment/ErrorSegment";
