@@ -45,7 +45,6 @@ function App() {
           <Route exact path="/widgetGenerator">
             <WidgetGenHome />
           </Route>
-          {/* <Footer /> */}
         </Switch>
       </Router>
     </AuthProvider>
