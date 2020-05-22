@@ -5,12 +5,10 @@ import { useAuth } from "../../utils/auth";
 
 function NoteWidgetGen() {
   const { user } = useAuth();
-  const [button, setButton] = useState("");
   const [title, setTitle] = useState([]);
 
   const addNoteWidget = event => {
     event.preventDefault();
-    setButton("Widget Added");
     API.addUserWidget(user.id, "note", { title }).catch(err => alert(err));
   };
 
