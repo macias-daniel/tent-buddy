@@ -5,7 +5,7 @@ import WidgetGeneratorSort from "./WidgetGenSort";
 function WidgetHome() {
   return (
     <div>
-      <Grid centered>
+      <Grid centered style={{margin:"0px"}}>
         <Segment
           centered
           style={{

@@ -1,35 +1,42 @@
 import React from "react";
-import {
-  Container,
-  List,
-  Segment,
-  Image,
-} from "semantic-ui-react";
+import { Container, List, Segment, Image } from "semantic-ui-react";
 
 function Footer() {
   return (
     <div className="footer">
       <Segment
         inverted
-        vertical
+        horizontal
         style={{
-          margin: "2em 0em 0em",
-          padding: "0em 0em",
+          backgroundColor: "rgba(39, 38, 38, 0.85)",
+          margin: "0em 0em 0em",
+          padding: ".75em 0em",
           position: "fixed",
           bottom: 0,
           width: "100%",
         }}
       >
-        <Container textAlign="center">
-          <Image
-            centered
-            className="headerLogo"
-            alt="Tent logo"
-            src="/Icons/favicon-32x32.png"
-          ></Image>
-
-          <List horizontal inverted divided link size="small">
-            <p>CONTACT US</p>{" "}
+        <Container textAlign="center" style={{ margin: "0px", padding: "0px" }}>
+          <List
+            style={{ margin: "0px", padding: "0px" }}
+            horizontal
+            inverted
+            divided
+            link
+            size="small"
+          >
+            <Image
+              style={{
+                marginBottom: "0px",
+                paddingBottom: "0px",
+                height: "20px",
+              }}
+              centered
+              className="headerLogo"
+              alt="Tent logo"
+              src="/Icons/favicon-32x32.png"
+            ></Image>
+            <p style={{ margin: "0px", padding: "0px" }}>CONTACT US</p>
             <List.Item
               horizontal
               as="a"

@@ -4,8 +4,6 @@ import "./index.css";
 import App from "./App";
 import "./App.css";
 import Footer from "./components/Footer";
-
-
 import registerServiceWorker from "./registerServiceWorker";
 
 // Here is if we have an id_token in localStorage
