@@ -17,7 +17,7 @@ class Contact extends Component {
       buttonText: "...sending",
     });
 
-    let data = {
+    const data = {
       name: this.state.name,
       email: this.state.email,
       message: this.state.message,
