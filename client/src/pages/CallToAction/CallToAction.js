@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Segment, Grid, Container, Responsive } from "semantic-ui-react";
+import { List, Segment, Grid, Container} from "semantic-ui-react";
 import "../CallToAction/CallToAction.css";
 
 function CallToAction () {

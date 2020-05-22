@@ -44,46 +44,6 @@ function ForecastContainer({ day, temp, icon }) {
           </Menu.Item>
         </Menu.Menu>
       </Menu>
-
-      {/* <Menu
-        pointing
-        secondary
-        style={{
-          height: "10px",
-          margin: "0px",
-          padding: "0px",
-          fontSize: "10px",
-        }}
-      >
-        <Menu.Item
-          style={{
-            fontWeight: "100",
-            paddingBottom: "10px",
-            margin: "0px",
-            padding: "0px",
-            color: "white",
-          }}
-          className="forecastDay"
-        >
-          <Moment format="dddd" style={{ textAlign: "right" }}>
-            {day}
-          </Moment>
-        </Menu.Item>
-          <Menu.Item
-          position
-            style={{
-              fontWeight: "100",
-              padding: "0px",
-              color: "white",
-              margin: "0px",
-            }}
-            className="forecastTemp"
-          >
-            <Image style={{ textAlign: "left" }} src={iconSrc} />`
-            {temp}°F
-          </Menu.Item>
-
-      </Menu> */}
     </>
   );
 }
