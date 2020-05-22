@@ -2,15 +2,11 @@
 .forecastDay {
   font-family: "Roboto", sans-serif;
   font-size: 15px;
-  /* /* margin-bottom:10px; */
   padding-bottom:50px;
-  color: white;
   color: white;
 }
 
-
 .forecastTemp {
-
   font-size: 15px;
   color: white;
   font-family: "Roboto", sans-serif;
@@ -41,10 +37,11 @@
   margin:5px;
   font-size: 13px;
   font-family: "Roboto", sans-serif;
-color: white;
+  color: white;
   margin: 0px;
   padding: 0px;
 }
+
 .date {
   font-weight: 100;
 }
@@ -98,11 +95,6 @@ color: white;
   padding-bottom: 0px;
   font-size: 10px;
   margin:0px;
-}
-
-forecast {
-  margin: 0px;
-  padding: 0px;
 }
 
 body,

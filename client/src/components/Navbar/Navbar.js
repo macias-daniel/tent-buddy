@@ -7,7 +7,7 @@ const createLink = ({ text, to, ...rest }) => {
   const className = "nav-link";
   if (to) {
     return (
-      <Link className="placeholder"to={to} {...rest}>
+      <Link className="placeholder" to={to} {...rest}>
         {text}
       </Link>
     );
@@ -31,7 +31,8 @@ function NavLinks() {
   if (isLoggedIn) {
     const trigger = (
       <span className="placeholder">
-        <Icon name="user" />Welcome, Buddy.
+        <Icon name="user" />
+        Welcome, Buddy.
       </span>
     );
 
@@ -46,8 +47,13 @@ function NavLinks() {
         disabled: true,
       },
       { key: "profile", text: "Your Profile", as: Link, to: "/profile" },
-      { key: "widgetGenerator", text: "Widget Generator", as: Link, to: "/widgetGenerator" },
-      { key: "sign-out", text: "Sign Out", onClick: () => logout()},
+      {
+        key: "widgetGenerator",
+        text: "Widget Generator",
+        as: Link,
+        to: "/widgetGenerator",
+      },
+      { key: "sign-out", text: "Sign Out", onClick: () => logout() },
     ];
     return (
       <Dropdown
@@ -73,12 +79,22 @@ function NavLinks() {
 
 function Navbar() {
   const { isLoggedIn } = useAuth();
-  
+
   return (
-    <Header inverted textAlign="center" block>
+    
+    <Header
+      inverted
+      textAlign="center"
+      block
+      style={{
+          //  position: "fixed",
+          // top: 0,
+        width: "100%",
+      }}
+    >
       <div className="container">
         {/* If the user is logged in take them to profile page else take them to landing*/}
-        <Link className="navbar-brand" to= {isLoggedIn ?"/profile":"/"}>
+        <Link className="navbar-brand" to={isLoggedIn ? "/profile" : "/"}>
           <img
             className="headerLogo"
             alt="Tent logo"
@@ -86,7 +102,7 @@ function Navbar() {
           ></img>
           <h2 className="HeaderTitle">Tent Buddy</h2>
         </Link>
-        <NavLinks className="placeholder2"/>
+        <NavLinks className="placeholder2" />
       </div>
     </Header>
   );

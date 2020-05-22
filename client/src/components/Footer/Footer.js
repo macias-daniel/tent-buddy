@@ -6,9 +6,9 @@ function Footer() {
     <div className="footer">
       <Segment
         inverted
-        vertical
+        horizontal
         style={{  
-          backgroundColor:"rgba(39, 38, 38, 0.80)",
+          backgroundColor:"rgba(39, 38, 38, 0.85)",
           margin: "0em 0em 0em",
           padding: ".75em 0em",
           position: "fixed",

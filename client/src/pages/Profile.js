@@ -27,7 +27,7 @@ function Profile() {
   return (
     <div>
       <Grid centered>
-        <WidgetSorter />
+        {/* <WidgetSorter /> */}
         {widgets.map(widget => {
           let component;
 
