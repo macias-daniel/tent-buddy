@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../utils/auth";
-// import ForecastContainer from "../ProfileWidgets/ForecastContainer";
+import TrailContainer from "../ProfileWidgets/TrailContainer";
 import {
-  Image,
   Icon,
   Step,
   Input,
   Dimmer,
   Loader,
   Segment,
-  Button,
 } from "semantic-ui-react";
-import API from "../../utils/API";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
+
 import REI from "../../utils/REI";
 
 function WeatherWidgetGen() {
   //Set Hook for weather API
-  const { user } = useAuth();
   const [citySearch, setCity] = useState("");
   const [trailsWidget, setTrailsWidget] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(-1);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
-  const [button, setButton] = useState("");
 
   useEffect(() => {
     //Display add card when Page renders
@@ -48,8 +42,6 @@ function WeatherWidgetGen() {
         </Step>
       </Step.Group>,
     );
-    //Widget is set to Add when page renders
-    setButton("Add Widget");
   }, []);
 
   function handleCitySearch() {
@@ -75,87 +67,20 @@ function WeatherWidgetGen() {
         setTrailsWidget(
           results.data.routes.map(trails => {
             return (
-              <>
-                <Segment attached inverted>
-                  <p
-                    style={{
-                      float: "right",
-                      margin: "0px",
-                      fontWeight: "100",
-                      padding: "0px",
-                    }}
-                  >
-                    <Image style={{ width: "167px" }} src={trails.imgSmall} />
-                  </p>
-                  <p className="temp" style={{ color: "white" }}>
-                    {trails.name}
-                  </p>
-                  <></>
-                  <div style={{ textAlign: "left", fontWeight: "bold" }}>
-                    <p className="wind">
-                      COORDINATES:<span>&nbsp;&nbsp;</span>
-                      {trails.latitude}°,{trails.longitude}°
-                    </p>
-                    <p className="wind">
-                      RATING: {trails.stars}
-                      <span>&nbsp;&nbsp;</span>
-                    </p>
-                    <a className="tempInfo" href={trails.url} rel="noopener noreferrer" target="_blank">
-                      MORE INFORMATION<span>&nbsp;&nbsp;</span>
-                    </a>
-                  </div>
-                  <br></br>
-                </Segment>
-                <Button
-                  secondary
-                  inverted
-                  fluid
-                  style={{ fontFamily: "Roboto", color: "white" }}
-                  // onClick={addWeatherWidget}
-                >
-                  {button}
-                </Button>
-              </>
+              <TrailContainer
+                name={trails.name}
+                src={trails.imgSmall}
+                lat={trails.latitude}
+                lon={trails.longitude}
+                stars={trails.stars}
+                url={trails.url}
+              />
             );
           }),
         );
       });
     }
-    //Render the container after the API call
-    // function renderForecast(weather1) {
-    //   setWeatherForecast(
-    //     weather1.map(weatherData => {
-    //       return (
-    //         <ForecastContainer
-    //           // key={weatherData.city.id}
-    //           icon={weatherData.weather[0].icon}
-    //           temp={weatherData.main.temp.toFixed()}
-    //           day={new Date(weatherData.dt) * 1000}
-    //           // humidity={weatherData.main.humidity}
-    //         />
-    //       );
-    //     }),
-    //   );
-    // }
   }
-
-  // //POST request to DB
-  // const addWeatherWidget = event => {
-  //   event.preventDefault();
-  //   setButton("Widget Added");
-  //   API.addUserWidget(user.id, "weather", { city: citySearch }).catch(err =>
-  //     alert(err),
-  //   );
-  // };
-
-  //Accordion
-  function handleClick() {
-    const newIndex = activeIndex === -1 ? 0 : -1;
-    setActiveIndex(newIndex);
-  }
-
-  //Get current Date
-  const dateToFormat = new Date();
 
   return (
     <div>
@@ -202,7 +127,6 @@ function WeatherWidgetGen() {
                 </Step>
               </Step.Group>,
             );
-            setButton("Add Widget");
             setShowText("");
             setCity(event.target.value.toUpperCase());
           }}

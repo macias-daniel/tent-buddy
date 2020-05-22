@@ -5,7 +5,7 @@ import { Grid } from "semantic-ui-react";
 import WeatherWidget from "./ProfileWidgets/WeatherWidget";
 // import WidgetSorter from "./ProfileWidgets/WidgetSorter";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
-
+import TrailWidget from "./ProfileWidgets/TrailWidget";
 
 function Profile() {
   const [widgets, setWidgets] = useState([]);
@@ -37,14 +37,27 @@ function Profile() {
           } else if (widget.type === "weather") {
             component = (
               <>
-                <WidgetBumper
-                  handleDeleteWidget={() => deleteWidget(widget)}
-                />
+                <WidgetBumper handleDeleteWidget={() => deleteWidget(widget)} />
                 <WeatherWidget key={widget._id} city={widget.data.city} />
               </>
             );
           } else if (widget.type === "park") {
             component = "park Component";
+          } else if (widget.type === "trails") {
+            component = (
+              <>
+                <WidgetBumper handleDeleteWidget={() => deleteWidget(widget)} />
+                <TrailWidget
+                  key={widget._id}
+                  name={widget.data.name}
+                  src={widget.data.src}
+                  lat={widget.data.lat}
+                  lon={widget.data.lon}
+                  stars={widget.data.star}
+                  url={widget.data.url}
+                />
+              </>
+            );
           }
           return component;
         })}
