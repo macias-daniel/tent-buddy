@@ -21,9 +21,13 @@ router.get("/api/user/:id", isAuthenticated, (req, res) => {
 
 //Change the users role
 router.put("/api/:user/:role", (req, res) => {
-  console.log(req);
   const userID = req.params.user;
   const role = req.params.role;
+
+  if (role !== "admin" && role !== "user") {
+    throw new Error("Invalid Role Type");
+  }
+
   userController
     .changeUserRole(userID, role)
     .then(() => {
