@@ -3,7 +3,7 @@ import API from "../utils/API";
 import { useAuth } from "../utils/auth";
 import { Grid } from "semantic-ui-react";
 import WeatherWidget from "./ProfileWidgets/WeatherWidget";
-import WidgetSorter from "./ProfileWidgets/WidgetSorter";
+// import WidgetSorter from "./ProfileWidgets/WidgetSorter";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 
 

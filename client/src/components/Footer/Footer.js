@@ -7,8 +7,8 @@ function Footer() {
       <Segment
         inverted
         horizontal
-        style={{  
-          backgroundColor:"rgba(39, 38, 38, 0.85)",
+        style={{
+          backgroundColor: "rgba(39, 38, 38, 0.85)",
           margin: "0em 0em 0em",
           padding: ".75em 0em",
           position: "fixed",
@@ -17,7 +17,6 @@ function Footer() {
         }}
       >
         <Container textAlign="center" style={{ margin: "0px", padding: "0px" }}>
-
           <List
             style={{ margin: "0px", padding: "0px" }}
             horizontal
@@ -26,13 +25,17 @@ function Footer() {
             link
             size="small"
           >
-          <Image
-            style={{ marginBottom: "0px", paddingBottom: "0px", height:"20px" }}
-            centered
-            className="headerLogo"
-            alt="Tent logo"
-            src="/Icons/favicon-32x32.png"
-          ></Image>
+            <Image
+              style={{
+                marginBottom: "0px",
+                paddingBottom: "0px",
+                height: "20px",
+              }}
+              centered
+              className="headerLogo"
+              alt="Tent logo"
+              src="/Icons/favicon-32x32.png"
+            ></Image>
             <p style={{ margin: "0px", padding: "0px" }}>CONTACT US</p>
             <List.Item
               horizontal

@@ -81,14 +81,13 @@ function Navbar() {
   const { isLoggedIn } = useAuth();
 
   return (
-    
     <Header
       inverted
       textAlign="center"
       block
       style={{
-          //  position: "fixed",
-          // top: 0,
+        //  position: "fixed",
+        // top: 0,
         width: "100%",
       }}
     >
