@@ -43,10 +43,10 @@
 }
 
 .widgetDisplay{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
 }
 .weatherDisplay{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
 
 }
 
@@ -95,11 +95,11 @@ body{
 } */
 
 .HeaderTitle{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
 }
 
 .MenuStyles{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
   
 }
 
@@ -108,13 +108,13 @@ p{
 }
 
 .login{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
   color:white;
   opacity:.90;
 }
 
 .widgets{
-  font-family: 'Bungee Inline', cursive;
+  font-family: 'Bungee', cursive;
   color:rgb(1, 1, 20);
   opacity:.90;
 }
