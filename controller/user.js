@@ -15,6 +15,7 @@ const deleteUserWidgets = (userID, widgetID) => {
   );
 };
 
+//Change a specific user's role
 const changeUserRole = (userID, userRole) => {
   return db.User.updateOne({ _id: userID }, { role: userRole });
 };
