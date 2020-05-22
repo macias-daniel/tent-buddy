@@ -31,20 +31,20 @@ function Signup() {
     ) {
       return setError({
         isVisible: true,
-        errorMessage: "login fields cannot be left empty",
+        errorMessage: "signup fields cannot be left empty",
       });
     }
 
     API.signUpUser(formState.name, formState.email, formState.password)
       .then(res => {
+ 
         // once the user has signed up
         // log them in and send them to profile page
-        login(formState.email, formState.password).then(() =>
-          history.push("/profile"),
-        ).catch(()=>{
-          history.push("/login");
-        });
+        return login(formState.email, formState.password);
       })
+      //Send user to profile page
+      .then(()=> history.push("/profile"))
+      //Catch any error
       .catch(() => {
         //Set the error to visible
         setError({
