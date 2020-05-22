@@ -58,7 +58,7 @@ function Signup() {
   return (
     <div>
       <Grid centered>
-        <Segment centered raised compact inverted className="signUpForm">
+        <Segment raised compact inverted className="signUpForm">
           <h2 className="login">SIGN UP</h2>
           <Form size="small" inverted onSubmit={handleFormSubmit}>
             <Form.Field>

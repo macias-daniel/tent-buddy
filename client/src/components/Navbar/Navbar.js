@@ -57,7 +57,6 @@ function NavLinks() {
     ];
     return (
       <Dropdown
-        as="Dropdown"
         trigger={trigger}
         options={options}
         pointing="top left"

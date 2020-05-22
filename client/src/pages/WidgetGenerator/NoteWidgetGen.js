@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Icon, Input, Step, Segment } from "semantic-ui-react";
 
 function NoteWidgetGen() {

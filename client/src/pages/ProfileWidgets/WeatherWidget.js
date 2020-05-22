@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
 import { Image, Accordion, Icon, Segment } from "semantic-ui-react";
-import OpenWeatherMap from "../../utils/OpenWeatherMap";
+import OpenWeatherMap from "../../utils/REI";
 
 function WeatherWidget({ key, city }) {
   const [weatherForecast, setWeatherForecast] = useState([]);
