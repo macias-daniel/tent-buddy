@@ -6,7 +6,6 @@ export default {
     return axios.get(`/api/user/${id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("id_token")}` },
     });
-    
   },
 
   // sign up a user to our service
@@ -25,15 +24,15 @@ export default {
       },
     );
   },
-  
+
   //Create a new widget for the user
   addUserWidget: (userID, widgetType, widgetData) => {
     return axios.post(
       "/api/user/widget",
-      { 
-        userID:  userID, 
-        widgetType: widgetType, 
-        widgetData: widgetData 
+      {
+        userID: userID,
+        widgetType: widgetType,
+        widgetData: widgetData,
       },
       {
         headers: {
@@ -44,17 +43,15 @@ export default {
   },
 
   //Delete a specific id by id from a specific user
-  deleteUserWidget: (userID, widgetID)=>{
+  deleteUserWidget: (userID, widgetID) => {
     return axios.delete(
-      {
-        userID:  userID, 
-        widgetID:  widgetID
-      },
+      "/api/user/widget",
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("id_token")}`,
         },
+        data: { userID: userID, widgetID: widgetID },
       }
     );
-  }
+  },
 };

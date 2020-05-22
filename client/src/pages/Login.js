@@ -2,25 +2,34 @@ import React, { useState } from "react";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import { Form, Segment, Grid } from "semantic-ui-react";
 import { useAuth } from "../utils/auth";
+import ErrorSegment from "../components/ErrorSegment/ErrorSegment";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {isLoggedIn, login} = useAuth();
+  const [error, setError] = useState({isVisible: false, errorMessage: "" });
+
+  const { isLoggedIn, login } = useAuth();
   const history = useHistory();
 
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
 
+  //When the login form is submited
   const handleFormSubmit = event => {
     event.preventDefault();
+
+    //Check that fields are not left empty
+    if (email === "" || password === "") {
+      return setError({isVisible: true, errorMessage:"login fields cannot be left empty"});
+    }
 
     login(email, password)
       // navigate to the profile page
       .then(() => history.push("/profile"))
       .catch(err => {
-        alert(err.response.data.message);
+        setError({isVisible: true, errorMessage:err.response.data.message});
       });
   };
 
@@ -38,7 +47,10 @@ function Login() {
                 type="email"
                 id="email"
                 value={email}
-                onChange={({ target }) => setEmail(target.value)}
+                onChange={({ target }) => {
+                  setError({...error, isVisible:false});
+                  setEmail(target.value);
+                }}
               />
             </Form.Field>
             <Form.Field>
@@ -49,21 +61,31 @@ function Login() {
                 type="password"
                 id="pwd"
                 value={password}
-                onChange={({ target }) => setPassword(target.value)}
+                onChange={({ target }) => {
+                  setError({...error, isVisible:false});
+                  setPassword(target.value);
+                }}
               />
               <Grid.Row>
                 <Form.Button className="MenuStyles">
                   <p>EXPLORE</p>
                 </Form.Button>
-                <p >Need a your own buddy? 
-                  <Link className="MenuStyles" to="/signup"> sign up here.</Link>
+
+                {/* If an error is present, display it */}
+                {error.isVisible && <ErrorSegment>{error.errorMessage}</ErrorSegment>}
+
+                <p>
+                  Need a your own buddy?
+                  <Link className="MenuStyles" to="/signup">
+                    {" "}
+                    sign up here.
+                  </Link>
                 </p>
               </Grid.Row>
             </Form.Field>
           </Form>
         </Segment>
       </Grid>
-
     </div>
   );
 }
