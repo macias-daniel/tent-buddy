@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("../models");
+const userController = require("../controller/user");
 const isAuthenticated = require("../config/isAuthenticated");
 
 const router = express.Router();
@@ -16,6 +17,21 @@ router.get("/api/user/:id", isAuthenticated, (req, res) => {
       }
     })
     .catch((err) => res.status(400).send(err));
+});
+
+//Change the users role
+router.put("/api/:user/:role", (req, res) => {
+  console.log(req);
+  const userID = req.params.user;
+  const role = req.params.role;
+  userController
+    .changeUserRole(userID, role)
+    .then(() => {
+      res.send("Role changed!");
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 });
 
 module.exports = router;
