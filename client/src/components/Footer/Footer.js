@@ -8,7 +8,8 @@ function Footer() {
         <Segment
           inverted
           style={{
-            backgroundColor: "rgba(39, 38, 38, 0.85)",
+            zIndex: "1",
+            backgroundColor: "rgba(31, 38, 38, 0.95)",
             margin: "0em 0em 0em",
             padding: ".75em 0em",
             position: "fixed",

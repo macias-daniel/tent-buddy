@@ -1,5 +1,6 @@
 import React from "react";
-import { List, Segment, Grid, Container } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { List, Segment, Grid, Container, Button } from "semantic-ui-react";
 import "../CallToAction/CallToAction.css";
 
 function CallToAction() {
@@ -7,7 +8,7 @@ function CallToAction() {
     <div compact>
       <Grid style={{ margin: "0px" }} centered>
         {/* style={{marginTop:"100px" }} */}
-        <Container compact className="intro">
+        <Container compact className="intro" style={{ marginTop: "10px" }}>
           <Segment
             raised
             compact
@@ -18,7 +19,7 @@ function CallToAction() {
               background: "rgba(33, 187, 128, 0.78)",
               width: "85%",
               margin: "0 auto",
-              marginTop: "1.5rem",
+              marginTop: "1rem",
               color: "#F69C3C",
             }}
           >
@@ -50,6 +51,24 @@ function CallToAction() {
               interface for users to be well informed before they head out on
               their next adventure.
             </p>
+            <Link to={"/signup"}>
+              <Button inverted animated>
+                <Button.Content
+                  visible
+                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                >
+                  {" "}
+                  Start Packing <br></br>{" "}
+                </Button.Content>
+                <Button.Content
+                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  inverted
+                  hidden
+                >
+                  SIGN UP NOW
+                </Button.Content>
+              </Button>
+            </Link>
           </Segment>
         </Container>
 
@@ -83,8 +102,11 @@ function CallToAction() {
               margin: "0 auto",
             }}
           >
-            <List bulleted style={{ color: "white", fontSize: "1.0rem" }}>
-              <List.Item>One Day and Five Day weather forecast</List.Item>
+            <List
+              bulleted
+              style={{ color: "white", fontSize: "1.0rem", textAlign: "left" }}
+            >
+              <List.Item>Current and Five Day weather forecast</List.Item>
               <List.Item>Note taking functionality</List.Item>
               <List.Item>Park Operation hours</List.Item>
               <List.Item>Park Address</List.Item>
@@ -92,6 +114,24 @@ function CallToAction() {
               <List.Item>Park Contact Information</List.Item>
               <List.Item>And more to come</List.Item>
             </List>
+            <Link to={"/signup"}>
+              <Button inverted animated>
+                <Button.Content
+                  visible
+                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                >
+                  {" "}
+                  BUILD YOUR TENT <br></br>{" "}
+                </Button.Content>
+                <Button.Content
+                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  inverted
+                  hidden
+                >
+                  SIGN UP NOW
+                </Button.Content>
+              </Button>
+            </Link>
           </Segment>
         </Container>
 
@@ -130,6 +170,25 @@ function CallToAction() {
               to keep track of a variety of widgets when embarking on an
               adventure in the great outdoors.{" "}
             </p>
+            <Link to={"/signup"}>
+              <Button inverted animated>
+                <Button.Content
+                  visible
+                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                >
+                  {" "}
+                  EXPLORE <br></br>{" "}
+                </Button.Content>
+
+                <Button.Content
+                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  inverted
+                  hidden
+                >
+                  SIGN UP NOW
+                </Button.Content>
+              </Button>
+            </Link>
           </Segment>
         </Container>
       </Grid>
