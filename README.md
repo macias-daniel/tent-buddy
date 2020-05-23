@@ -15,8 +15,9 @@
 
 ## Description
 
-- An app that finds the satellites in orbit above you and allows you to track your favorites.
-  The app shows the user's current city and displays markers of all satellites currently above them. When you click the links a modal is opened displaying more details and an option to bookmark that satellite. Bookmarked satellites are stored in the side bar and you can click on any to get their next visual pass over your location. Go to the map page and see a satellite image of your location with the names and coordinates of the satellites as they are positioned above you. Search by category on the home page to see _what's up there!_
+- Tent Buddy is a widget application that provides a streamlined
+  interface for users to be well informed before they head out on
+  their next adventure.
 
 ## Visuals
 
@@ -50,7 +51,6 @@ are included in the project. Likewise, if another database is used to replace
 MongoDB, then `.travis.yml` will need to be updated accordingly. Please refer
 to the [Travis CI Documentation](https://docs.travis-ci.com/) for more
 information.
-
 
 ## _Support_
 
