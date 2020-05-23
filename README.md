@@ -1,74 +1,36 @@
-# Create React Express App
+# Tent Buddy
 
-## About This Boilerplate
+[GitHub](https://github.com/macias-daniel/tent-buddy)
+[Deployed Link](https://shielded-ocean-68745.herokuapp.com/profile)
 
-This setup allows for a Node/Express/React/JWT app which can be easily deployed to Heroku.
+## Table of Contents
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+- [Description](#description)
+- [Files](#files)
+- [Visuals](#visuals)
+- [Usage](#usage)
+- [Installation](#installation)
+- [Test](#test)
+- [Support](#support)
 
-An article on how the server is setup with JWT can be found [here](https://hptechblogs.com/using-json-web-token-for-authentication/). This has been modified to use a mongo database instead of hardcoded array of users.
+## Description
 
-The front end has been setup to use JWT as a way of authenticating users and routes. To understand it's structure better please refer to the following article [here](https://hptechblogs.com/using-json-web-token-react/)
+- An app that finds the satellites in orbit above you and allows you to track your favorites.
+  The app shows the user's current city and displays markers of all satellites currently above them. When you click the links a modal is opened displaying more details and an option to bookmark that satellite. Bookmarked satellites are stored in the side bar and you can click on any to get their next visual pass over your location. Go to the map page and see a satellite image of your location with the names and coordinates of the satellites as they are positioned above you. Search by category on the home page to see _what's up there!_
 
-Please feel free to modify this code in anyway you see fit for your project. It is a boilerplate setup that tries to make sure you can get something up and running without having to worry about setting up user authentication from scratch.
-I highly suggest you read the articles before jumping in so you can have an better understanding of how everything works in the code.
+## Visuals
 
-Server-side article and using JWT: https://hptechblogs.com/using-json-web-token-for-authentication/
+- Demonstrations of the application
 
-Front End article on using the JWT on a react application: https://hptechblogs.com/using-json-web-token-react/
+## Usage
 
-[Fork this boilerplate on GitHub](https://github.com/median-man/create-react-express-jwt/fork)
+- Refer to the API terms of use for proper usage. APIs: OpenWeatherMap, National Parks API, and REI Mountain Data API
 
-## Starting the app locally
+## Installation
 
-Add a .env at the top level of this project.
+- Run `npm install` and make sure install all dependencies.
 
-Then inside of the .env add a SERVER_SECRET set to any value you'd like
-
-```
-SERVER_SECRET = 123456
-```
-
-First off make sure you have a local version of MongoDB running on your machine. This project will make a local database for you called `appDB`.
-
-```
-mongod
-```
-
-Start by installing front and backend dependencies. While in the root directory, run the following command:
-
-```
-npm install
-```
-
-After all installations complete, run the following command in your terminal:
-
-```
-npm start
-```
-
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-### Create a Git Repo
-
-Once you're ready to deploy, start by making sure your project is a git repository. If so, proceed to the next section, otherwise run the following commands in your terminal:
-
-```
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-### Deploying
-
-1. Go onto your heroku account and link your repository through the UI
-2. Go to resources and find mLab as a Add-on
-3. Provision a Mongo Database
-4. Go back and click "Deploy"
-
-## Tests/Linting
+## Test
 
 Run `npm run lint` from the project root to run eslint checks on the backend
 and front end code. Run `npm run lint` from the `client` directory to lint the
@@ -88,3 +50,22 @@ are included in the project. Likewise, if another database is used to replace
 MongoDB, then `.travis.yml` will need to be updated accordingly. Please refer
 to the [Travis CI Documentation](https://docs.travis-ci.com/) for more
 information.
+
+
+## _Support_
+
+[<img src="https://avatars2.githubusercontent.com/u/59327488?v=4" alt="avatar" style="border-radius: 75px" width="75"/>](https://github.com/macias-daniel)
+
+- Daniel Macias-Ericson
+
+[<img src="https://avatars3.githubusercontent.com/u/60668617?v=4" alt="avatar" style="border-radius: 75px" width="75"/>](https://github.com/charrmountain)
+
+- Charlotte Mountain
+
+[<img src="https://avatars3.githubusercontent.com/u/61394430?v=4" alt="avatar" style="border-radius: 75px" width="75"/>](https://github.com/NathanNaylor)
+
+- Nathan Naylor
+
+[<img src="https://avatars3.githubusercontent.com/u/58489761?v=4" alt="avatar" style="border-radius: 75px" width="75"/>](https://github.com/kanercruzwalker)
+
+- Kane Cruz-Walker
