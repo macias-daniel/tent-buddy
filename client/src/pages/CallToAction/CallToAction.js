@@ -22,12 +22,12 @@ function CallToAction() {
               color: "#F69C3C",
             }}
           >
-            <h2
+            <h3
               style={{ fontFamily: "Bungee Inline", color: "white" }}
               className="introHead"
             >
               Why Tent Buddy?
-            </h2>
+            </h3>
           </Segment>
           <Segment
             raised
@@ -41,7 +41,7 @@ function CallToAction() {
               background: "#1b1c1d",
             }}
           >
-            <h4 style={{ fontFamily: "Roboto" }}>
+            <p>
               Have you ever wanted a convenient place to look at important
               information needed for a smooth outdoors expedition?
               <br></br>
@@ -49,7 +49,7 @@ function CallToAction() {
               Tent Buddy is a widget application that provides a streamlined
               interface for users to be well informed before they head out on
               their next adventure.
-            </h4>
+            </p>
           </Segment>
         </Container>
 
@@ -67,9 +67,9 @@ function CallToAction() {
               color: "#F69C3C",
             }}
           >
-            <h2 style={{ fontFamily: "Bungee Inline", color: "white" }}>
+            <h3 style={{ fontFamily: "Bungee Inline", color: "white" }}>
               Key Features
-            </h2>
+            </h3>
           </Segment>
           <Segment
             raised
@@ -83,7 +83,7 @@ function CallToAction() {
               margin: "0 auto",
             }}
           >
-            <List bulleted style={{ color: "white", fontSize: "1.25rem" }}>
+            <List bulleted style={{ color: "white", fontSize: "1.0rem" }}>
               <List.Item>One Day and Five Day weather forecast</List.Item>
               <List.Item>Note taking functionality</List.Item>
               <List.Item>Park Operation hours</List.Item>
@@ -109,9 +109,9 @@ function CallToAction() {
               color: "#F69C3C",
             }}
           >
-            <h2 style={{ fontFamily: "Bungee Inline", color: "white" }}>
+            <h3 style={{ fontFamily: "Bungee Inline", color: "white" }}>
               Our Mission
-            </h2>
+            </h3>
           </Segment>
           <Segment
             raised
@@ -125,11 +125,11 @@ function CallToAction() {
               background: "#1b1c1d",
             }}
           >
-            <h4 style={{ fontFamily: "Roboto" }}>
+            <p style={{ fontFamily: "Roboto" }}>
               Tent Buddy was developed to provide individuals with the ability
               to keep track of a variety of widgets when embarking on an
               adventure in the great outdoors.{" "}
-            </h4>
+            </p>
           </Segment>
         </Container>
       </Grid>

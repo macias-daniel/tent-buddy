@@ -41,7 +41,7 @@ function NavLinks() {
         key: "user",
         text: (
           <span>
-            <p className="placeholder2"> Signed in as {user.email}</p>
+            <p className="text" style={{fontWeight:"bold"}}> Signed in as {user.email}</p>
           </span>
         ),
         disabled: true,
