@@ -11,36 +11,46 @@ function Signup() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState({isVisible: false, errorMessage: "" });
+  const [error, setError] = useState({ isVisible: false, errorMessage: "" });
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, login } = useAuth();
   const history = useHistory();
 
   if (isLoggedIn) {
-    return <Redirect to="/"/>;
+    return <Redirect to="/" />;
   }
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    
-    //Check that no fields are left empty 
+
+    //Check that no fields are left empty
     if (
       formState.name === "" ||
       formState.email === "" ||
       formState.password === ""
     ) {
-      return setError({isVisible: true, errorMessage:"login fields cannot be left empty"});
+      return setError({
+        isVisible: true,
+        errorMessage: "signup fields cannot be left empty",
+      });
     }
 
     API.signUpUser(formState.name, formState.email, formState.password)
       .then(res => {
+ 
         // once the user has signed up
-        // send them to the login page
-        history.replace("/login");
+        // log them in and send them to profile page
+        return login(formState.email, formState.password);
       })
+      //Send user to profile page
+      .then(()=> history.push("/profile"))
+      //Catch any error
       .catch(() => {
         //Set the error to visible
-        setError({isVisible: true, errorMessage:"That email is already in use"});
+        setError({
+          isVisible: true,
+          errorMessage: "That email is already in use",
+        });
       });
   };
 
@@ -52,7 +62,7 @@ function Signup() {
     });
 
     //If the error message is set to visible hide it
-    setError({...error, isVisible:false});
+    setError({ ...error, isVisible: false });
   };
 
   return (
@@ -94,9 +104,11 @@ function Signup() {
                 <Form.Button className="MenuStyles">
                   <p>GET STARTED</p>
                 </Form.Button>
-          
+
                 {/* If an error is present, display it */}
-                {error.isVisible && <ErrorSegment>{error.errorMessage}</ErrorSegment>}
+                {error.isVisible && (
+                  <ErrorSegment>{error.errorMessage}</ErrorSegment>
+                )}
 
                 <p>
                   Already have a buddy?
