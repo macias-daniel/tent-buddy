@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import ForecastContainer from "./ForecastContainer";
 import "./style.css";
-import { Grid, Image, Accordion, Icon, Segment } from "semantic-ui-react";
+import { Image, Accordion, Icon, Segment } from "semantic-ui-react";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 function WeatherWidget({ key, city }) {

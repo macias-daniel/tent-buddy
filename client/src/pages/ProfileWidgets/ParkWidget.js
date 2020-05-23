@@ -21,7 +21,6 @@ function ParkWidget({ key, state, park }) {
   // page apperance Hooks
   const [activeIndex, setActiveIndex] = useState(-1);
   const [activeIndex1, setActiveIndex1] = useState(-1);
-  const [activeIndex2, setActiveIndex2] = useState(-1);
   const [activeIndex3, setActiveIndex3] = useState(-1);
   const [activeIndex4, setActiveIndex4] = useState(-1);
 
@@ -78,10 +77,6 @@ function ParkWidget({ key, state, park }) {
   function handleClick1() {
     const newIndex1 = activeIndex1 === -1 ? 0 : -1;
     setActiveIndex1(newIndex1);
-  }
-  function handleClick2() {
-    const newIndex2 = activeIndex2 === -1 ? 0 : -1;
-    setActiveIndex2(newIndex2);
   }
   function handleClick3() {
     const newIndex3 = activeIndex3 === -1 ? 0 : -1;

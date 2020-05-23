@@ -158,18 +158,3 @@ a:hover {
   background: #e5e5e5;
   margin-top: 80px;
 }
-/* @media (min-width: 720px) {
-.widgetType{
-  transform: translateY(20%) translateX(-80%);
-}
-} */
-@media (min-width: 424px) {
-  .widgetForm {
-    transform: translateY(85%) translateX(-24%);
-  }
-
-  .widgetTitle {
-    transform: translateY(50%) translateX(105%);
-  }
-}
-
