@@ -86,8 +86,6 @@ function Profile() {
           }
           return component;
         })}
-        {/* Console.log widget so travis will shut up about unused variables */}
-        {/* {console.log(widgets)} */}
       </Grid>
     </div>
   );
