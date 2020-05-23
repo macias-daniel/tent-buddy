@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
-import ForecastContainer from "./TrailContainer";
+import ForecastContainer from "./ForecastContainer";
 import "./style.css";
 import { Image, Accordion, Icon, Segment } from "semantic-ui-react";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
@@ -67,9 +67,10 @@ function WeatherWidget({ key, city }) {
   return (
     <>
       <Segment
+        compact
         attached
         inverted
-        style={{ width: "225px",backgroundColor: "rgba(27, 27, 27, 0.76)" }}
+        style={{ width: "225px", backgroundColor: "rgba(27, 27, 27, 0.76)" }}
       >
         <>
           <Segment attached inverted>

@@ -1,8 +1,7 @@
-
 .forecastDay {
   font-family: "Roboto", sans-serif;
   font-size: 15px;
-  padding-bottom:50px;
+  padding-bottom: 50px;
   color: white;
 }
 
@@ -17,12 +16,12 @@
   font-size: 10px;
   font-weight: 100;
   color: white;
-  height: 25px;
+  height: 30px;
   margin: 0px;
   padding: 0px;
 }
 
-.wind{
+.wind {
   font-family: "Roboto", sans-serif;
   font-size: 10px;
   font-weight: 100;
@@ -32,9 +31,8 @@
   padding: 0px;
 }
 
-
 .tempCity {
-  margin:5px;
+  margin: 5px;
   font-size: 13px;
   font-family: "Roboto", sans-serif;
   color: white;
@@ -87,20 +85,21 @@
 .temp {
   font-size: 25px;
   margin-bottom: 0px;
-  margin:0px;
+  margin: 0px;
 }
 
 .tempDate {
   margin-bottom: 0px;
   padding-bottom: 0px;
   font-size: 10px;
-  margin:0px;
+  margin: 0px;
 }
 
 body,
 html {
   height: 100%;
   margin: 0;
+  padding: 0 !important;
   font-weight: 100;
   font-family: "Roboto", sans-serif;
 }
@@ -158,14 +157,4 @@ a:hover {
 .ui.menu {
   background: #e5e5e5;
   margin-top: 80px;
-}
-
-@media (min-width: 424px) {
-  .widgetForm {
-    transform: translateY(85%) translateX(-24%);
-  }
-
-  .widgetTitle {
-    transform: translateY(50%) translateX(105%);
-  }
 }

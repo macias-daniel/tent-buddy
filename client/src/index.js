@@ -18,7 +18,7 @@ ReactDOM.render(
     <div style={{paddingBottom:"50px" }}>
       <App />
     </div>
-    <Footer/>
+    <Footer style={{backgroundColor: "rgba(31, 30, 30, 0.95)"}}/>
   </React.StrictMode>,
   document.getElementById("root"),
 );

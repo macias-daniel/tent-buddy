@@ -3,7 +3,7 @@ import WeatherWidgetGen from "./WeatherWidgetGen";
 import ParkWidgetGen from "./ParkWidgetGen";
 import NoteWidgetGen from "./NoteWidgetGen";
 import TrailWidgetGen from "./TrailWidgetGen";
-import { Menu, Segment} from "semantic-ui-react";
+import { Menu, Segment, Container } from "semantic-ui-react";
 
 const widgets = {
   notes: {
@@ -46,8 +46,9 @@ export default class WidgetGeneratorSort extends Component {
 
     return (
       <>
-        <div>
+        <div style={{ margin: "0px", padding: "0px" }}>
           <Segment
+            style={{ margin: "0px", padding: "0px" }}
             attached
             className="widgetForm"
             compact
@@ -86,7 +87,7 @@ export default class WidgetGeneratorSort extends Component {
             </Menu>
           </Segment>
         </div>
-        {this.state.currentPage.widgetType}
+        <Container>{this.state.currentPage.widgetType}</Container>
       </>
     );
   }

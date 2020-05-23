@@ -35,7 +35,7 @@ function Login() {
 
   return (
     <div>
-      <Grid centered>
+      <Grid style={{ margin: "0px" }} centered>
         <Segment raised compact inverted className="loginForm">
           <h2 className="login">LOGIN</h2>
           <Form size="small" inverted onSubmit={handleFormSubmit}>

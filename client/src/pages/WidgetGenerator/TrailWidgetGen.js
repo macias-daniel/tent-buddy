@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TrailContainer from "../ProfileWidgets/TrailContainer";
 import {
+  Grid,
   Icon,
   Step,
   Input,
@@ -36,7 +37,7 @@ function WeatherWidgetGen() {
                 fontFamily: "Roboto",
               }}
             >
-              FIND A TRAIL
+              SEARCH BY CITY
             </Step.Description>
           </Step.Content>
         </Step>
@@ -67,14 +68,17 @@ function WeatherWidgetGen() {
         setTrailsWidget(
           results.data.routes.map(trails => {
             return (
-              <TrailContainer
-                name={trails.name}
-                src={trails.imgSmall}
-                lat={trails.latitude}
-                lon={trails.longitude}
-                stars={trails.stars}
-                url={trails.url}
-              />
+              <>
+                <TrailContainer
+                  name={trails.name}
+                  src={trails.imgSmall}
+                  lat={(trails.latitude.toFixed(2))}
+                  lon={(trails.longitude.toFixed(2))}
+                  stars={trails.stars}
+                  url={trails.url}
+                />
+                <br></br>
+              </>
             );
           }),
         );
@@ -84,65 +88,71 @@ function WeatherWidgetGen() {
 
   return (
     <div>
-      <br />
-      <Segment
-        attached
-        block
-        inverted
-        style={{ backgroundColor: "rgba(27, 27, 27, 0.76)", width: "250px" }}
-      >
-        <Input
-          style={{ margin: "10px" }}
-          icon={
-            <Icon
-              name="search"
-              inverted
-              circular
-              link
-              onClick={handleCitySearch}
-            />
-          }
-          placeholder="ENTER CITY"
-          onChange={event => {
-            setSpinner(
-              <Step.Group>
-                <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-                  <Icon name="compass outline" style={{ color: "white" }} />
-                  <Step.Content>
-                    <Step.Title
-                      style={{ color: "white", fontFamily: "Roboto" }}
-                    >
-                      TRAILS
-                    </Step.Title>
-                    <Step.Description
-                      style={{
-                        fontWeight: "100",
-                        color: "white",
-                        fontFamily: "Roboto",
-                      }}
-                    >
-                      FIND A TRAIL
-                    </Step.Description>
-                  </Step.Content>
-                </Step>
-              </Step.Group>,
-            );
-            setShowText("");
-            setCity(event.target.value.toUpperCase());
-          }}
-        />
-
+      <Grid centered style={{ margin: "0px" }}>
+        <br />
         <Segment
-          compact
           attached
+          block
+          inverted
           style={{
-            width: "225px",
+            marginTop: "25px",
             backgroundColor: "rgba(27, 27, 27, 0.76)",
+            width: "250px",
           }}
         >
-          {showText && trailsWidget}, {spinner}
+          <Input
+            style={{ margin: "10px" }}
+            icon={
+              <Icon
+                name="search"
+                inverted
+                circular
+                link
+                onClick={handleCitySearch}
+              />
+            }
+            placeholder="ENTER CITY"
+            onChange={event => {
+              setSpinner(
+                <Step.Group>
+                  <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                    <Icon name="compass outline" style={{ color: "white" }} />
+                    <Step.Content>
+                      <Step.Title
+                        style={{ color: "white", fontFamily: "Roboto" }}
+                      >
+                        TRAILS
+                      </Step.Title>
+                      <Step.Description
+                        style={{
+                          fontWeight: "100",
+                          color: "white",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        SEARCH BY CITY
+                      </Step.Description>
+                    </Step.Content>
+                  </Step>
+                </Step.Group>,
+              );
+              setShowText("");
+              setCity(event.target.value.toUpperCase());
+            }}
+          />
+
+          <Segment
+            compact
+            attached
+            style={{
+              width: "225px",
+              backgroundColor: "rgba(27, 27, 27, 0.76)",
+            }}
+          >
+            {showText && trailsWidget}, {spinner}
+          </Segment>
         </Segment>
-      </Segment>
+      </Grid>
     </div>
   );
 }
