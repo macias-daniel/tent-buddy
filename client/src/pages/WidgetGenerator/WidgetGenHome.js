@@ -7,7 +7,6 @@ function WidgetHome() {
     <div>
       <Grid centered style={{margin:"0px"}}>
         <Segment
-          centered
           style={{
             backgroundColor: "rgba(33, 187, 128, 0)",
             marginBottom: "0px",

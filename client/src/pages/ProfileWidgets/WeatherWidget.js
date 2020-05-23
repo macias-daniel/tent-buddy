@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
-import ForecastContainer from "./ForecastContainer";
+import ForecastContainer from "./TrailContainer";
 import "./style.css";
 import { Image, Accordion, Icon, Segment } from "semantic-ui-react";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";

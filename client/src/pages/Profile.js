@@ -6,6 +6,7 @@ import WeatherWidget from "./ProfileWidgets/WeatherWidget";
 // import WidgetSorter from "./ProfileWidgets/WidgetSorter";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 import ParkWidget from "./ProfileWidgets/ParkWidget";
+import TrailWidget from "./ProfileWidgets/TrailWidget";
 
 
 function Profile() {
@@ -38,9 +39,7 @@ function Profile() {
           } else if (widget.type === "weather") {
             component = (
               <>
-                <WidgetBumper
-                  handleDeleteWidget={() => deleteWidget(widget)}
-                />
+                <WidgetBumper handleDeleteWidget={() => deleteWidget(widget)} />
                 <WeatherWidget key={widget._id} city={widget.data.city} />
               </>
             );
@@ -51,6 +50,21 @@ function Profile() {
                   handleDeleteWidget={() => deleteWidget(widget)}
                 />
                 <ParkWidget key={widget._id} state={widget.data.state} park={widget.data.park} />
+              </>
+            );
+          } else if (widget.type === "trails") {
+            component = (
+              <>
+                <WidgetBumper handleDeleteWidget={() => deleteWidget(widget)} />
+                <TrailWidget
+                  key={widget._id}
+                  name={widget.data.name}
+                  src={widget.data.src}
+                  lat={widget.data.lat}
+                  lon={widget.data.lon}
+                  stars={widget.data.star}
+                  url={widget.data.url}
+                />
               </>
             );
           }
