@@ -67,7 +67,7 @@ function Signup() {
 
   return (
     <div>
-      <Grid centered>
+      <Grid style={{ margin: "0px" }} centered>
         <Segment raised compact inverted className="signUpForm">
           <h2 className="login">SIGN UP</h2>
           <Form size="small" inverted onSubmit={handleFormSubmit}>

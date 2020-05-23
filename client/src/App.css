@@ -29,7 +29,6 @@
 
 .homeContainer {
   /* The image used */
-  
   background-attachment: scroll;
   /* Full height */
   position: absolute;
@@ -127,14 +126,14 @@ p{
 .loginForm {
   opacity: .90;
   position: relative;
-  transform: translateY(30%);
+  transform: translateY(20%);
   padding-left:0px;
 }
 
 .signUpForm {
   opacity: .90;
   position: relative;
-  transform: translateY(20%);
+  transform: translateY(8%);
   padding-left:0px;
 }
 
@@ -166,7 +165,7 @@ a:hover{
   margin-top: 80px;
   }
 
-
+/* 
 @media (min-width: 424px) {
   .widgetForm {
 
@@ -178,4 +177,6 @@ a:hover{
     transform: translateY(50%) translateX(105%);
 
   }
-}
+} */
+
+

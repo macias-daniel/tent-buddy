@@ -1,12 +1,13 @@
 import React from "react";
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid, Segment, Container } from "semantic-ui-react";
 import WidgetGeneratorSort from "./WidgetGenSort";
 
 function WidgetHome() {
   return (
     <div>
-      <Grid centered style={{margin:"0px"}}>
-        <Segment
+      <Grid centered style={{ margin: "0px" }}>
+        <Container
+          className="widgetGenHome"
           style={{
             backgroundColor: "rgba(33, 187, 128, 0)",
             marginBottom: "0px",
@@ -33,8 +34,10 @@ function WidgetHome() {
           >
             pick a category
           </p>
-        </Segment>
-        <WidgetGeneratorSort />
+        </Container>
+        <Grid centered style={{ margin: "0px" }}>
+          <WidgetGeneratorSort />
+        </Grid>
       </Grid>
     </div>
   );

@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import { useAuth } from "../../utils/auth";
 import ForecastContainer from "../ProfileWidgets/ForecastContainer";
 import {
+  Grid,
   Image,
   Icon,
   Step,
@@ -48,7 +49,7 @@ function WeatherWidgetGen() {
                 fontFamily: "Roboto",
               }}
             >
-              ENTER A CITY
+              SEARCH BY CITY
             </Step.Description>
           </Step.Content>
         </Step>
@@ -112,8 +113,9 @@ function WeatherWidgetGen() {
   const addWeatherWidget = event => {
     event.preventDefault();
     setButton("Widget Added");
-    API.addUserWidget(user.id,"weather", {city: citySearch})
-      .catch(err => alert(err));
+    API.addUserWidget(user.id, "weather", { city: citySearch }).catch(err =>
+      alert(err),
+    );
   };
 
   //Accordion
@@ -127,151 +129,156 @@ function WeatherWidgetGen() {
 
   return (
     <div>
-      <br />
-      <Segment
-        attached
-        block
-        inverted
-        style={{ backgroundColor: "rgba(27, 27, 27, 0.76)", width: "250px" }}
-      >
-        <Input
-          style={{ margin: "10px" }}
-          icon={
-            <Icon
-              name="search"
-              inverted
-              circular
-              link
-              onClick={handleCitySearch}
-            />
-          }
-          placeholder="ENTER CITY"
-          onChange={event => {
-            setSpinner(
-              <Step.Group>
-                <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-                  <Icon name="cloud" style={{ color: "white" }} />
-                  <Step.Content>
-                    <Step.Title
-                      style={{ color: "white", fontFamily: "Roboto" }}
-                    >
-                      WEATHER
-                    </Step.Title>
-                    <Step.Description
-                      style={{
-                        fontWeight: "100",
-                        color: "white",
-                        fontFamily: "Roboto",
-                      }}
-                    >
-                      ENTER A CITY
-                    </Step.Description>
-                  </Step.Content>
-                </Step>
-              </Step.Group>,
-            );
-            setButton("Add Widget");
-            setShowText("");
-            setCity(event.target.value.toUpperCase());
-          }}
-        />
-
+      <Grid centered style={{ margin: "0px" }}>
+        <br />
         <Segment
-          compact
           attached
-          style={{
-            width: "225px",
-            backgroundColor: "rgba(27, 27, 27, 0.76)",
-          }}
+          block
+          inverted
+          style={{ marginTop:"25px",backgroundColor: "rgba(27, 27, 27, 0.76)", width: "250px" }}
         >
-          {showText && (
-            <>
-              <Segment attached inverted>
-                <Accordion>
-                  <p
-                    style={{
-                      float: "right",
-                      margin: "0px",
-                      fontWeight: "100",
-                      padding: "0px",
-                    }}
-                  >
-                    <Image src={currentIcon} />
-                  </p>
-                  <>
-                    <p className="tempCity">{citySearch}</p>
-                    <p className="tempDate">
-                      <Moment format="dddd">{dateToFormat}</Moment>
-                    </p>
-                  </>
+          <Input
+            style={{ margin: "10px" }}
+            icon={
+              <Icon
+                name="search"
+                inverted
+                circular
+                link
+                onClick={handleCitySearch}
+              />
+            }
+            placeholder="ENTER CITY"
+            onChange={event => {
+              setSpinner(
+                <Step.Group>
+                  <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                    <Icon name="cloud" style={{ color: "white" }} />
+                    <Step.Content>
+                      <Step.Title
+                        style={{ color: "white", fontFamily: "Roboto" }}
+                      >
+                        WEATHER
+                      </Step.Title>
+                      <Step.Description
+                        style={{
+                          fontWeight: "100",
+                          color: "white",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        SEARCH BY CITY
+                      </Step.Description>
+                    </Step.Content>
+                  </Step>
+                </Step.Group>,
+              );
+              setButton("Add Widget");
+              setShowText("");
+              setCity(event.target.value.toUpperCase());
+            }}
+          />
 
-                  <p className="tempDate">
-                    <Moment
-                      format="MM.DD"
-                      style={{ textAlign: "left", color: "white" }}
-                    >
-                      {dateToFormat}
-                    </Moment>
-                  </p>
-                  <p className="temp" style={{ color: "white" }}>
-                    {currentTemp}°F
-                  </p>
-                  <div style={{ textAlign: "left", fontWeight: "bold" }}>
-                    <p className="tempInfo">
-                      HUMIDITY:<span>&nbsp;&nbsp;</span>
-                      {currentHumidity}%
-                    </p>
-                    <p className="wind">
-                      WIND SPEED:<span>&nbsp;&nbsp;</span>
-                      {currentWind} MPH{" "}
-                    </p>
-
-                    <p className="tempInfo">
-                      CONDITIONS:<span>&nbsp;&nbsp;</span>
-                      {currentDescription}
-                    </p>
-                  </div>
-                  <Accordion.Title
-                    onClick={handleClick}
-                    index={0}
-                    active={activeIndex === 0}
-                  >
-                    <div
-                      className="tempInfo"
+          <Segment
+            compact
+            attached
+            style={{
+              width: "225px",
+              backgroundColor: "rgba(27, 27, 27, 0.76)",
+            }}
+          >
+            {showText && (
+              <>
+                <Segment attached inverted>
+                  <Accordion>
+                    <p
                       style={{
-                        float: "left",
-                        fontWeight: "bold",
-                        fontSize: "15px",
+                        float: "right",
+                        margin: "0px",
+                        fontWeight: "100",
+                        padding: "0px",
                       }}
                     >
-                      {" "}
-                      FORECAST <span>&nbsp;&nbsp;</span>
-                      <p style={{ float: "right", fontWeight: "100" }}>
-                        {" "}
-                        <Icon name="plus square outline" inverted />
+                      <Image src={currentIcon} />
+                    </p>
+                    <>
+                      <p className="tempCity">{citySearch}</p>
+                      <p className="tempDate">
+                        <Moment format="dddd">{dateToFormat}</Moment>
+                      </p>
+                    </>
+
+                    <p className="tempDate">
+                      <Moment
+                        format="MM.DD"
+                        style={{ textAlign: "left", color: "white" }}
+                      >
+                        {dateToFormat}
+                      </Moment>
+                    </p>
+                    <p className="temp" style={{ color: "white" }}>
+                      {currentTemp}°F
+                    </p>
+                    <div style={{ textAlign: "left", fontWeight: "bold" }}>
+                      <p className="tempInfo">
+                        HUMIDITY:<span>&nbsp;&nbsp;</span>
+                        {currentHumidity}%
+                      </p>
+                      <p className="wind">
+                        WIND SPEED:<span>&nbsp;&nbsp;</span>
+                        {currentWind} MPH{" "}
+                      </p>
+
+                      <p className="tempInfo">
+                        CONDITIONS:<span>&nbsp;&nbsp;</span>
+                        {currentDescription}
                       </p>
                     </div>
-                    <br></br>
-                  </Accordion.Title>
-                  <Accordion.Content style={{ margin: "0px" }} active={activeIndex === 0}>
-                    {weatherForecast}
-                  </Accordion.Content>
-                </Accordion>
-              </Segment>
-              <Button
-                secondary
-                inverted
-                fluid
-                style={{ fontFamily: "Roboto", color: "white" }}
-                onClick={addWeatherWidget}
-              >
-                {button}
-              </Button>
-            </>
-          )}
-          , {spinner}
+                    <Accordion.Title
+                      onClick={handleClick}
+                      index={0}
+                      active={activeIndex === 0}
+                    >
+                      <div
+                        className="tempInfo"
+                        style={{
+                          float: "left",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
+                      >
+                        {" "}
+                        FORECAST <span>&nbsp;&nbsp;</span>
+                        <p style={{ float: "right", fontWeight: "100" }}>
+                          {" "}
+                          <Icon name="plus square outline" inverted />
+                        </p>
+                      </div>
+                      <br></br>
+                    </Accordion.Title>
+                    <Accordion.Content
+                      style={{ margin: "0px" }}
+                      active={activeIndex === 0}
+                    >
+                      {weatherForecast}
+                    </Accordion.Content>
+                  </Accordion>
+                </Segment>
+                <Button
+                  secondary
+                  inverted
+                  fluid
+                  style={{ fontFamily: "Roboto", color: "white" }}
+                  onClick={addWeatherWidget}
+                >
+                  {button}
+                </Button>
+              </>
+            )}
+            , {spinner}
+          </Segment>
         </Segment>
-      </Segment>
+      </Grid>
     </div>
   );
 }

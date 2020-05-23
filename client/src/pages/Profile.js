@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import API from "../utils/API";
 import { useAuth } from "../utils/auth";
-import { Grid } from "semantic-ui-react";
+import { Grid, Container } from "semantic-ui-react";
 import WeatherWidget from "./ProfileWidgets/WeatherWidget";
 // import WidgetSorter from "./ProfileWidgets/WidgetSorter";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 import ParkWidget from "./ProfileWidgets/ParkWidget";
 import TrailWidget from "./ProfileWidgets/TrailWidget";
-
 
 function Profile() {
   const [widgets, setWidgets] = useState([]);
@@ -28,7 +27,7 @@ function Profile() {
 
   return (
     <div>
-      <Grid centered>
+      <Grid style={{ margin: "0px" }} centered>
         {/* <WidgetSorter /> */}
         {widgets.map(widget => {
           let component;
@@ -39,32 +38,49 @@ function Profile() {
           } else if (widget.type === "weather") {
             component = (
               <>
-                <WidgetBumper handleDeleteWidget={() => deleteWidget(widget)} />
-                <WeatherWidget key={widget._id} city={widget.data.city} />
+                <Container>
+                  <WidgetBumper
+                    handleDeleteWidget={() => deleteWidget(widget)}
+                  />
+                  <WeatherWidget
+                    key={widget._id}
+                    city={widget.data.city}
+                  />
+                </Container>
               </>
             );
           } else if (widget.type === "park") {
             component = (
               <>
-                <WidgetBumper
-                  handleDeleteWidget={() => deleteWidget(widget)}
-                />
-                <ParkWidget key={widget._id} state={widget.data.state} park={widget.data.park} />
+                <Container>
+                  <WidgetBumper
+                    handleDeleteWidget={() => deleteWidget(widget)}
+                  />
+                  <ParkWidget
+                    key={widget._id}
+                    state={widget.data.state}
+                    park={widget.data.park}
+                  />
+                </Container>
               </>
             );
           } else if (widget.type === "trails") {
             component = (
               <>
-                <WidgetBumper handleDeleteWidget={() => deleteWidget(widget)} />
-                <TrailWidget
-                  key={widget._id}
-                  name={widget.data.name}
-                  src={widget.data.src}
-                  lat={widget.data.lat}
-                  lon={widget.data.lon}
-                  stars={widget.data.star}
-                  url={widget.data.url}
-                />
+                <Container>
+                  <WidgetBumper
+                    handleDeleteWidget={() => deleteWidget(widget)}
+                  />
+                  <TrailWidget
+                    key={widget._id}
+                    name={widget.data.name}
+                    src={widget.data.src}
+                    lat={widget.data.lat}
+                    lon={widget.data.lon}
+                    stars={widget.data.star}
+                    url={widget.data.url}
+                  />
+                </Container>
               </>
             );
           }
