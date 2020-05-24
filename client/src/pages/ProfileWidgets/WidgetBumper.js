@@ -32,7 +32,7 @@ class WidgetBumper extends Component {
           closeOnDimmerClick={closeOnDimmerClick}
           onClose={this.close}
         >
-          <Modal.Header style={{fontFamily:"Bungee Inline", fontSize:"30px"}}>Delete Widget</Modal.Header>
+          <Modal.Header style={{fontFamily:"Bungee", fontSize:"30px"}}>Delete Widget</Modal.Header>
           <Modal.Content inverted>
             <p>Are you sure you want to delete your widget?</p>
           </Modal.Content>
