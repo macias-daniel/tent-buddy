@@ -12,7 +12,7 @@ class NationalParks {
     return this.client.get(
 
       // use yellowstone
-      "parks?parkCode=&stateCode=" + stateSearch + "&q=" + parkSearch + "&api_key=Vaic6U19mBB69aCykE0xEsU4LEjCQCyFwe7oepd6"
+      "parks?parkCode=&stateCode=" + stateSearch + "&q=" + parkSearch + "&api_key=" + process.env.REACT_APP_NATIONAL_PARKS_API
 
     );
   };
