@@ -1,74 +1,123 @@
-import React, { Component } from "react";
-import { Form } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import { Icon, Input, Step, Segment, Button, Form } from "semantic-ui-react";
+// import API from "../../utils/API";
+// import { useAuth } from "../../utils/auth";
 import { v4 as uuidv4 } from "uuid";
-import axios from "axios";
 
-class NoteWidget extends Component {
-  //note title and text as part of state
-  state = {
-    noteTitle: "",
-    noteText: "",
+function NoteWidgetGen() {
+  // const { user } = useAuth();
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [noteId, setNoteId] = useState("");
+  const [isNewNote, setIsNewNote] = useState(true);
+  const [notes, setNotes] = useState(localStorage.getItem("Notes") || []);
+  const [button, setButton] = useState("Add Widget");
+
+  const upsertNote = () => {
+    if (isNewNote) {
+      setNotes([
+        ...notes,
+        {
+          title,
+          text,
+          id: uuidv4(),
+        },
+      ]);
+    } else {
+      const note = notes.find(n => n.id === noteId);
+      note.text = text;
+      note.title= title;
+      setNotes([...notes]);
+      setNoteId("");
+      setIsNewNote(true);
+    }
+    setTitle("");
+    setText("");
   };
 
-  //on change update the state with the new values
-  handleChange = (e, { name, value }) => this.setState({ [name]: value });
-
-  handleSubmit = () => {
-    //on submit take the values in state
-    const { noteTitle, noteText } = this.state;
-    //generate a unique id
-    const id = uuidv4();
-    //push new note into notes array
-    const newNote = {
-      title: noteTitle,
-      text: noteText,
-      id: id,
-    };
-
-    this.saveNote(newNote);
+  const setCurrentNote = note => {
+    setText(note.text);
+    setTitle(note.title);
+    setNoteId(note.id);
+    setIsNewNote(false);
   };
 
-  saveNote = note => {
-    return axios.post("/api/notes", note);
-  };
+  useEffect(() => {
+    localStorage.setItem("Notes", notes);
+  });
 
-  getNotes = () => {
-    return axios.get("/api/notes");
-  };
-
-  deleteNote = id => {
-    return axios.delete("/api/notes/" + id);
-  };
-
-  updateNote = id => {
-    return axios.patch("/api/notes/" + id);
-  };
-
-  render() {
-    const { noteTitle, noteText } = this.state;
-
-    return (
-      <div>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Input
-              placeholder="Note Title"
-              name="noteTitle"
-              value={noteTitle}
-              onChange={this.handleChange}
+  return (
+    <div>
+      <br />
+      <Segment
+        attached
+        inverted
+        style={{ backgroundColor: "rgba(27, 27, 27, 0.76)", width: "250px" }}
+      >
+        <Input
+          style={{ margin: "10px" }}
+          icon={
+            <Icon
+              name="plus square outline"
+              inverted
+              circular
+              link
+              onClick={upsertNote}
             />
-            <Form.TextArea
-              placeholder="Note Text"
-              name="noteText"
-              value={noteText}
-              onChange={this.handleChange}
-            />
-            <Form.Button content="Submit" />
-          </Form.Group>
-        </Form>
-      </div>
-    );
-  }
+          }
+          placeholder="ENTER TITLE "
+          value={title}
+          onChange={event => {
+            setTitle(event.target.value);
+            setButton("Add Widget");
+          }}
+        />
+        <Form.TextArea
+          placeholder="Note Text"
+          name="noteText"
+          value={text}
+          onChange={event => {
+            setText(event.target.value);
+          }}
+        />
+
+        <Segment
+          compact
+          attached
+          style={{
+            width: "225px",
+            backgroundColor: "rgba(27, 27, 27, 0.76)",
+          }}
+        >
+          <Step.Group>
+            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}></Step>
+            <span style={{ color: "white" }}>
+              {notes.map(note => {
+                return (
+                  <h3
+                    key={note.id}
+                    onClick={() => {
+                      setCurrentNote(note);
+                    }}
+                  >
+                    {note.title}
+                  </h3>
+                );
+              })}
+            </span>
+          </Step.Group>
+        </Segment>
+        <Button
+          secondary
+          inverted
+          fluid
+          style={{ fontFamily: "Roboto", color: "white" }}
+          // onClick={() => {}}
+        >
+          {button}
+        </Button>
+      </Segment>
+    </div>
+  );
 }
-
-export default NoteWidget;
+export default NoteWidgetGen;
