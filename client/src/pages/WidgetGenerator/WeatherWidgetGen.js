@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Moment from "react-moment";
 import { useAuth } from "../../utils/auth";
 import ForecastContainer from "../ProfileWidgets/ForecastContainer";
+import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import {
   Grid,
   Image,
@@ -31,6 +32,7 @@ function WeatherWidgetGen() {
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
+  const [error, setError] = useState({ isVisible: false, errorMessage: "" });
 
   useEffect(() => {
     //Display add card when Page renders
@@ -60,6 +62,33 @@ function WeatherWidgetGen() {
   }, []);
 
   function handleCitySearch() {
+    if (citySearch === "") {
+      return (
+        setSpinner(
+          <Step.Group>
+            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+              <Icon name="cloud" style={{ color: "white" }} />
+              <Step.Content>
+                <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+                  WEATHER
+                </Step.Title>
+                <Step.Description
+                  style={{
+                    fontWeight: "100",
+                    color: "white",
+                    fontFamily: "Roboto",
+                  }}
+                >
+                  SEARCH BY CITY
+                </Step.Description>
+              </Step.Content>
+            </Step>
+          </Step.Group>,
+        ),
+        setError({ isVisible: true, errorMessage: "PLEASE ENTER A CITY" })
+      );
+    }
+
     //When search begins, sipnner appears
     setSpinner(
       <Dimmer active>
@@ -135,7 +164,11 @@ function WeatherWidgetGen() {
           attached
           block
           inverted
-          style={{ marginTop:"25px",backgroundColor: "rgba(27, 27, 27, 0.76)", width: "250px" }}
+          style={{
+            marginTop: "25px",
+            backgroundColor: "rgba(27, 27, 27, 0.76)",
+            width: "250px",
+          }}
         >
           <Input
             style={{ margin: "10px" }}
@@ -178,7 +211,7 @@ function WeatherWidgetGen() {
               setCity(event.target.value.toUpperCase());
             }}
           />
-
+          {error.isVisible && <ErrorSegment>{error.errorMessage}</ErrorSegment>}
           <Segment
             compact
             attached
