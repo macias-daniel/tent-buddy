@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../utils/auth";
 import { List, Segment, Grid, Container, Button } from "semantic-ui-react";
 import "../CallToAction/CallToAction.css";
 
 function CallToAction() {
+  const { isLoggedIn } = useAuth();
   return (
     <div compact>
       <Grid style={{ margin: "0px" }} centered>
@@ -54,7 +56,7 @@ function CallToAction() {
               interface for users to be well informed before they head out on
               their next adventure.
             </p>
-            <Link to={"/signup"}>
+            <Link to={isLoggedIn ?"/profile": "/signup"}>
               <Button inverted animated>
                 <Button.Content
                   visible
@@ -121,7 +123,7 @@ function CallToAction() {
               <List.Item>Park Contact Information</List.Item>
               <List.Item>And more to come</List.Item>
             </List>
-            <Link to={"/signup"}>
+            <Link to={isLoggedIn ?"/profile": "/signup"}>
               <Button inverted animated>
                 <Button.Content
                   visible
@@ -181,7 +183,7 @@ function CallToAction() {
               to keep track of a variety of widgets when embarking on an
               adventure in the great outdoors.{" "}
             </p>
-            <Link to={"/signup"}>
+            <Link to={isLoggedIn ?"/profile": "/signup"}>
               <Button inverted animated>
                 <Button.Content
                   visible
