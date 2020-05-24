@@ -27,7 +27,7 @@ function CallToAction() {
             }}
           >
             <h3
-              style={{ fontFamily: "Bungee Inline", color: "white" }}
+              style={{ fontFamily: "Bungee", color: "white" }}
               className="introHead"
             >
               Why Tent Buddy?
@@ -58,13 +58,13 @@ function CallToAction() {
               <Button inverted animated>
                 <Button.Content
                   visible
-                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                  style={{ fontFamily: "Bungee", color: "white" }}
                 >
                   {" "}
                   Start Packing <br></br>{" "}
                 </Button.Content>
                 <Button.Content
-                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  style={{ fontFamily: "Bungee", color: "black" }}
                   inverted
                   hidden
                 >
@@ -75,11 +75,6 @@ function CallToAction() {
           </Segment>
         </Container>
 
-<<<<<<< HEAD
-        <Container className="features">
-          <Segment centered raised compact inverted className="intro2" style={{ marginBottom: "0", background: "rgba(33, 187, 128, 0.78)", width:"100%" , margin: "0 auto", color:"#F69C3C" }}>
-            <h2 style={{fontFamily:"Bungee", color:"white"}} >Key Features</h2>
-=======
         <Container
           compact
           className="features"
@@ -98,10 +93,9 @@ function CallToAction() {
               color: "#F69C3C",
             }}
           >
-            <h3 style={{ fontFamily: "Bungee Inline", color: "white" }}>
+            <h3 style={{ fontFamily: "Bungee", color: "white" }}>
               Key Features
             </h3>
->>>>>>> 942f850d6a2bb522739a66e66a6a4e2c8a94c34f
           </Segment>
           <Segment
             raised
@@ -131,13 +125,13 @@ function CallToAction() {
               <Button inverted animated>
                 <Button.Content
                   visible
-                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                  style={{ fontFamily: "Bungee", color: "white" }}
                 >
                   {" "}
                   BUILD YOUR TENT <br></br>{" "}
                 </Button.Content>
                 <Button.Content
-                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  style={{ fontFamily: "Bungee", color: "black" }}
                   inverted
                   hidden
                 >
@@ -151,11 +145,6 @@ function CallToAction() {
         <Container
           compact
 
-<<<<<<< HEAD
-        <Container className="mission">
-          <Segment centered raised compact inverted className="intro2" style={{ marginBottom: "0", background: "rgba(33, 187, 128, 0.78)", width: "85%", margin: "0 auto", color:"#F69C3C" }}>
-            <h2 style={{fontFamily:"Bungee", color:"white"}} >Our Mission</h2>
-=======
           style={{ width: "325px", marginTop: "10px" }}
         >
           <Segment
@@ -171,10 +160,9 @@ function CallToAction() {
               color: "#F69C3C",
             }}
           >
-            <h3 style={{ fontFamily: "Bungee Inline", color: "white" }}>
+            <h3 style={{ fontFamily: "Bungee", color: "white" }}>
               Our Mission
             </h3>
->>>>>>> 942f850d6a2bb522739a66e66a6a4e2c8a94c34f
           </Segment>
           <Segment
             raised
@@ -197,14 +185,14 @@ function CallToAction() {
               <Button inverted animated>
                 <Button.Content
                   visible
-                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                  style={{ fontFamily: "Bungee", color: "white" }}
                 >
                   {" "}
                   EXPLORE <br></br>{" "}
                 </Button.Content>
 
                 <Button.Content
-                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  style={{ fontFamily: "Bungee", color: "black" }}
                   inverted
                   hidden
                 >
