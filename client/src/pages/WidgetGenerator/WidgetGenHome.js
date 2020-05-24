@@ -18,7 +18,6 @@ function WidgetHome() {
             padding: "0px",
             fontFamily: "Bungee Inline",
             color: "white",
-            textShadow: "2px grey",
           }}
         >
           Widget Generator

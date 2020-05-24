@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import WeatherWidget from "./WeatherWidget";
-import ParksWidget from "./ParksWidget";
-import NotesWidget from "./NotesWidget";
-
+// import ParksWidget from "./ParksWidget";
+// import NotesWidget from "./NotesWidget";
 import { Menu, Segment } from "semantic-ui-react";
 
 const widgets = {
   notes: {
     topic: "NOTES",
     class: "widgetDisplay",
-    widgetType: <NotesWidget />,
+    // widgetType: <NotesWidget />,
     about: "Compose a note",
   },
   weather: {
@@ -21,7 +20,7 @@ const widgets = {
   parks: {
     topic: "PARKS",
     class: "widgetDisplay",
-    widgetType: <ParksWidget />,
+    // widgetType: <ParksWidget />,
     about: "Pick a National Park",
   },
 };

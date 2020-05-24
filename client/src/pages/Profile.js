@@ -28,11 +28,11 @@ function Profile() {
   const { isLoggedIn } = useAuth();
   return (
     <div>
-      <Grid style={{ margin: "0px" }} centered>
+      <Grid style={{ margin: "0px", padding: "0px" }} centered>
         {/* <WidgetSorter /> */}
         {widgets.length === 0 ? (
           <>
-            <Container>
+            <Container className="profileContainer">
               <Segment
                 compact
                 attached
@@ -64,7 +64,7 @@ function Profile() {
               </Segment>
             </Container>
           </>
-        ):(
+        ) : (
           widgets.map(widget => {
             let component;
             //Depending on the widgets type return that widgets corresponding components
@@ -73,8 +73,12 @@ function Profile() {
             } else if (widget.type === "weather") {
               component = (
                 <>
-                  <Container>
+                  <Container
+                    className="profileContainer"
+                    style={{ margin: "0px", padding: "0px" }}
+                  >
                     <WidgetBumper
+                      icon="cloud"
                       handleDeleteWidget={() => deleteWidget(widget)}
                     />
                     <WeatherWidget key={widget._id} city={widget.data.city} />
@@ -84,8 +88,12 @@ function Profile() {
             } else if (widget.type === "park") {
               component = (
                 <>
-                  <Container>
+                  <Container
+                    className="profileContainer"
+                    style={{ margin: "0px", padding: "0px" }}
+                  >
                     <WidgetBumper
+                      icon="tree"
                       handleDeleteWidget={() => deleteWidget(widget)}
                     />
                     <ParkWidget
@@ -98,9 +106,13 @@ function Profile() {
               );
             } else if (widget.type === "trails") {
               component = (
-                <>
-                  <Container>
+                <div style={{ margin: "0px", padding: "0px" }}>
+                  <Container
+                    className="profileContainer"
+                    style={{ margin: "0px", padding: "0px" }}
+                  >
                     <WidgetBumper
+                      icon="compass outline"
                       handleDeleteWidget={() => deleteWidget(widget)}
                     />
                     <TrailWidget
@@ -113,7 +125,7 @@ function Profile() {
                       url={widget.data.url}
                     />
                   </Container>
-                </>
+                </div>
               );
             }
             return component;

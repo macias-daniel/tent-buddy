@@ -9,6 +9,7 @@ import {
   Loader,
   Segment,
 } from "semantic-ui-react";
+import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 
 import REI from "../../utils/REI";
@@ -19,6 +20,7 @@ function WeatherWidgetGen() {
   const [trailsWidget, setTrailsWidget] = useState([]);
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
+  const [error, setError] = useState({ isVisible: false, errorMessage: "" });
 
   useEffect(() => {
     //Display add card when Page renders
@@ -53,6 +55,31 @@ function WeatherWidgetGen() {
       </Dimmer>,
     );
 
+    if (citySearch === "") {
+      return ( setSpinner(
+        <Step.Group>
+          <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+            <Icon name="compass outline" style={{ color: "white" }} />
+            <Step.Content>
+              <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+                TRAILS
+              </Step.Title>
+              <Step.Description
+                style={{
+                  fontWeight: "100",
+                  color: "white",
+                  fontFamily: "Roboto",
+                }}
+              >
+                SEARCH BY CITY
+              </Step.Description>
+            </Step.Content>
+          </Step>
+        </Step.Group>,
+      ),
+      setError({isVisible: true, errorMessage:"PLEASE ENTER A CITY"}));
+    }
+
     OpenWeatherMap.getCurrent(citySearch).then(results => {
       const lat = results.data.coord.lat;
       const lon = results.data.coord.lon;
@@ -72,8 +99,8 @@ function WeatherWidgetGen() {
                 <TrailContainer
                   name={trails.name}
                   src={trails.imgSmall}
-                  lat={(trails.latitude.toFixed(2))}
-                  lon={(trails.longitude.toFixed(2))}
+                  lat={trails.latitude.toFixed(2)}
+                  lon={trails.longitude.toFixed(2)}
                   stars={trails.stars}
                   url={trails.url}
                 />
@@ -113,6 +140,7 @@ function WeatherWidgetGen() {
             }
             placeholder="ENTER CITY"
             onChange={event => {
+              setError({ ...error, isVisible: false });
               setSpinner(
                 <Step.Group>
                   <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
@@ -140,7 +168,7 @@ function WeatherWidgetGen() {
               setCity(event.target.value.toUpperCase());
             }}
           />
-
+          {error.isVisible && <ErrorSegment>{error.errorMessage}</ErrorSegment>}
           <Segment
             compact
             attached
