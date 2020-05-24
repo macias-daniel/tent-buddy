@@ -17,7 +17,7 @@ function WidgetHome() {
             style={{
               marginBottom: "0px",
               padding: "0px",
-              fontFamily: "Bungee Inline",
+              fontFamily: "Bungee",
               color: "white",
               textShadow: "2px grey",
             }}
@@ -28,7 +28,7 @@ function WidgetHome() {
             style={{
               margin: "0px",
               padding: "0px",
-              fontFamily: "Bungee Inline",
+              fontFamily: "Bungee",
               color: "white",
             }}
           >
