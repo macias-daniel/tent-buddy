@@ -101,6 +101,7 @@ body{
   font-family: 'Bungee Inline', cursive;
 }
 
+
 .MenuStyles{
   font-family: 'Bungee Inline', cursive;
   
@@ -150,12 +151,28 @@ p{
   transform: translateY(50%);
   padding-left:0px;
 }
+@media (min-width: 767px) {
+.profileContainer{
+  transform: translateX(35%);
+}
+
+@media (min-width: 990px) {
+  .profileContainer{
+    transform: translateX(38%);
+  }
+}
+
+@media (min-width: 1200px) {
+  .profileContainer{
+    transform: translateX(40%);
+  }
+}
 
 a{
   color:white;
   font-family: 'Roboto', sans-serif;
 }
-
+}
 a:hover{
   color:lightgray;
 

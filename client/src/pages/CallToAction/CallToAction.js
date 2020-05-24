@@ -8,7 +8,11 @@ function CallToAction() {
     <div compact>
       <Grid style={{ margin: "0px" }} centered>
         {/* style={{marginTop:"100px" }} */}
-        <Container compact className="intro" style={{ marginTop: "10px" }}>
+        <Container
+          compact
+          className="intro"
+          style={{ width: "325px", marginTop: "10px" }}
+        >
           <Segment
             raised
             compact
@@ -19,7 +23,6 @@ function CallToAction() {
               background: "rgba(33, 187, 128, 0.78)",
               width: "85%",
               margin: "0 auto",
-              marginTop: "1rem",
               color: "#F69C3C",
             }}
           >
@@ -72,7 +75,11 @@ function CallToAction() {
           </Segment>
         </Container>
 
-        <Container className="features">
+        <Container
+          compact
+          className="features"
+          style={{ width: "325px", marginTop: "10px" }}
+        >
           <Segment
             raised
             compact
@@ -135,7 +142,11 @@ function CallToAction() {
           </Segment>
         </Container>
 
-        <Container className="mission">
+        <Container
+          compact
+
+          style={{ width: "325px", marginTop: "10px" }}
+        >
           <Segment
             raised
             compact

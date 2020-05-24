@@ -21,6 +21,10 @@
   padding: 0px;
 }
 
+.text{
+  font-family: "Roboto", sans-serif !important;
+}
+
 .wind {
   font-family: "Roboto", sans-serif;
   font-size: 10px;
