@@ -53,7 +53,7 @@ function NavLinks() {
         as: Link,
         to: "/widgetGenerator",
       },
-      { key: "sign-out", text: "Sign Out", onClick: () => logout() },
+      { key: "sign-out", text: "Sign Out", onClick: () => logout()},
     ];
     return (
       <Dropdown

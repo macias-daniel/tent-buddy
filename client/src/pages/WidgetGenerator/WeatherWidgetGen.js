@@ -38,20 +38,20 @@ function WeatherWidgetGen() {
     //Display add card when Page renders
     setSpinner(
       <Step.Group>
-        <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+        <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
           <Icon name="cloud" style={{ color: "white" }} />
           <Step.Content>
-            <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+            <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
               WEATHER
             </Step.Title>
             <Step.Description
               style={{
                 fontWeight: "100",
                 color: "white",
-                fontFamily: "Roboto",
               }}
             >
-              SEARCH BY CITY
+              <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
+              <p style={{ fontSize: "10px" }}> RECEIVE WEATHER CONDITIONS</p>
             </Step.Description>
           </Step.Content>
         </Step>
@@ -66,20 +66,23 @@ function WeatherWidgetGen() {
       return (
         setSpinner(
           <Step.Group>
-            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+            <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
               <Icon name="cloud" style={{ color: "white" }} />
               <Step.Content>
-                <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+                <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
                   WEATHER
                 </Step.Title>
                 <Step.Description
                   style={{
                     fontWeight: "100",
                     color: "white",
-                    fontFamily: "Roboto",
                   }}
                 >
-                  SEARCH BY CITY
+                  <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
+                  <p style={{ fontSize: "10px" }}>
+                    {" "}
+                    RECEIVE WEATHER CONDITIONS
+                  </p>
                 </Step.Description>
               </Step.Content>
             </Step>
@@ -164,7 +167,6 @@ function WeatherWidgetGen() {
         <br />
         <Segment
           attached
-          block
           inverted
           style={{
             marginTop: "25px",
@@ -186,12 +188,12 @@ function WeatherWidgetGen() {
             placeholder="ENTER CITY"
             onChange={event => {
               setSpinner(
-                <Step.Group>
-                  <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                <Step.Group >
+                  <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
                     <Icon name="cloud" style={{ color: "white" }} />
                     <Step.Content>
                       <Step.Title
-                        style={{ color: "white", fontFamily: "Roboto" }}
+                        style={{ color: "white", fontFamily: "Bungee" }}
                       >
                         WEATHER
                       </Step.Title>
@@ -199,10 +201,13 @@ function WeatherWidgetGen() {
                         style={{
                           fontWeight: "100",
                           color: "white",
-                          fontFamily: "Roboto",
                         }}
                       >
-                        SEARCH BY CITY
+                        <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
+                        <p style={{ fontSize: "10px" }}>
+                          {" "}
+                          RECEIVE WEATHER CONDITIONS
+                        </p>
                       </Step.Description>
                     </Step.Content>
                   </Step>
