@@ -187,7 +187,7 @@ function NoteWidgetGen() {
                         {" "}
                         ENTER A TITLE<br></br>ENTER TEXT
                       </p>
-                      <p style={{ fontSize: "10px" }}> CREATE YOUR NOTE</p>
+                      <p style={{ fontSize: "10px" }}> CREATE A NOTE</p>
                     </Step.Description>
                   </Step.Content>
                 </Step>
