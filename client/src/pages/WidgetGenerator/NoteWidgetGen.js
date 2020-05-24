@@ -68,7 +68,7 @@ function NoteWidgetGen() {
     event.preventDefault();
     setButton("Widget Added");
     API.addUserWidget(user.id, "notes", {
-      notes: notes
+      notes: notes,
     }).catch(err => alert(err));
   };
 
@@ -115,54 +115,87 @@ function NoteWidgetGen() {
             {error.isVisible && (
               <ErrorSegment>{error.errorMessage}</ErrorSegment>
             )}
-            {showText && (
-              <>
-                <Segment
-                  compact
-                  attached
-                  style={{
-                    textAlign: "center",
-                    width: "195px",
-                    backgroundColor: "rgba(27, 27, 27, 0.76)",
-                  }}
-                >
-                  <Step.Group>
-                    <Step
-                      style={{
-                        padding: "0px",
-                        margin: "5px",
-                        color: "white",
-                        backgroundColor: "rgba(1, 1, 5, 0)",
-                      }}
-                    >
-                      <Step.Content>
-                        {notes.map(note => {
-                          return (
-                            <h2
-                              key={note.id}
-                              onClick={() => {
-                                setCurrentNote(note);
-                              }}
-                            >
-                              {note.title}
-                            </h2>
-                          );
-                        })}
-                      </Step.Content>
-                    </Step>
-                  </Step.Group>
-                </Segment>
-                <Button
-                  secondary
-                  inverted
-                  fluid
-                  style={{ fontFamily: "Roboto", color: "white" }}
-                  onClick={addNotesWidget}
-                >
-                  {button}
-                </Button>
-              </>
-            )}
+
+            <Segment
+              compact
+              attached
+              style={{
+                width: "200px",
+                backgroundColor: "rgba(27, 27, 27, 0.76)",
+              }}
+            >
+              {showText ? (
+                <>
+                  <Segment
+                    compact
+                    attached
+                    style={{
+                      textAlign: "center",
+                      backgroundColor: "rgba(27, 27, 27, 0.76)",
+                    }}
+                  >
+                    <Step.Group>
+                      <Step
+                        style={{
+                          padding: "0px",
+                          margin: "5px",
+                          color: "white",
+                          backgroundColor: "rgba(1, 1, 5, 0)",
+                        }}
+                      >
+                        <Step.Content>
+                          {notes.map(note => {
+                            return (
+                              <h2
+                                key={note.id}
+                                onClick={() => {
+                                  setCurrentNote(note);
+                                }}
+                              >
+                                {note.title}
+                              </h2>
+                            );
+                          })}
+                        </Step.Content>
+                      </Step>
+                    </Step.Group>
+                  </Segment>
+                  <Button
+                    secondary
+                    inverted
+                    fluid
+                    style={{ fontFamily: "Roboto", color: "white" }}
+                    onClick={addNotesWidget}
+                  >
+                    {button}
+                  </Button>
+                </>
+              ) : (
+                <Step.Group>
+                  <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                    <Icon name="pencil" style={{ color: "white" }} />
+                    <Step.Content>
+                      <Step.Title
+                        style={{ color: "white", fontFamily: "Roboto" }}
+                      >
+                        NOTES
+                      </Step.Title>
+                      <Step.Description
+                        style={{
+                          fontWeight: "100",
+                          color: "white",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        ENTER A TITLE<br>
+                        </br>
+                        ENTER TEXT
+                      </Step.Description>
+                    </Step.Content>
+                  </Step>
+                </Step.Group>
+              )}
+            </Segment>
           </Segment>
         </Segment>
       </Grid>
