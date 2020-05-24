@@ -9,6 +9,7 @@ import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 import ParkWidget from "./ProfileWidgets/ParkWidget";
 import TrailWidget from "./ProfileWidgets/TrailWidget";
 import NoteWidget from "./ProfileWidgets/NoteWidget";
+import sadlogo from "../assets/sadlogo.png";
 
 function Profile() {
   const [widgets, setWidgets] = useState([]);
@@ -50,7 +51,7 @@ function Profile() {
                         <Image
                           className="headerLogo"
                           alt="Tent logo"
-                          src="/Icons/android-chrome-192x192.png"
+                          src={sadlogo}
                         ></Image>
                         <p style={{ marginTop: "5px", fontWeight: "00" }}>
                           Oh no! Tent Buddy is empty... Let's pack up!
