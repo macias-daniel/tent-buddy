@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Icon, Input, Step, Segment, Button, Form } from "semantic-ui-react";
-import API from "../../utils/API";
-import { useAuth } from "../../utils/auth";
+// import API from "../../utils/API";
+// import { useAuth } from "../../utils/auth";
 import { v4 as uuidv4 } from "uuid";
 
 function NoteWidgetGen() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [noteId, setNoteId] = useState("");
@@ -108,7 +108,7 @@ function NoteWidgetGen() {
           inverted
           fluid
           style={{ fontFamily: "Roboto", color: "white" }}
-          onClick={() => {}}
+          // onClick={() => {}}
         >
           {button}
         </Button>
