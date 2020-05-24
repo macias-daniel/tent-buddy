@@ -56,28 +56,32 @@ function WeatherWidgetGen() {
     );
 
     if (citySearch === "") {
-      return ( setSpinner(
-        <Step.Group>
-          <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-            <Icon name="compass outline" style={{ color: "white" }} />
-            <Step.Content>
-              <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
-                TRAILS
-              </Step.Title>
-              <Step.Description
-                style={{
-                  fontWeight: "100",
-                  color: "white",
-                  fontFamily: "Roboto",
-                }}
-              >
-                SEARCH BY CITY
-              </Step.Description>
-            </Step.Content>
-          </Step>
-        </Step.Group>,
-      ),
-      setError({isVisible: true, errorMessage:"PLEASE ENTER A CITY"}));
+      return (
+        setSpinner(
+          <Step.Group>
+            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+              <Icon name="compass outline" style={{ color: "white" }} />
+              <Step.Content>
+                <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+                  TRAILS
+                </Step.Title>
+                <Step.Description
+                  style={{
+                    fontWeight: "100",
+                    color: "white",
+                    fontFamily: "Roboto",
+                  }}
+                >
+                  SEARCH BY CITY
+                </Step.Description>
+              </Step.Content>
+            </Step>
+          </Step.Group>,
+        ),
+        setError({ isVisible: true, errorMessage: "PLEASE ENTER A CITY" })
+      );
+    } else {
+      setError("");
     }
 
     OpenWeatherMap.getCurrent(citySearch).then(results => {

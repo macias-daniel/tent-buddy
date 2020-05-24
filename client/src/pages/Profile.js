@@ -8,6 +8,7 @@ import WeatherWidget from "./ProfileWidgets/WeatherWidget";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 import ParkWidget from "./ProfileWidgets/ParkWidget";
 import TrailWidget from "./ProfileWidgets/TrailWidget";
+import NoteWidget from "./ProfileWidgets/NoteWidget";
 
 function Profile() {
   const [widgets, setWidgets] = useState([]);
@@ -68,8 +69,21 @@ function Profile() {
           widgets.map(widget => {
             let component;
             //Depending on the widgets type return that widgets corresponding components
-            if (widget.type === "note") {
-              component = "Note Component";
+            if (widget.type === "notes") {
+              component = (
+                <>
+                  <Container
+                    className="profileContainer"
+                    style={{ margin: "0px", padding: "0px" }}
+                  >
+                    <WidgetBumper
+                      icon="pencil"
+                      handleDeleteWidget={() => deleteWidget(widget)}
+                    />
+                    <NoteWidget key={widget._id} title={widget.data.notes[0].title} text={widget.data.notes[0].text}/>
+                  </Container>
+                </>
+              );
             } else if (widget.type === "weather") {
               component = (
                 <>
