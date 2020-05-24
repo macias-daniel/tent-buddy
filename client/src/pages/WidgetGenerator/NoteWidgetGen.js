@@ -1,46 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Icon, Input, Step, Segment, Button, Form } from "semantic-ui-react";
 import API from "../../utils/API";
 import { useAuth } from "../../utils/auth";
+import { v4 as uuidv4 } from "uuid";
 
 function NoteWidgetGen() {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [savedTitle, setSavedTitle] = useState([]);
+  const [noteId, setNoteId] = useState("");
+  const [isNewNote, setIsNewNote] = useState(true);
+  const [notes, setNotes] = useState([]);
   const [button, setButton] = useState("Add Widget");
 
-  const addNoteWidget = event => {
-    event.preventDefault();
-    setButton("Widget Added");
-    API.addUserWidget(user.id, "note", { title, text }).catch(err =>
-      alert(err),
-    );
+  const upsertNote = () => {
+    if (isNewNote) {
+      setNotes([
+        ...notes,
+        {
+          title,
+          text,
+          id: uuidv4(),
+        },
+      ]);
+    } else {
+      const note = notes.find(n => n.id === noteId);
+      note.text = text;
+      note.title= title;
+      setNotes([...notes]);
+      setNoteId("");
+      setIsNewNote(true);
+    }
+    setTitle("");
+    setText("");
   };
 
-  useEffect(() => {
-    API.getUser(user.id).then(response => {
-      console.log(response);
-      response.data.widgets.forEach(element => {
-        if (element.type === "note") {
-          console.log(element.data.title);
-          savedTitle.push({
-            title: element.data.title,
-            text: element.data.text,
-            id: element._id,
-          });
-          console.log(savedTitle);
-        }
-      });
-    });
-  }, [user.id, savedTitle]);
+  const setCurrentNote = note => {
+    setText(note.text);
+    setTitle(note.title);
+    setNoteId(note.id);
+    setIsNewNote(false);
+  };
 
   return (
     <div>
       <br />
       <Segment
         attached
-        block
         inverted
         style={{ backgroundColor: "rgba(27, 27, 27, 0.76)", width: "250px" }}
       >
@@ -52,7 +58,7 @@ function NoteWidgetGen() {
               inverted
               circular
               link
-              // onClick={console.log("works")}
+              onClick={upsertNote}
             />
           }
           placeholder="ENTER TITLE "
@@ -82,10 +88,15 @@ function NoteWidgetGen() {
           <Step.Group>
             <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}></Step>
             <span style={{ color: "white" }}>
-              {savedTitle.map(element => {
+              {notes.map(note => {
                 return (
-                  <h3 key={element.id} id={element.id}>
-                    {element.title}
+                  <h3
+                    key={note.id}
+                    onClick={() => {
+                      setCurrentNote(note);
+                    }}
+                  >
+                    {note.title}
                   </h3>
                 );
               })}
@@ -97,7 +108,7 @@ function NoteWidgetGen() {
           inverted
           fluid
           style={{ fontFamily: "Roboto", color: "white" }}
-          onClick={addNoteWidget}
+          onClick={() => {}}
         >
           {button}
         </Button>
