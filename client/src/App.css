@@ -144,6 +144,13 @@ p{
   transform: translateY(15%);
   padding-left:0px;
 }
+@media (min-width: 415px) {
+  .widgetForm {
+    transform: translateX(8%);
+    
+  }
+
+}
 
 .widgetTitle{
 
@@ -154,6 +161,11 @@ p{
 @media (min-width: 767px) {
 .profileContainer{
   margin: "0px";
+}
+.widgetForm {
+  transform: translateX(0%);
+}
+
 }
 
 @media (min-width: 990px) {
@@ -172,7 +184,7 @@ a{
   color:white;
   font-family: 'Roboto', sans-serif;
 }
-}
+
 a:hover{
   color:lightgray;
 

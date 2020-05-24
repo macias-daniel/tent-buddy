@@ -33,8 +33,9 @@ function WidgetHome() {
           pick a category
         </p>
       </Container>
-
-      <WidgetGeneratorSort />
+      <Grid centered style={{ margin: "0px", padding: "0px" }}>
+        <WidgetGeneratorSort />
+      </Grid>
     </Grid>
   );
 }
