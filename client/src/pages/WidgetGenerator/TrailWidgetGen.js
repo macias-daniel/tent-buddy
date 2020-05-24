@@ -29,17 +29,17 @@ function WeatherWidgetGen() {
         <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
           <Icon name="compass outline" style={{ color: "white" }} />
           <Step.Content>
-            <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+            <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
               TRAILS
             </Step.Title>
             <Step.Description
               style={{
                 fontWeight: "100",
                 color: "white",
-                fontFamily: "Roboto",
               }}
             >
-              SEARCH BY CITY
+              <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
+              <p style={{ fontSize: "10px" }}> RECEIVE TRAIL DETAILS</p>
             </Step.Description>
           </Step.Content>
         </Step>
@@ -62,17 +62,17 @@ function WeatherWidgetGen() {
             <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
               <Icon name="compass outline" style={{ color: "white" }} />
               <Step.Content>
-                <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+                <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
                   TRAILS
                 </Step.Title>
                 <Step.Description
                   style={{
                     fontWeight: "100",
                     color: "white",
-                    fontFamily: "Roboto",
                   }}
                 >
-                  SEARCH BY CITY
+                  <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
+                  <p style={{ fontSize: "10px" }}> RECEIVE TRAIL DETAILS</p>
                 </Step.Description>
               </Step.Content>
             </Step>
@@ -151,7 +151,7 @@ function WeatherWidgetGen() {
                     <Icon name="compass outline" style={{ color: "white" }} />
                     <Step.Content>
                       <Step.Title
-                        style={{ color: "white", fontFamily: "Roboto" }}
+                        style={{ color: "white", fontFamily: "Bungee" }}
                       >
                         TRAILS
                       </Step.Title>
@@ -159,10 +159,13 @@ function WeatherWidgetGen() {
                         style={{
                           fontWeight: "100",
                           color: "white",
-                          fontFamily: "Roboto",
                         }}
                       >
-                        SEARCH BY CITY
+                        <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
+                        <p style={{ fontSize: "10px" }}>
+                          {" "}
+                          RECEIVE TRAIL DETAILS
+                        </p>
                       </Step.Description>
                     </Step.Content>
                   </Step>

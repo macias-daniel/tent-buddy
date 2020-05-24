@@ -53,17 +53,20 @@ function ParkWidgetGen() {
         <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
           <Icon name="tree" style={{ color: "white" }} />
           <Step.Content>
-            <Step.Title style={{ color: "white", fontFamily: "Roboto" }}>
+            <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
               PARKS
             </Step.Title>
             <Step.Description
               style={{
                 fontWeight: "100",
                 color: "white",
-                fontFamily: "Roboto",
               }}
             >
-              PICK YOUR STATE <br></br>SEARCH BY PARK
+              <p style={{ fontSize: "10px" }}>
+                {" "}
+                PICK YOUR STATE <br></br>SEARCH BY PARK
+              </p>
+              <p style={{ fontSize: "10px" }}> RECEIVE INFORMATION</p>
             </Step.Description>
           </Step.Content>
         </Step>
@@ -211,18 +214,21 @@ function ParkWidgetGen() {
                     <Icon name="tree" style={{ color: "white" }} />
                     <Step.Content>
                       <Step.Title
-                        style={{ color: "white", fontFamily: "Roboto" }}
+                        style={{ color: "white", fontFamily: "Bungee" }}
                       >
-                        PARK
+                        PARKS
                       </Step.Title>
                       <Step.Description
                         style={{
                           fontWeight: "100",
                           color: "white",
-                          fontFamily: "Roboto",
                         }}
                       >
-                        PICK YOUR STATE <br></br>SEARCH BY PARK
+                        <p style={{ fontSize: "10px" }}>
+                          {" "}
+                          PICK YOUR STATE <br></br>SEARCH BY PARK
+                        </p>
+                        <p style={{ fontSize: "10px" }}> RECEIVE INFORMATION</p>
                       </Step.Description>
                     </Step.Content>
                   </Step>
