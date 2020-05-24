@@ -4,7 +4,7 @@ import WidgetGeneratorSort from "./WidgetGenSort";
 
 function WidgetHome() {
   return (
-    <Grid compact centered style={{ margin: "0px", padding: "0px" }}>
+    <Grid centered style={{ margin: "0px", padding: "0px" }}>
       <Container
         className="widgetGenHome"
         style={{

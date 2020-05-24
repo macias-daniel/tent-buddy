@@ -1,7 +1,7 @@
 # Tent Buddy
 
 [GitHub](https://github.com/macias-daniel/tent-buddy)
-[Deployed Link](https://shielded-ocean-68745.herokuapp.com/profile)
+[Deployed Link](https://tent-buddy.herokuapp.com/)
 
 ## Table of Contents
 

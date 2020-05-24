@@ -66,7 +66,7 @@ function ParkWidgetGen() {
                 {" "}
                 PICK YOUR STATE <br></br>SEARCH BY PARK
               </p>
-              <p style={{ fontSize: "10px" }}> RECEIVE INFORMATION</p>
+              <p style={{ fontSize: "10px" }}> RECEIVE PARK INFORMATION</p>
             </Step.Description>
           </Step.Content>
         </Step>
@@ -172,7 +172,6 @@ function ParkWidgetGen() {
         <br />
         <Segment
           attached
-          block
           inverted
           style={{
             marginTop: "25px",
@@ -228,7 +227,7 @@ function ParkWidgetGen() {
                           {" "}
                           PICK YOUR STATE <br></br>SEARCH BY PARK
                         </p>
-                        <p style={{ fontSize: "10px" }}> RECEIVE INFORMATION</p>
+                        <p style={{ fontSize: "10px" }}> RECEIVE PARK INFORMATION</p>
                       </Step.Description>
                     </Step.Content>
                   </Step>

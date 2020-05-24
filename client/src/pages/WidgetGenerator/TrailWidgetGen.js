@@ -123,7 +123,6 @@ function WeatherWidgetGen() {
         <br />
         <Segment
           attached
-          block
           inverted
           style={{
             marginTop: "25px",
