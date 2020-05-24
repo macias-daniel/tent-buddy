@@ -15,13 +15,22 @@ class WidgetBumper extends Component {
 
     return (
       <div>
-        <Button compact
+        <Button
+          compact
           onClick={this.closeConfigShow(false, true)}
-          style={{ width: "225px",marginTop:"25px", fontFamily: "Roboto", backgroundColor:"black", fontWeight: "100", textAlign: "right" }}
+          style={{
+            width: "225px",
+            marginTop: "25px",
+            fontFamily: "Roboto",
+            backgroundColor: "black",
+            fontWeight: "100",
+            textAlign: "right",
+          }}
           attached="top"
-        > <Icon style ={{color:"white"}}name={this.props.icon} />
+        >
           {" "}
-          <Icon style ={{color:"white"}}name="angle double up" />
+          <Icon style={{ color: "white" }} name={this.props.icon} />{" "}
+          <Icon style={{ color: "white" }} name="angle double up" />
         </Button>
 
         <Modal
@@ -32,15 +41,22 @@ class WidgetBumper extends Component {
           closeOnDimmerClick={closeOnDimmerClick}
           onClose={this.close}
         >
-          <Modal.Header style={{fontFamily:"Bungee", fontSize:"30px"}}>Delete Widget</Modal.Header>
+          <Modal.Header style={{ fontFamily: "Bungee", fontSize: "30px" }}>
+            Delete Widget
+          </Modal.Header>
           <Modal.Content inverted>
             <p>Are you sure you want to delete your widget?</p>
           </Modal.Content>
           <Modal.Actions>
-            <Button style={{fontFamily:"Roboto"}} onClick={()=>{
-              this.props.handleDeleteWidget();
-              this.close();
-            }} inverted color="red">
+            <Button
+              style={{ fontFamily: "Roboto" }}
+              onClick={() => {
+                this.props.handleDeleteWidget();
+                this.close();
+              }}
+              inverted
+              color="red"
+            >
               DELETE
             </Button>
             <Button onClick={this.close} inverted icon>
