@@ -19,7 +19,7 @@ class WidgetBumper extends Component {
           onClick={this.closeConfigShow(false, true)}
           style={{ width: "225px",marginTop:"25px", fontFamily: "Roboto", backgroundColor:"black", fontWeight: "100", textAlign: "right" }}
           attached="top"
-        >
+        > <Icon style ={{color:"white"}}name={this.props.icon} />
           {" "}
           <Icon style ={{color:"white"}}name="angle double up" />
         </Button>

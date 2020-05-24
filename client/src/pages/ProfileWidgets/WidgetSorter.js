@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import WeatherWidget from "./WeatherWidget";
 // import ParksWidget from "./ParksWidget";
-
+// import NotesWidget from "./NotesWidget";
 import { Menu, Segment } from "semantic-ui-react";
 
 const widgets = {
