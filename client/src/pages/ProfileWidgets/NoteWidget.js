@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon, Input, Step, Segment, Button, Form } from "semantic-ui-react";
 // import API from "../../utils/API";
 // import { useAuth } from "../../utils/auth";
@@ -10,7 +10,7 @@ function NoteWidgetGen() {
   const [text, setText] = useState("");
   const [noteId, setNoteId] = useState("");
   const [isNewNote, setIsNewNote] = useState(true);
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(localStorage.getItem("Notes") || []);
   const [button, setButton] = useState("Add Widget");
 
   const upsertNote = () => {
@@ -41,6 +41,10 @@ function NoteWidgetGen() {
     setNoteId(note.id);
     setIsNewNote(false);
   };
+
+  useEffect(() => {
+    localStorage.setItem("Notes", notes);
+  });
 
   return (
     <div>

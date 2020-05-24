@@ -27,7 +27,7 @@ function CallToAction() {
             }}
           >
             <h3
-              style={{ fontFamily: "Bungee Inline", color: "white" }}
+              style={{ fontFamily: "Bungee", color: "white" }}
               className="introHead"
             >
               Why Tent Buddy?
@@ -58,13 +58,13 @@ function CallToAction() {
               <Button inverted animated>
                 <Button.Content
                   visible
-                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                  style={{ fontFamily: "Bungee", color: "white" }}
                 >
                   {" "}
                   Start Packing <br></br>{" "}
                 </Button.Content>
                 <Button.Content
-                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  style={{ fontFamily: "Bungee", color: "black" }}
                   inverted
                   hidden
                 >
@@ -93,7 +93,7 @@ function CallToAction() {
               color: "#F69C3C",
             }}
           >
-            <h3 style={{ fontFamily: "Bungee Inline", color: "white" }}>
+            <h3 style={{ fontFamily: "Bungee", color: "white" }}>
               Key Features
             </h3>
           </Segment>
@@ -125,13 +125,13 @@ function CallToAction() {
               <Button inverted animated>
                 <Button.Content
                   visible
-                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                  style={{ fontFamily: "Bungee", color: "white" }}
                 >
                   {" "}
                   BUILD YOUR TENT <br></br>{" "}
                 </Button.Content>
                 <Button.Content
-                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  style={{ fontFamily: "Bungee", color: "black" }}
                   inverted
                   hidden
                 >
@@ -160,7 +160,7 @@ function CallToAction() {
               color: "#F69C3C",
             }}
           >
-            <h3 style={{ fontFamily: "Bungee Inline", color: "white" }}>
+            <h3 style={{ fontFamily: "Bungee", color: "white" }}>
               Our Mission
             </h3>
           </Segment>
@@ -185,14 +185,14 @@ function CallToAction() {
               <Button inverted animated>
                 <Button.Content
                   visible
-                  style={{ fontFamily: "Bungee Inline", color: "white" }}
+                  style={{ fontFamily: "Bungee", color: "white" }}
                 >
                   {" "}
                   EXPLORE <br></br>{" "}
                 </Button.Content>
 
                 <Button.Content
-                  style={{ fontFamily: "Bungee Inline", color: "black" }}
+                  style={{ fontFamily: "Bungee", color: "black" }}
                   inverted
                   hidden
                 >
