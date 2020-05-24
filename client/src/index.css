@@ -1,0 +1,15 @@
+.footer {
+  padding-bottom: 15px;
+}
+
+.text {
+  color: black !important;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.placeholder2 {
+  color: black !important;
+  font-weight: bolder !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
