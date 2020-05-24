@@ -153,18 +153,18 @@ p{
 }
 @media (min-width: 767px) {
 .profileContainer{
-  transform: translateX(35%);
+  margin: "0px";
 }
 
 @media (min-width: 990px) {
   .profileContainer{
-    transform: translateX(38%);
+margin: "0px";
   }
 }
 
 @media (min-width: 1200px) {
   .profileContainer{
-    transform: translateX(40%);
+    margin: "0px";
   }
 }
 

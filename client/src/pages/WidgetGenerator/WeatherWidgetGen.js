@@ -66,7 +66,7 @@ function WeatherWidgetGen() {
       return (
         setSpinner(
           <Step.Group>
-            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+            <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
               <Icon name="cloud" style={{ color: "white" }} />
               <Step.Content>
                 <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
@@ -189,7 +189,7 @@ function WeatherWidgetGen() {
             onChange={event => {
               setSpinner(
                 <Step.Group >
-                  <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                  <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
                     <Icon name="cloud" style={{ color: "white" }} />
                     <Step.Content>
                       <Step.Title
