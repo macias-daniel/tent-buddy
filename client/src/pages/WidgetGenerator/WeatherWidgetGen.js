@@ -87,6 +87,8 @@ function WeatherWidgetGen() {
         ),
         setError({ isVisible: true, errorMessage: "PLEASE ENTER A CITY" })
       );
+    } else {
+      setError("");
     }
 
     //When search begins, sipnner appears
