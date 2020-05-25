@@ -146,7 +146,7 @@ p{
 }
 @media (min-width: 415px) {
   .widgetForm {
-    transform: translateX(0%);
+    transform: translateX(8%);
     
   }
 
