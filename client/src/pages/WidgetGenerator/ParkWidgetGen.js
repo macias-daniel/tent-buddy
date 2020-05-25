@@ -134,8 +134,19 @@ function ParkWidgetGen() {
     event.preventDefault();
     setButton("Widget Added");
     API.addUserWidget(user.id, "park", {
-      park: parkSearch,
-      state: stateSearch,
+      mon: mon,
+      tues: tues,
+      wed: wed,
+      thu: thu,
+      fri: fri,
+      sat: sat,
+      sun: sun,
+      phone: phone,
+      description: description,
+      url: url,
+      lat: lat,
+      lon:lon,
+      name: name
     }).catch(err => alert(err));
   };
 

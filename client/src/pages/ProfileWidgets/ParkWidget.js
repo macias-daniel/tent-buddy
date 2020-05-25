@@ -1,73 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Icon, Accordion, Segment } from "semantic-ui-react";
-import NationalParksAPI from "../../utils/NationalParksAPI";
 
-function ParkWidget({ key, state, park }) {
-  // Api Data Hooks
-  const [mon, setMon] = useState([]);
-  const [tues, setTues] = useState([]);
-  const [wed, setWed] = useState([]);
-  const [thu, setThu] = useState([]);
-  const [fri, setFri] = useState([]);
-  const [sat, setSat] = useState([]);
-  const [sun, setSun] = useState([]);
-  const [phone, setPhone] = useState([]);
-  const [description, setDescription] = useState([]);
-  const [url, setUrl] = useState([]);
-  const [lat, setLat] = useState([]);
-  const [lon, setLon] = useState([]);
-  const [name, setName] = useState([]);
+function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, url, lat, lon, name }) {
 
-  // page apperance Hooks
+  // page appearance Hooks
   const [activeIndex, setActiveIndex] = useState(-1);
   const [activeIndex1, setActiveIndex1] = useState(-1);
   const [activeIndex3, setActiveIndex3] = useState(-1);
   const [activeIndex4, setActiveIndex4] = useState(-1);
-
-  useEffect(() => {
-    // must take state and park
-    NationalParksAPI.getInfo(park, state).then(results => {
-      // main path for nationalParksApi data
-      const starter = results.data.data[0];
-
-      // returns for hours
-      const hoursstarter = starter.operatingHours[0].standardHours;
-      const mondayHours = hoursstarter.monday;
-      const tuesdayHours = hoursstarter.tuesday;
-      const wednesdayHours = hoursstarter.wednesday;
-      const thursdayHours = hoursstarter.thursday;
-      const fridayHours = hoursstarter.friday;
-      const saturdayHours = hoursstarter.saturday;
-      const sundayHours = hoursstarter.sunday;
-
-      // return for phone number
-      const phoneNumber = starter.contacts.phoneNumbers[0].phoneNumber;
-
-      // return for parkDescription
-      const parkDescription = starter.directionsInfo;
-
-      // return for urlPath
-      const urlPath = starter.url;
-
-      // latLong returns
-      const longitutdePath = parseInt(starter.longitude);
-      const latitudePath = parseInt(starter.latitude);
-
-      setMon(mondayHours);
-      setTues(tuesdayHours);
-      setWed(wednesdayHours);
-      setThu(thursdayHours);
-      setFri(fridayHours);
-      setSat(saturdayHours);
-      setSun(sundayHours);
-      setPhone(phoneNumber);
-      setDescription(parkDescription);
-      setUrl(urlPath);
-      setLat(longitutdePath);
-      setLon(latitudePath);
-      setName(starter.name);
-    });
-  }, [key, state, park]);
 
   // handle popdown clicks
   function handleClick() {
