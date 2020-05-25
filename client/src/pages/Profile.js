@@ -102,16 +102,17 @@ function Profile() {
               </Button>
               <Button icon inverted onClick={handleAll}>
                 <Icon>
-                <Image
-                  style={{
-                    margin: "0px",
-                    height: "13px",
-                    align: "center",
-                  }}
-                  className="headerLogo"
-                  alt="Tent logo"
-                  src="/Icons/android-chrome-192x192.png"
-                /></Icon>
+                  <Image
+                    style={{
+                      margin: "0px",
+                      height: "13px",
+                      align: "center",
+                    }}
+                    className="headerLogo"
+                    alt="Tent logo"
+                    src="/Icons/android-chrome-192x192.png"
+                  />
+                </Icon>
               </Button>
             </Segment>
           </Segment>
