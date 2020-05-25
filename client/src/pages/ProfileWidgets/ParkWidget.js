@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Icon, Accordion, Segment } from "semantic-ui-react";
-import NationalParksAPI from "../../utils/NationalParksAPI";
 
 function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, url, lat, lon, name }) {
 
