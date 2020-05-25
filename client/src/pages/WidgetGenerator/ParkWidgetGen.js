@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../utils/auth";
+import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import {
   Icon,
   Grid,
@@ -39,6 +40,7 @@ function ParkWidgetGen() {
   const [name, setName] = useState([]);
 
   // page apperance Hooks
+  const [error, setError] = useState({ isVisible: false, errorMessage: "" });
   const [showText, setShowText] = useState(false);
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
@@ -76,6 +78,38 @@ function ParkWidgetGen() {
   }, []);
 
   function handleParkSearch() {
+    if (parkSearch === "") {
+      return (
+        setSpinner(
+          <Step.Group>
+            <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+              <Icon name="tree" style={{ color: "white" }} />
+              <Step.Content>
+                <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
+                  PARKS
+                </Step.Title>
+                <Step.Description
+                  style={{
+                    fontWeight: "100",
+                    color: "white",
+                  }}
+                >
+                  <p style={{ fontSize: "10px" }}>
+                    {" "}
+                    PICK YOUR STATE <br></br>SEARCH BY PARK
+                  </p>
+                  <p style={{ fontSize: "10px" }}> RECEIVE PARK INFORMATION</p>
+                </Step.Description>
+              </Step.Content>
+            </Step>
+          </Step.Group>,
+        ),
+        setError({ isVisible: true, errorMessage: "PLEASE ENTER A PARK" })
+      );
+    } else {
+      setError("");
+    }
+
     setSpinner(
       <Dimmer active>
         <Loader />
@@ -145,8 +179,8 @@ function ParkWidgetGen() {
       description: description,
       url: url,
       lat: lat,
-      lon:lon,
-      name: name
+      lon: lon,
+      name: name,
     }).catch(err => alert(err));
   };
 
@@ -238,7 +272,10 @@ function ParkWidgetGen() {
                           {" "}
                           PICK YOUR STATE <br></br>SEARCH BY PARK
                         </p>
-                        <p style={{ fontSize: "10px" }}> RECEIVE PARK INFORMATION</p>
+                        <p style={{ fontSize: "10px" }}>
+                          {" "}
+                          RECEIVE PARK INFORMATION
+                        </p>
                       </Step.Description>
                     </Step.Content>
                   </Step>
@@ -251,7 +288,7 @@ function ParkWidgetGen() {
               setPark(event.target.value.toLowerCase());
             }}
           />
-
+          {error.isVisible && <ErrorSegment>{error.errorMessage}</ErrorSegment>}
           <Segment
             compact
             attached
