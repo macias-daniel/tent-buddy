@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { useAuth } from "../utils/auth";
-import { Grid, Container, Image, Segment, Button } from "semantic-ui-react";
+import {
+  Grid,
+  Container,
+  Image,
+  Icon,
+  Segment,
+  Button,
+} from "semantic-ui-react";
 import WeatherWidget from "./ProfileWidgets/WeatherWidget";
 // import WidgetSorter from "./ProfileWidgets/WidgetSorter";
 import WidgetBumper from "./ProfileWidgets/WidgetBumper";
@@ -27,11 +34,38 @@ function Profile() {
       setWidgets(response.data.widgets);
     });
   }, [user.id]);
+
+  
   const { isLoggedIn } = useAuth();
   return (
     <div>
       <Grid style={{ margin: "0px", padding: "0px" }} centered>
-        {/* <WidgetSorter /> */}
+        {/* <Container className="profileContainer">
+          <Segment
+            compact
+            attached
+            inverted
+            style={{
+              width: "280px",
+              backgroundColor: "rgba(27, 27, 27, 0.76)",
+            }}
+          >
+            <Segment attached inverted>
+              <Button icon inverted onClick={handleFilterNotes}>
+                <Icon name="pencil" />
+              </Button>
+              <Button icon inverted onClick={handleFilterWeather}>
+                <Icon name="cloud" />
+              </Button>
+              <Button icon inverted onClick={handleFilterParks}>
+                <Icon name="tree" />
+              </Button>
+              <Button icon inverted onClick={handleFilterTrails}>
+                <Icon name="compass outline" />
+              </Button>
+            </Segment>
+          </Segment>
+        </Container> */}
         {widgets.length === 0 ? (
           <>
             <Container className="profileContainer">
@@ -81,7 +115,11 @@ function Profile() {
                       icon="pencil"
                       handleDeleteWidget={() => deleteWidget(widget)}
                     />
-                    <NoteWidget key={widget._id} title={widget.data.notes[0].title} text={widget.data.notes[0].text}/>
+                    <NoteWidget
+                      key={widget._id}
+                      title={widget.data.notes[0].title}
+                      text={widget.data.notes[0].text}
+                    />
                   </Container>
                 </>
               );
@@ -113,8 +151,19 @@ function Profile() {
                     />
                     <ParkWidget
                       key={widget._id}
-                      state={widget.data.state}
-                      park={widget.data.park}
+                      mon={widget.data.mon}
+                      tues={widget.data.tues}
+                      wed= {widget.data.wed}
+                      thu= {widget.data.thu}
+                      fri={widget.data.fri}
+                      sat= {widget.data.sat}
+                      sun= {widget.data.sun}
+                      phone= {widget.data.phone}
+                      description= {widget.data.description}
+                      url= {widget.data.url}
+                      lat= {widget.data.lat}
+                      lon={widget.data.lon}
+                      name= {widget.data.name}
                     />
                   </Container>
                 </>
