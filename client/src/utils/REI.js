@@ -10,7 +10,6 @@ class REI {
   }
 
   getTrails = (lat, lon) => {
-    console.log(process.env);
     return this.client.get(
       "/get-routes-for-lat-lon?lat=" +
         lat +
