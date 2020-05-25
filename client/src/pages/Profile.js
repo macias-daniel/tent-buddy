@@ -8,6 +8,7 @@ import {
   Image,
   Segment,
   Button,
+  Icon,
 } from "semantic-ui-react";
 import WeatherWidget from "./ProfileWidgets/WeatherWidget";
 // import WidgetSorter from "./ProfileWidgets/WidgetSorter";
@@ -34,12 +35,49 @@ function Profile() {
     });
   }, [user.id]);
 
-  
+  function handleFilterNotes() {
+    API.getUser(user.id).then(response => {
+      const newNotesWidgetArray = response.data.widgets.filter(
+        widget => widget.type === "notes",
+      );
+      setWidgets(newNotesWidgetArray);
+    });
+  }
+  function handleFilterWeather() {
+    API.getUser(user.id).then(response => {
+      const newWeatherWidgetArray = response.data.widgets.filter(
+        widget => widget.type === "weather",
+      );
+      setWidgets(newWeatherWidgetArray);
+    });
+  }
+  function handleFilterParks() {
+    API.getUser(user.id).then(response => {
+      const newParksWidgetArray = response.data.widgets.filter(
+        widget => widget.type === "park",
+      );
+      setWidgets(newParksWidgetArray);
+    });
+  }
+  function handleFilterTrails() {
+    API.getUser(user.id).then(response => {
+      const newTrailsWidgetArray = response.data.widgets.filter(
+        widget => widget.type === "trails",
+      );
+      setWidgets(newTrailsWidgetArray);
+    });
+  }
+  function handleAll() {
+    API.getUser(user.id).then(response => {
+      setWidgets(response.data.widgets);
+    });
+  }
+
   const { isLoggedIn } = useAuth();
   return (
     <div>
       <Grid style={{ margin: "0px", padding: "0px" }} centered>
-        {/* <Container className="profileContainer">
+        <Container className="profileContainer">
           <Segment
             compact
             attached
@@ -62,9 +100,22 @@ function Profile() {
               <Button icon inverted onClick={handleFilterTrails}>
                 <Icon name="compass outline" />
               </Button>
+              <Button icon inverted onClick={handleAll}>
+                <Icon>
+                <Image
+                  style={{
+                    margin: "0px",
+                    height: "13px",
+                    align: "center",
+                  }}
+                  className="headerLogo"
+                  alt="Tent logo"
+                  src="/Icons/android-chrome-192x192.png"
+                /></Icon>
+              </Button>
             </Segment>
           </Segment>
-        </Container> */}
+        </Container>
         {widgets.length === 0 ? (
           <>
             <Container className="profileContainer">
@@ -152,17 +203,17 @@ function Profile() {
                       key={widget._id}
                       mon={widget.data.mon}
                       tues={widget.data.tues}
-                      wed= {widget.data.wed}
-                      thu= {widget.data.thu}
+                      wed={widget.data.wed}
+                      thu={widget.data.thu}
                       fri={widget.data.fri}
-                      sat= {widget.data.sat}
-                      sun= {widget.data.sun}
-                      phone= {widget.data.phone}
-                      description= {widget.data.description}
-                      url= {widget.data.url}
-                      lat= {widget.data.lat}
+                      sat={widget.data.sat}
+                      sun={widget.data.sun}
+                      phone={widget.data.phone}
+                      description={widget.data.description}
+                      url={widget.data.url}
+                      lat={widget.data.lat}
                       lon={widget.data.lon}
-                      name= {widget.data.name}
+                      name={widget.data.name}
                     />
                   </Container>
                 </>

@@ -34,6 +34,7 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
+    "@rooks/use-outside-click": "^3.6.0",
     "bcrypt-nodejs": "0.0.3",
     "concurrently": "^5.2.0",
     "dexie": "^3.0.1",
