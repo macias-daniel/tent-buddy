@@ -64,7 +64,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
             >
               <div
                 className="tempInfo"
-                style={{ float: "left", fontWeight: "bold", fontSize: "10px" }}
+                style={{ float: "left", fontWeight: "bold", fontSize: "12px" }}
               >
                 Hours of Operation <span>&nbsp;&nbsp;</span>
                 <Icon name="plus square outline" inverted />
@@ -84,7 +84,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
                   fontFamily: "Roboto",
                   paddingTop: "0",
                   paddingBottom: "1rem",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   textAlign: "left",
                 }}
               >
@@ -112,7 +112,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
             >
               <div
                 className="tempInfo"
-                style={{ float: "left", fontWeight: "bold", fontSize: "10px" }}
+                style={{ float: "left", fontWeight: "bold", fontSize: "12px" }}
               >
                 {" "}
                 Park Description <span>&nbsp;&nbsp;</span>
@@ -133,7 +133,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
                   fontFamily: "Roboto",
                   paddingTop: "0",
                   paddingBottom: "1rem",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   textAlign: "left",
                 }}
               >
@@ -153,7 +153,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
             >
               <div
                 className="tempInfo"
-                style={{ float: "left", fontWeight: "bold", fontSize: "10px" }}
+                style={{ float: "left", fontWeight: "bold", fontSize: "12px" }}
               >
                 Contact Park <span>&nbsp;&nbsp;</span>
                 <Icon name="plus square outline" inverted />
@@ -169,7 +169,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
                 inverted
                 style={{
                   textAlign: "left",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   margin: "0px",
                   fontWeight: "100",
                   padding: "0px",
@@ -194,7 +194,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
             >
               <div
                 className="tempInfo"
-                style={{ float: "left", fontWeight: "bold", fontSize: "10px" }}
+                style={{ float: "left", fontWeight: "bold", fontSize: "12px" }}
               >
                 Park Website <span>&nbsp;&nbsp;</span>
                 <Icon name="plus square outline" inverted />
@@ -220,7 +220,7 @@ function ParkWidget({ mon, tues, wed, thu, fri, sat, sun, phone, description, ur
                   href={url}
                   rel="noopener noreferrer"
                   target="_blank"
-                  style={{ fontSize: "10px" }}
+                  style={{ fontSize: "12px" }}
                 >
                   <span>&nbsp;&nbsp;</span>
                   {name} SITE

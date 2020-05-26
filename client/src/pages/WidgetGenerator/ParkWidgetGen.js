@@ -314,7 +314,7 @@ function ParkWidgetGen() {
                       }}
                     >
                       <h2 style={{ fontFamily: "Roboto" }}>{name}</h2>
-                      <p style={{ fontWeight: "bold", fontSize: "12px" }}>
+                      <p style={{ fontWeight: "bold", fontSize: "15px" }}>
                         COORDINATES: {lat}°, {lon}°
                       </p>
                     </Segment>
@@ -332,7 +332,7 @@ function ParkWidgetGen() {
                           style={{
                             float: "left",
                             fontWeight: "bold",
-                            fontSize: "10px",
+                            fontSize: "12px",
                           }}
                         >
                           Hours of Operation <span>&nbsp;&nbsp;</span>
@@ -353,7 +353,7 @@ function ParkWidgetGen() {
                             fontFamily: "Roboto",
                             paddingTop: "0",
                             paddingBottom: "1rem",
-                            fontSize: "10px",
+                            fontSize: "12px",
                             textAlign: "left",
                           }}
                         >
@@ -384,7 +384,7 @@ function ParkWidgetGen() {
                           style={{
                             float: "left",
                             fontWeight: "bold",
-                            fontSize: "10px",
+                            fontSize: "12px",
                           }}
                         >
                           {" "}
@@ -406,7 +406,7 @@ function ParkWidgetGen() {
                             fontFamily: "Roboto",
                             paddingTop: "0",
                             paddingBottom: "1rem",
-                            fontSize: "10px",
+                            fontSize: "12px",
                             textAlign: "left",
                           }}
                         >
@@ -429,10 +429,10 @@ function ParkWidgetGen() {
                           style={{
                             float: "left",
                             fontWeight: "bold",
-                            fontSize: "10px",
+                            fontSize: "12px",
                           }}
                         >
-                          Contact Park <span>&nbsp;&nbsp;</span>
+                          Contact <span>&nbsp;&nbsp;</span>
                           <Icon name="plus square outline" inverted />
                         </div>
                         <br></br>
@@ -474,7 +474,7 @@ function ParkWidgetGen() {
                           style={{
                             float: "left",
                             fontWeight: "bold",
-                            fontSize: "10px",
+                            fontSize: "12px",
                           }}
                         >
                           Park Website <span>&nbsp;&nbsp;</span>
@@ -501,10 +501,10 @@ function ParkWidgetGen() {
                             href={url}
                             rel="noopener noreferrer"
                             target="_blank"
-                            style={{ fontSize: "10px" }}
+                            style={{ fontSize: "12px" }}
                           >
                             <span>&nbsp;&nbsp;</span>
-                            {name} SITE
+                            {name} Site
                           </a>
                         </Segment>
                       </Accordion.Content>
