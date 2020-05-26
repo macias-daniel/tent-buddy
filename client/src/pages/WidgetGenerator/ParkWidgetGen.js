@@ -121,6 +121,12 @@ function ParkWidgetGen() {
     NationalParksAPI.getInfo(parkSearch, stateSearch).then(results => {
       // main path for nationalParksApi data
       const starter = results.data.data[0];
+      console.log(starter);
+
+      //If there is no data return console.log
+      if(!starter){
+        return console.log("an error has occurred");
+      }
 
       // returns for hours
       const hoursstarter = starter.operatingHours[0].standardHours;
