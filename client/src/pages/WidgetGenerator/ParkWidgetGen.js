@@ -17,6 +17,7 @@ import NationalParksAPI from "../../utils/NationalParksAPI";
 import API from "../../utils/API";
 import faker from "faker";
 import _ from "lodash";
+import ToProfileButton from "../../components/ToProfileButton/ToProfileButton";
 
 function ParkWidgetGen() {
   // search Hooks
@@ -48,6 +49,7 @@ function ParkWidgetGen() {
   const [activeIndex1, setActiveIndex1] = useState(-1);
   const [activeIndex3, setActiveIndex3] = useState(-1);
   const [activeIndex4, setActiveIndex4] = useState(-1);
+  const [profileBtnVisibility, setProfileBtnVisibility] = useState(false);
 
   useEffect(() => {
     setSpinner(
@@ -119,6 +121,12 @@ function ParkWidgetGen() {
     NationalParksAPI.getInfo(parkSearch, stateSearch).then(results => {
       // main path for nationalParksApi data
       const starter = results.data.data[0];
+      console.log(starter);
+
+      //If there is no data return console.log
+      if(!starter){
+        return console.log("an error has occurred");
+      }
 
       // returns for hours
       const hoursstarter = starter.operatingHours[0].standardHours;
@@ -166,6 +174,7 @@ function ParkWidgetGen() {
 
   const addParkWidget = event => {
     event.preventDefault();
+    setProfileBtnVisibility(true);
     setButton("Widget Added");
     API.addUserWidget(user.id, "park", {
       mon: mon,
@@ -518,10 +527,16 @@ function ParkWidgetGen() {
                   inverted
                   fluid
                   onClick={addParkWidget}
-                  style={{ fontFamily: "Roboto", color: "white" }}
+                  style={{
+                    fontFamily: "Roboto",
+                    color: "white",
+                    marginTop: "10px",
+                  }}
                 >
                   {button}
                 </Button>
+                {/* If the add to widget function and profileBtn visibility is set to true show go home button */}
+                {profileBtnVisibility && <ToProfileButton />}
               </>
             )}
             ,{spinner}
