@@ -10,7 +10,6 @@ class REI {
   }
 
   getTrails = (lat, lon) => {
-
     return this.client.get(
       "/get-routes-for-lat-lon?lat=" +
         lat +
