@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import { useAuth } from "../../utils/auth";
 import ForecastContainer from "../ProfileWidgets/ForecastContainer";
 import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
+import ToProfileButton from "../../components/ToProfileButton/ToProfileButton";
 import {
   Grid,
   Image,
@@ -33,12 +34,13 @@ function WeatherWidgetGen() {
   const [spinner, setSpinner] = useState([]);
   const [button, setButton] = useState("");
   const [error, setError] = useState({ isVisible: false, errorMessage: "" });
+  const [profileBtnVisibility, setProfileBtnVisibility] = useState(false);
 
   useEffect(() => {
     //Display add card when Page renders
     setSpinner(
       <Step.Group>
-        <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
+        <Step style={{ width: "150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
           <Icon name="cloud" style={{ color: "white" }} />
           <Step.Content>
             <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
@@ -66,7 +68,9 @@ function WeatherWidgetGen() {
       return (
         setSpinner(
           <Step.Group>
-            <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
+            <Step
+              style={{ width: "150px", backgroundColor: "rgba(1, 1, 5, 0)" }}
+            >
               <Icon name="cloud" style={{ color: "white" }} />
               <Step.Content>
                 <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
@@ -146,6 +150,7 @@ function WeatherWidgetGen() {
   //POST request to DB
   const addWeatherWidget = event => {
     event.preventDefault();
+    setProfileBtnVisibility(true);
     setButton("Widget Added");
     API.addUserWidget(user.id, "weather", { city: citySearch }).catch(err =>
       alert(err),
@@ -188,8 +193,13 @@ function WeatherWidgetGen() {
             placeholder="ENTER CITY"
             onChange={event => {
               setSpinner(
-                <Step.Group >
-                  <Step style={{ width:"150px", backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                <Step.Group>
+                  <Step
+                    style={{
+                      width: "150px",
+                      backgroundColor: "rgba(1, 1, 5, 0)",
+                    }}
+                  >
                     <Icon name="cloud" style={{ color: "white" }} />
                     <Step.Content>
                       <Step.Title
@@ -308,14 +318,19 @@ function WeatherWidgetGen() {
                   secondary
                   inverted
                   fluid
-                  style={{ fontFamily: "Roboto", color: "white" }}
+                  style={{
+                    fontFamily: "Roboto",
+                    color: "white",
+                    marginTop: "10px",
+                  }}
                   onClick={addWeatherWidget}
                 >
                   {button}
                 </Button>
               </>
             )}
-            , {spinner}
+            {/* If the add to widget function and profileBtn visibility is set to true show go home button */}
+            {profileBtnVisibility && <ToProfileButton />},{spinner}
           </Segment>
         </Segment>
       </Grid>

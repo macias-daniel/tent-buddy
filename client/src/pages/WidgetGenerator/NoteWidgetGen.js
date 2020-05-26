@@ -11,6 +11,7 @@ import {
 import API from "../../utils/API";
 import { useAuth } from "../../utils/auth";
 import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
+import ToProfileButton from "../../components/ToProfileButton/ToProfileButton";
 import { v4 as uuidv4 } from "uuid";
 
 function NoteWidgetGen() {
@@ -23,6 +24,7 @@ function NoteWidgetGen() {
   const [button, setButton] = useState("Add Widget");
   const [showText, setShowText] = useState(false);
   const [error, setError] = useState({ isVisible: false, errorMessage: "" });
+  const [profileBtnVisibility, setProfileBtnVisibility] = useState(false);
 
   const upsertNote = () => {
     if (title === "" || text === "") {
@@ -67,6 +69,9 @@ function NoteWidgetGen() {
   const addNotesWidget = event => {
     event.preventDefault();
     setButton("Widget Added");
+
+    //When user adds widget display button that takes them to the profile page
+    setProfileBtnVisibility(true);
     API.addUserWidget(user.id, "notes", {
       notes: notes,
     }).catch(err => alert(err));
@@ -117,7 +122,6 @@ function NoteWidgetGen() {
             compact
             attached
             style={{
- 
               backgroundColor: "rgba(27, 27, 27, 0.76)",
             }}
           >
@@ -161,11 +165,17 @@ function NoteWidgetGen() {
                   secondary
                   inverted
                   fluid
-                  style={{ fontFamily: "Roboto", color: "white" }}
+                  style={{
+                    fontFamily: "Roboto",
+                    color: "white",
+                    marginTop: "10px",
+                  }}
                   onClick={addNotesWidget}
                 >
                   {button}
                 </Button>
+                {/* If the add to widget function and profileBtn visibility is set to true show go home button */}
+                {profileBtnVisibility && <ToProfileButton />}
               </>
             ) : (
               <Step.Group>

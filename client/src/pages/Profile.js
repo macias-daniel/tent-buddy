@@ -20,6 +20,9 @@ import sadlogo from "../assets/sadlogo.png";
 
 function Profile() {
   const [widgets, setWidgets] = useState([]);
+  const [filter, setFilter] = useState("all");
+  const [filteredData, setFilteredData] = useState();
+
   const { user } = useAuth();
 
   const deleteWidget = widget => {
@@ -35,43 +38,14 @@ function Profile() {
     });
   }, [user.id]);
 
-  function handleFilterNotes() {
-    API.getUser(user.id).then(response => {
-      const newNotesWidgetArray = response.data.widgets.filter(
-        widget => widget.type === "notes",
-      );
-      setWidgets(newNotesWidgetArray);
-    });
-  }
-  function handleFilterWeather() {
-    API.getUser(user.id).then(response => {
-      const newWeatherWidgetArray = response.data.widgets.filter(
-        widget => widget.type === "weather",
-      );
-      setWidgets(newWeatherWidgetArray);
-    });
-  }
-  function handleFilterParks() {
-    API.getUser(user.id).then(response => {
-      const newParksWidgetArray = response.data.widgets.filter(
-        widget => widget.type === "park",
-      );
-      setWidgets(newParksWidgetArray);
-    });
-  }
-  function handleFilterTrails() {
-    API.getUser(user.id).then(response => {
-      const newTrailsWidgetArray = response.data.widgets.filter(
-        widget => widget.type === "trails",
-      );
-      setWidgets(newTrailsWidgetArray);
-    });
-  }
-  function handleAll() {
-    API.getUser(user.id).then(response => {
-      setWidgets(response.data.widgets);
-    });
-  }
+  useEffect(() => {
+    // If filter is set to all give filtered data all the widgets
+    if (filter === "all") {
+      setFilteredData(widgets);
+    } else {
+      setFilteredData(widgets.filter(widget => widget.type === filter));
+    }
+  }, [filter, widgets]);
 
   const { isLoggedIn } = useAuth();
   return (
@@ -88,19 +62,58 @@ function Profile() {
             }}
           >
             <Segment attached inverted>
-              <Button icon inverted onClick={handleFilterNotes}>
+              {/* Notes */}
+              <Button
+                icon
+                inverted
+                onClick={() => {
+                  setFilter("notes");
+                }}
+              >
                 <Icon name="pencil" />
               </Button>
-              <Button icon inverted onClick={handleFilterWeather}>
+
+              {/* Weather */}
+              <Button
+                icon
+                inverted
+                onClick={() => {
+                  setFilter("weather");
+                }}
+              >
                 <Icon name="cloud" />
               </Button>
-              <Button icon inverted onClick={handleFilterParks}>
+
+              {/* Parks */}
+              <Button
+                icon
+                inverted
+                onClick={() => {
+                  setFilter("park");
+                }}
+              >
                 <Icon name="tree" />
               </Button>
-              <Button icon inverted onClick={handleFilterTrails}>
+
+              {/* Trails */}
+              <Button
+                icon
+                inverted
+                onClick={() => {
+                  setFilter("trails");
+                }}
+              >
                 <Icon name="compass outline" />
               </Button>
-              <Button icon inverted onClick={handleAll}>
+
+              {/* ALl */}
+              <Button
+                icon
+                inverted
+                onClick={() => {
+                  setFilter("all");
+                }}
+              >
                 <Icon>
                   <Image
                     style={{
@@ -152,8 +165,9 @@ function Profile() {
             </Container>
           </>
         ) : (
-          widgets.map(widget => {
+          filteredData.map(widget => {
             let component;
+
             //Depending on the widgets type return that widgets corresponding components
             if (widget.type === "notes") {
               component = (
