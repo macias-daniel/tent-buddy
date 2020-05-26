@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Segment, Button, Image, Icon } from "semantic-ui-react";
 import API from "../../utils/API";
 import { useAuth } from "../../utils/auth";
+import ToProfileButton from "../../components/ToProfileButton/ToProfileButton";
 
 function TrailContainer({ name, src, lat, lon, stars, url }) {
+  const [profileBtnVisibility, setProfileBtnVisibility] = useState(false);
   const [button, setButton] = useState("");
   const { user } = useAuth();
 
@@ -15,6 +17,7 @@ function TrailContainer({ name, src, lat, lon, stars, url }) {
   const addTrailWidget = event => {
     event.preventDefault();
     setButton("Widget Added");
+    setProfileBtnVisibility(true);
     API.addUserWidget(user.id, "trails", {
       name: name,
       src: src,
@@ -67,11 +70,13 @@ function TrailContainer({ name, src, lat, lon, stars, url }) {
         secondary
         inverted
         fluid
-        style={{ fontFamily: "Roboto", color: "white" }}
+        style={{ fontFamily: "Roboto", color: "white", marginTop: "10px"}}
         onClick={addTrailWidget}
       >
         {button}
       </Button>
+      {/* If the add to widget function and profileBtn visibility is set to true show go home button */}
+      {profileBtnVisibility && <ToProfileButton />}
     </>
   );
 }

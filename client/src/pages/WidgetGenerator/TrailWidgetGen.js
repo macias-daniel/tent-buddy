@@ -11,7 +11,6 @@ import {
 } from "semantic-ui-react";
 import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
-
 import REI from "../../utils/REI";
 
 function WeatherWidgetGen() {
