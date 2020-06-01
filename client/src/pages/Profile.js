@@ -49,90 +49,11 @@ function Profile() {
 
   const { isLoggedIn } = useAuth();
   return (
-    <div>
-      <Grid style={{ margin: "0px", padding: "0px" }} centered>
-        <Container className="profileContainer">
-          <Segment
-            compact
-            attached
-            inverted
-            style={{
-              width: "280px",
-              backgroundColor: "rgba(27, 27, 27, 0.76)",
-            }}
-          >
-            <Segment attached inverted>
-              {/* Notes */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("notes");
-                }}
-              >
-                <Icon name="pencil" />
-              </Button>
-
-              {/* Weather */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("weather");
-                }}
-              >
-                <Icon name="cloud" />
-              </Button>
-
-              {/* Parks */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("park");
-                }}
-              >
-                <Icon name="tree" />
-              </Button>
-
-              {/* Trails */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("trails");
-                }}
-              >
-                <Icon name="compass outline" />
-              </Button>
-
-              {/* ALl */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("all");
-                }}
-              >
-                <Icon>
-                  <Image
-                    style={{
-                      margin: "0px",
-                      height: "13px",
-                      align: "center",
-                    }}
-                    className="headerLogo"
-                    alt="Tent logo"
-                    src="/Icons/android-chrome-192x192.png"
-                  />
-                </Icon>
-              </Button>
-            </Segment>
-          </Segment>
-        </Container>
-        {widgets.length === 0 ? (
-          <>
-            <Container className="profileContainer">
+    <Grid style={{ margin: "0px", padding: "0px" }} centered>
+      <Container className="profileContainer">
+        <>
+          <Grid style={{ margin: "0px", padding: "0px" }} centered>
+            <div style={{ margin: "0px", padding: "0px" }}>
               <Segment
                 compact
                 attached
@@ -142,27 +63,113 @@ function Profile() {
                   backgroundColor: "rgba(27, 27, 27, 0.76)",
                 }}
               >
-                <>
-                  <Segment attached inverted>
-                    <Link to={isLoggedIn ? "/widgetGenerator" : "/"}>
-                      <Button inverted>
-                        <Image
-                          className="headerLogo"
-                          alt="Tent logo"
-                          src={sadlogo}
-                        ></Image>
-                        <p style={{ marginTop: "5px", fontWeight: "00" }}>
-                          Oh no! Tent Buddy is empty... Let's pack up!
-                        </p>
-                        <p style={{ fontSize: "12px", fontWeight: "500" }}>
-                          CLICK HERE
-                        </p>
-                      </Button>
-                    </Link>
-                  </Segment>
-                </>
+                <Segment attached inverted>
+                  {/* Notes */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("notes");
+                    }}
+                  >
+                    <Icon name="pencil" />
+                  </Button>
+
+                  {/* Weather */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("weather");
+                    }}
+                  >
+                    <Icon name="cloud" />
+                  </Button>
+
+                  {/* Parks */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("park");
+                    }}
+                  >
+                    <Icon name="tree" />
+                  </Button>
+
+                  {/* Trails */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("trails");
+                    }}
+                  >
+                    <Icon name="compass outline" />
+                  </Button>
+
+                  {/* ALl */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("all");
+                    }}
+                  >
+                    <Icon>
+                      <Image
+                        style={{
+                          margin: "0px",
+                          height: "13px",
+                          align: "center",
+                        }}
+                        className="headerLogo"
+                        alt="Tent logo"
+                        src="/Icons/android-chrome-192x192.png"
+                      />
+                    </Icon>
+                  </Button>
+                </Segment>
               </Segment>
-            </Container>
+            </div>
+          </Grid>
+        </>
+
+        {widgets.length === 0 ? (
+          <>
+            <Grid style={{ margin: "0px", padding: "0px" }} centered>
+              <div style={{ margin: "0px", padding: "0px" }}>
+                <Segment
+                  compact
+                  attached
+                  inverted
+                  style={{
+                    width: "280px",
+                    backgroundColor: "rgba(27, 27, 27, 0.76)",
+                  }}
+                >
+                  <>
+                    <Segment attached inverted>
+                      <Link to={isLoggedIn ? "/widgetGenerator" : "/"}>
+                        <Button inverted>
+                          <Image
+                            className="headerLogo"
+                            alt="Tent logo"
+                            src={sadlogo}
+                          ></Image>
+                          <p style={{ marginTop: "5px", fontWeight: "00" }}>
+                            Oh no! Tent Buddy is empty... Let's pack up!
+                          </p>
+                          <p style={{ fontSize: "12px", fontWeight: "500" }}>
+                            CLICK HERE
+                          </p>
+                        </Button>
+                      </Link>
+                    </Segment>
+                  </>
+                </Segment>
+              </div>
+            </Grid>
           </>
         ) : (
           filteredData.map(widget => {
@@ -172,96 +179,92 @@ function Profile() {
             if (widget.type === "notes") {
               component = (
                 <>
-                  <Container
-                    className="profileContainer"
-                    style={{ margin: "0px", padding: "0px" }}
-                  >
-                    <WidgetBumper
-                      icon="pencil"
-                      handleDeleteWidget={() => deleteWidget(widget)}
-                    />
-                    <NoteWidget
-                      key={widget._id}
-                      title={widget.data.notes[0].title}
-                      text={widget.data.notes[0].text}
-                    />
-                  </Container>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="pencil"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <NoteWidget
+                        key={widget._id}
+                        title={widget.data.notes[0].title}
+                        text={widget.data.notes[0].text}
+                      />
+                    </div>
+                  </Grid>
                 </>
               );
             } else if (widget.type === "weather") {
               component = (
                 <>
-                  <Container
-                    className="profileContainer"
-                    style={{ margin: "0px", padding: "0px" }}
-                  >
-                    <WidgetBumper
-                      icon="cloud"
-                      handleDeleteWidget={() => deleteWidget(widget)}
-                    />
-                    <WeatherWidget key={widget._id} city={widget.data.city} />
-                  </Container>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="cloud"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <WeatherWidget key={widget._id} city={widget.data.city} />
+                    </div>
+                  </Grid>
                 </>
               );
             } else if (widget.type === "park") {
               component = (
                 <>
-                  <Container
-                    className="profileContainer"
-                    style={{ margin: "0px", padding: "0px" }}
-                  >
-                    <WidgetBumper
-                      icon="tree"
-                      handleDeleteWidget={() => deleteWidget(widget)}
-                    />
-                    <ParkWidget
-                      key={widget._id}
-                      mon={widget.data.mon}
-                      tues={widget.data.tues}
-                      wed={widget.data.wed}
-                      thu={widget.data.thu}
-                      fri={widget.data.fri}
-                      sat={widget.data.sat}
-                      sun={widget.data.sun}
-                      phone={widget.data.phone}
-                      description={widget.data.description}
-                      url={widget.data.url}
-                      lat={widget.data.lat}
-                      lon={widget.data.lon}
-                      name={widget.data.name}
-                    />
-                  </Container>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="tree"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <ParkWidget
+                        key={widget._id}
+                        mon={widget.data.mon}
+                        tues={widget.data.tues}
+                        wed={widget.data.wed}
+                        thu={widget.data.thu}
+                        fri={widget.data.fri}
+                        sat={widget.data.sat}
+                        sun={widget.data.sun}
+                        phone={widget.data.phone}
+                        description={widget.data.description}
+                        url={widget.data.url}
+                        lat={widget.data.lat}
+                        lon={widget.data.lon}
+                        name={widget.data.name}
+                      />
+                    </div>
+                  </Grid>
                 </>
               );
             } else if (widget.type === "trails") {
               component = (
-                <div style={{ margin: "0px", padding: "0px" }}>
-                  <Container
-                    className="profileContainer"
-                    style={{ margin: "0px", padding: "0px" }}
-                  >
-                    <WidgetBumper
-                      icon="compass outline"
-                      handleDeleteWidget={() => deleteWidget(widget)}
-                    />
-                    <TrailWidget
-                      key={widget._id}
-                      name={widget.data.name}
-                      src={widget.data.src}
-                      lat={widget.data.lat}
-                      lon={widget.data.lon}
-                      stars={widget.data.stars}
-                      url={widget.data.url}
-                    />
-                  </Container>
-                </div>
+                <>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="compass outline"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <TrailWidget
+                        key={widget._id}
+                        name={widget.data.name}
+                        src={widget.data.src}
+                        lat={widget.data.lat}
+                        lon={widget.data.lon}
+                        stars={widget.data.stars}
+                        url={widget.data.url}
+                      />
+                    </div>
+                  </Grid>
+                </>
               );
             }
             return component;
           })
         )}
-      </Grid>
-    </div>
+      </Container>
+    </Grid>
   );
 }
 

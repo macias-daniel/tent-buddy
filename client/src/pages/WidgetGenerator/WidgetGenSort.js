@@ -3,7 +3,7 @@ import WeatherWidgetGen from "./WeatherWidgetGen";
 import ParkWidgetGen from "./ParkWidgetGen";
 import NoteWidgetGen from "./NoteWidgetGen";
 import TrailWidgetGen from "./TrailWidgetGen";
-import { Menu, Segment, Container } from "semantic-ui-react";
+import { Menu, Segment, Grid } from "semantic-ui-react";
 
 const widgets = {
   notes: {
@@ -46,48 +46,50 @@ export default class WidgetGeneratorSort extends Component {
 
     return (
       <>
-        <div style={{ margin: "0px", padding: "0px" }}>
-          <Segment
-            style={{ margin: "0px", padding: "0px" }}
-            attached
-            className="widgetForm"
-            compact
-            textAlign="center"
-            inverted
-          >
-            <Menu inverted pointing secondary style={{ marginTop: "0px" }}>
-              <Menu.Item
-                className="widgets"
-                title="notes"
-                name="NOTES"
-                active={activeItem === "NOTES"}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                className="widgets"
-                title="weather"
-                name="WEATHER"
-                active={activeItem === "WEATHER"}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                className="widgets"
-                title="parks"
-                name="PARKS"
-                active={activeItem === "PARKS"}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                className="widgets"
-                title="trails"
-                name="TRAILS"
-                active={activeItem === "TRAILS"}
-                onClick={this.handleItemClick}
-              />
-            </Menu>
-          </Segment>
-        </div>
-        <Container>{this.state.currentPage.widgetType}</Container>
+        <Grid style={{ margin: "0px", padding: "0px" }} centered>
+          <div style={{ margin: "0px", padding: "0px" }}>
+            <Segment
+              style={{ width: "250px", margin: "0px", padding: "0px" }}
+              attached
+              className="widgetForm"
+              compact
+              textAlign="center"
+              inverted
+            >
+              <Menu inverted pointing secondary style={{ marginTop: "0px" }}>
+                <Menu.Item
+                  className="widgets"
+                  title="notes"
+                  name="NOTES"
+                  active={activeItem === "NOTES"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  className="widgets"
+                  title="weather"
+                  name="WEATHER"
+                  active={activeItem === "WEATHER"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  className="widgets"
+                  title="parks"
+                  name="PARKS"
+                  active={activeItem === "PARKS"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  className="widgets"
+                  title="trails"
+                  name="TRAILS"
+                  active={activeItem === "TRAILS"}
+                  onClick={this.handleItemClick}
+                />
+              </Menu>
+            </Segment>
+            {this.state.currentPage.widgetType}
+          </div>
+        </Grid>
       </>
     );
   }

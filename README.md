@@ -1,4 +1,5 @@
-# Tent Buddy
+# Tent Buddy<img src="./client/src/assets/logo.png" alt="avatar" style="border-radius: 100px" width="50"/>
+
 
 [GitHub](https://github.com/macias-daniel/tent-buddy)
 [Deployed Link](https://tent-buddy.herokuapp.com/)
