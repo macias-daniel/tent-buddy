@@ -144,40 +144,12 @@ p{
   transform: translateY(15%);
   padding-left:0px;
 }
-@media (min-width: 415px) {
-  .widgetForm {
-    transform: translateX(0%);
-    
-  }
-
-}
 
 .widgetTitle{
 
   position: relative;
   transform: translateY(50%);
   padding-left:0px;
-}
-@media (min-width: 767px) {
-.profileContainer{
-  margin: "0px";
-}
-.widgetForm {
-  transform: translateX(0%);
-}
-
-}
-
-@media (min-width: 990px) {
-  .profileContainer{
-margin: "0px";
-  }
-}
-
-@media (min-width: 1200px) {
-  .profileContainer{
-    margin: "0px";
-  }
 }
 
 a{

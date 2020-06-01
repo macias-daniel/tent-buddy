@@ -4,7 +4,8 @@ import WidgetGeneratorSort from "./WidgetGenSort";
 
 function WidgetHome() {
   return (
-    <Grid centered style={{ margin: "0px", padding: "0px" }}>
+    <Grid style={{ margin: "0px", padding: "0px" }} centered>
+        <Container className="profileContainer">
       <Container
         className="widgetGenHome"
         style={{
@@ -35,6 +36,7 @@ function WidgetHome() {
       </Container>
 
       <WidgetGeneratorSort />
+      </Container>
     </Grid>
   );
 }
