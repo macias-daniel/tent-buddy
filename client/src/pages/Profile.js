@@ -49,90 +49,96 @@ function Profile() {
 
   const { isLoggedIn } = useAuth();
   return (
-    <div>
-      <Grid style={{ margin: "0px", padding: "0px" }} centered>
-        <Container className="profileContainer">
-          <Segment
-            compact
-            attached
-            inverted
-            style={{
-              width: "280px",
-              backgroundColor: "rgba(27, 27, 27, 0.76)",
-            }}
-          >
-            <Segment attached inverted>
-              {/* Notes */}
-              <Button
-                icon
+    <Grid style={{ margin: "0px", padding: "0px" }} centered>
+      <Container className="profileContainer">
+        <>
+          <Grid style={{ margin: "0px", padding: "0px" }} centered>
+            <div style={{ margin: "0px", padding: "0px" }}>
+              <Segment
+                compact
+                attached
                 inverted
-                onClick={() => {
-                  setFilter("notes");
+                style={{
+                  width: "280px",
+                  backgroundColor: "rgba(27, 27, 27, 0.76)",
                 }}
               >
-                <Icon name="pencil" />
-              </Button>
-
-              {/* Weather */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("weather");
-                }}
-              >
-                <Icon name="cloud" />
-              </Button>
-
-              {/* Parks */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("park");
-                }}
-              >
-                <Icon name="tree" />
-              </Button>
-
-              {/* Trails */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("trails");
-                }}
-              >
-                <Icon name="compass outline" />
-              </Button>
-
-              {/* ALl */}
-              <Button
-                icon
-                inverted
-                onClick={() => {
-                  setFilter("all");
-                }}
-              >
-                <Icon>
-                  <Image
-                    style={{
-                      margin: "0px",
-                      height: "13px",
-                      align: "center",
+                <Segment attached inverted>
+                  {/* Notes */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("notes");
                     }}
-                    className="headerLogo"
-                    alt="Tent logo"
-                    src="/Icons/android-chrome-192x192.png"
-                  />
-                </Icon>
-              </Button>
-            </Segment>
-          </Segment>
+                  >
+                    <Icon name="pencil" />
+                  </Button>
 
-          {widgets.length === 0 ? (
-            <>
-              <Container className="profileContainer">
+                  {/* Weather */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("weather");
+                    }}
+                  >
+                    <Icon name="cloud" />
+                  </Button>
+
+                  {/* Parks */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("park");
+                    }}
+                  >
+                    <Icon name="tree" />
+                  </Button>
+
+                  {/* Trails */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("trails");
+                    }}
+                  >
+                    <Icon name="compass outline" />
+                  </Button>
+
+                  {/* ALl */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("all");
+                    }}
+                  >
+                    <Icon>
+                      <Image
+                        style={{
+                          margin: "0px",
+                          height: "13px",
+                          align: "center",
+                        }}
+                        className="headerLogo"
+                        alt="Tent logo"
+                        src="/Icons/android-chrome-192x192.png"
+                      />
+                    </Icon>
+                  </Button>
+                </Segment>
+              </Segment>
+            </div>
+          </Grid>
+        </>
+
+        {widgets.length === 0 ? (
+          <>
+            <Grid style={{ margin: "0px", padding: "0px" }} centered>
+              <div style={{ margin: "0px", padding: "0px" }}>
                 <Segment
                   compact
                   attached
@@ -162,126 +168,103 @@ function Profile() {
                     </Segment>
                   </>
                 </Segment>
-              </Container>
-            </>
-          ) : (
-            filteredData.map(widget => {
-              let component;
+              </div>
+            </Grid>
+          </>
+        ) : (
+          filteredData.map(widget => {
+            let component;
 
-              //Depending on the widgets type return that widgets corresponding components
-              if (widget.type === "notes") {
-                component = (
-                  <>
-                    <div compact>
-                      <Grid style={{ margin: "0px" }} centered>
-                        <Container
-                          className="profileContainer"
-                          style={{ margin: "0px", padding: "0px" }}
-                        >
-                          <WidgetBumper
-                            icon="pencil"
-                            handleDeleteWidget={() => deleteWidget(widget)}
-                          />
-                          <NoteWidget
-                            key={widget._id}
-                            title={widget.data.notes[0].title}
-                            text={widget.data.notes[0].text}
-                          />
-                        </Container>
-                      </Grid>
+            //Depending on the widgets type return that widgets corresponding components
+            if (widget.type === "notes") {
+              component = (
+                <>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="pencil"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <NoteWidget
+                        key={widget._id}
+                        title={widget.data.notes[0].title}
+                        text={widget.data.notes[0].text}
+                      />
                     </div>
-                  </>
-                );
-              } else if (widget.type === "weather") {
-                component = (
-                  <>
-                    <div compact>
-                      <Grid style={{ margin: "0px" }} centered>
-                        <Container
-                          className="profileContainer"
-                          style={{ margin: "0px", padding: "0px" }}
-                        >
-                          <WidgetBumper
-                            icon="cloud"
-                            handleDeleteWidget={() => deleteWidget(widget)}
-                          />
-                          <WeatherWidget
-                            key={widget._id}
-                            city={widget.data.city}
-                          />
-                        </Container>
-                      </Grid>
+                  </Grid>
+                </>
+              );
+            } else if (widget.type === "weather") {
+              component = (
+                <>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="cloud"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <WeatherWidget key={widget._id} city={widget.data.city} />
                     </div>
-                  </>
-                );
-              } else if (widget.type === "park") {
-                component = (
-                  <>
-                    <div compact>
-                      <Grid style={{ margin: "0px" }} centered>
-                        <Container
-                          className="profileContainer"
-                          style={{ margin: "0px", padding: "0px" }}
-                        >
-                          <WidgetBumper
-                            icon="tree"
-                            handleDeleteWidget={() => deleteWidget(widget)}
-                          />
-                          <ParkWidget
-                            key={widget._id}
-                            mon={widget.data.mon}
-                            tues={widget.data.tues}
-                            wed={widget.data.wed}
-                            thu={widget.data.thu}
-                            fri={widget.data.fri}
-                            sat={widget.data.sat}
-                            sun={widget.data.sun}
-                            phone={widget.data.phone}
-                            description={widget.data.description}
-                            url={widget.data.url}
-                            lat={widget.data.lat}
-                            lon={widget.data.lon}
-                            name={widget.data.name}
-                          />
-                        </Container>
-                      </Grid>
+                  </Grid>
+                </>
+              );
+            } else if (widget.type === "park") {
+              component = (
+                <>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="tree"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <ParkWidget
+                        key={widget._id}
+                        mon={widget.data.mon}
+                        tues={widget.data.tues}
+                        wed={widget.data.wed}
+                        thu={widget.data.thu}
+                        fri={widget.data.fri}
+                        sat={widget.data.sat}
+                        sun={widget.data.sun}
+                        phone={widget.data.phone}
+                        description={widget.data.description}
+                        url={widget.data.url}
+                        lat={widget.data.lat}
+                        lon={widget.data.lon}
+                        name={widget.data.name}
+                      />
                     </div>
-                  </>
-                );
-              } else if (widget.type === "trails") {
-                component = (
-                  <div style={{ margin: "0px", padding: "0px" }}>
-                    <div compact>
-                      <Grid style={{ margin: "0px" }} centered>
-                        <Container
-                          className="profileContainer"
-                          style={{ margin: "0px", padding: "0px" }}
-                        >
-                          <WidgetBumper
-                            icon="compass outline"
-                            handleDeleteWidget={() => deleteWidget(widget)}
-                          />
-                          <TrailWidget
-                            key={widget._id}
-                            name={widget.data.name}
-                            src={widget.data.src}
-                            lat={widget.data.lat}
-                            lon={widget.data.lon}
-                            stars={widget.data.stars}
-                            url={widget.data.url}
-                          />
-                        </Container>
-                      </Grid>
+                  </Grid>
+                </>
+              );
+            } else if (widget.type === "trails") {
+              component = (
+                <>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="compass outline"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <TrailWidget
+                        key={widget._id}
+                        name={widget.data.name}
+                        src={widget.data.src}
+                        lat={widget.data.lat}
+                        lon={widget.data.lon}
+                        stars={widget.data.stars}
+                        url={widget.data.url}
+                      />
                     </div>
-                  </div>
-                );
-              }
-              return component;
-            })
-          )}
-        </Container>
-      </Grid>
-    </div>
+                  </Grid>
+                </>
+              );
+            }
+            return component;
+          })
+        )}
+      </Container>
+    </Grid>
   );
 }
 
