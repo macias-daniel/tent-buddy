@@ -51,7 +51,7 @@ export default class WidgetGeneratorSort extends Component {
         <Grid style={{ margin: "0px", padding: "0px" }} centered>
           <div style={{ margin: "0px", padding: "0px" }}>
             <Segment
-              style={{ width: "475px", margin: "0px", padding: "0px" }}
+              style={{ width: "350px", margin: "0px", padding: "0px" }}
               attached
               className="widgetForm"
               compact
