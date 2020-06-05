@@ -14,8 +14,7 @@ class ClimateCell {
         lat +
         "&lon=" +
         lon +
-        "&fields%5B%5D=pm25&fields%5B%5D=pm10&fields%5B%5D=o3&fields%5B%5D=co&fields%5B%5D=fire_index&fields%5B%5D=epa_aqi&apikey=OgVsGTFoa4Byg3hkKGngPp9GoIaLsc2Z" 
-        // + process.env.REACT_APP_CLIMATE_CELL_API
+        "&fields%5B%5D=pm25&fields%5B%5D=pm10&fields%5B%5D=o3&fields%5B%5D=co&fields%5B%5D=fire_index&fields%5B%5D=epa_aqi&apikey=" + process.env.REACT_APP_CLIMATE_CELL_API
     );
     
   };
