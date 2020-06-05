@@ -33,6 +33,8 @@ function AirWidgetGen() {
   const [profileBtnVisibility, setProfileBtnVisibility] = useState(false);
   const [error, setError] = useState({ isVisible: false, errorMessage: "" });
   const [color, setColor] = useState("");
+  const [lat, setLat] = useState([]);
+  const [lon, setLon] = useState([]);
   const [colorEpa, setColorEpa] = useState("");
 
   useEffect(() => {
@@ -116,6 +118,8 @@ function AirWidgetGen() {
         setCurrentCO(results.data.co.value);
         setCurrentO3(results.data.o3.value);
         setCurrentPm10(results.data.pm10.value);
+        setLat(results.data.lat);
+        setLon(results.data.lon);
       });
       getColors();
       getEpa();
@@ -167,12 +171,13 @@ function AirWidgetGen() {
     }
   }
 
+
   //POST request to DB
   const addHazardsWidget = event => {
     event.preventDefault();
     setProfileBtnVisibility(true);
     setButton("Widget Added");
-    API.addUserWidget(user.id, "hazards", { city: citySearch }).catch(err =>
+    API.addUserWidget(user.id, "hazards", { city: citySearch, lat: lat , lon: lon}).catch(err =>
       alert(err),
     );
   };

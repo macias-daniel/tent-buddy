@@ -16,6 +16,7 @@ import WidgetBumper from "./ProfileWidgets/WidgetBumper";
 import ParkWidget from "./ProfileWidgets/ParkWidget";
 import TrailWidget from "./ProfileWidgets/TrailWidget";
 import NoteWidget from "./ProfileWidgets/NoteWidget";
+import HazardsWidget from "./ProfileWidgets/HazardsWidget";
 import sadlogo from "../assets/sadlogo.png";
 
 function Profile() {
@@ -255,6 +256,20 @@ function Profile() {
                         stars={widget.data.stars}
                         url={widget.data.url}
                       />
+                    </div>
+                  </Grid>
+                </>
+              );
+            }else if (widget.type === "hazards") {
+              component = (
+                <>
+                  <Grid style={{ margin: "0px", padding: "0px" }} centered>
+                    <div style={{ margin: "0px", padding: "0px" }}>
+                      <WidgetBumper
+                        icon="bolt"
+                        handleDeleteWidget={() => deleteWidget(widget)}
+                      />
+                      <HazardsWidget lat={widget.data.lat} lon={widget.data.lon }city={widget.data.city} />
                     </div>
                   </Grid>
                 </>
