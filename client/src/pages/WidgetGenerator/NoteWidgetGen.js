@@ -37,18 +37,17 @@ function NoteWidgetGen() {
     }
     if (isNewNote) {
       setNotes([
-        ...notes,
         {
           title,
           text,
           id: uuidv4(),
         },
       ]);
-    } else {
+    } else{
       const note = notes.find(n => n.id === noteId);
       note.text = text;
       note.title = title;
-      setNotes([...notes]);
+      setNotes([notes]);
       setNoteId("");
       setIsNewNote(true);
     }
@@ -56,13 +55,14 @@ function NoteWidgetGen() {
     setShowText(!showText);
     setTitle("");
     setText("");
+    
   };
 
   const setCurrentNote = note => {
     setText(note.text);
     setTitle(note.title);
     setNoteId(note.id);
-    setIsNewNote(false);
+
   };
 
   //POST request to DB
@@ -92,32 +92,33 @@ function NoteWidgetGen() {
         >
           <Input
             style={{ margin: "10px", marginLeft: "0px" }}
-            icon={
-              <Icon
-                name="plus square outline"
-                inverted
-                circular
-                link
-                onClick={upsertNote}
-              />
-            }
-            placeholder="ENTER TITLE"
+            placeholder="TITLE"
             value={title}
             onChange={event => {
               setTitle(event.target.value);
-              setButton("Add Widget");
             }}
           />
           <Form.TextArea
-            placeholder="ENTER TEXT"
+            placeholder="TEXT"
             name="noteText"
             value={text}
             onChange={event => {
               setText(event.target.value);
             }}
-          />
+          />{" "}
+          <Button
+            secondary
+            fluid
+            style={{
+              color: "white",
+              marginTop: "10px",
+            }}
+            onClick={upsertNote}
+          >
+            <Icon name="plus square outline" />{" "}
+          </Button>
+          <br></br>
           {error.isVisible && <ErrorSegment>{error.errorMessage}</ErrorSegment>}
-
           <Segment
             compact
             attached
@@ -153,7 +154,23 @@ function NoteWidgetGen() {
                                 setCurrentNote(note);
                               }}
                             >
-                              {note.title}
+                              <p
+                                style={{
+                                  fontFamily: "Roboto",
+                                  fontSize: "25px",
+                                  margin:"0px"
+                                }}
+                              >
+                                {note.title}
+                              </p>
+                              <p
+                                style={{
+                                  fontFamily: "Roboto",
+                                  fontSize: "15px",
+                                }}
+                              >
+                                {note.text}
+                              </p>
                             </h2>
                           );
                         })}

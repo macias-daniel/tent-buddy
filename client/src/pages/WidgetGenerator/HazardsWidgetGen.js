@@ -273,7 +273,7 @@ function AirWidgetGen() {
                       {currentCO} ppm
                     </p>
                     <p className="wind">
-                      OZONE:<span>&nbsp;&nbsp;</span>
+                      O-ZONE:<span>&nbsp;&nbsp;</span>
                       {currentO3} ppb
                     </p>
                     <p className="wind">

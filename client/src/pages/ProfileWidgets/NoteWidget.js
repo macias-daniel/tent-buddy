@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  Segment,
-  Container,
-} from "semantic-ui-react";
+import { Segment, Container } from "semantic-ui-react";
 // import API from "../../utils/API";
 // import { useAuth } from "../../utils/auth";
 
@@ -20,10 +17,25 @@ function NoteWidgetGen({ title, text }) {
         <>
           <Segment attached inverted>
             <Container>
-              {/* <Input inverted placeholder={title}></Input> */}
-              <h4>{title}</h4>
-              <br></br>
-              <p>{text}</p>
+              <h2>
+                <p
+                  style={{
+                    fontFamily: "Roboto",
+                    fontSize: "25px",
+                    margin: "0px",
+                  }}
+                >
+                  {title}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "Roboto",
+                    fontSize: "15px",
+                  }}
+                >
+                  {text}
+                </p>
+              </h2>
             </Container>
           </Segment>
         </>
