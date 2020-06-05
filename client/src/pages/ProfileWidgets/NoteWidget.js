@@ -1,7 +1,5 @@
 import React from "react";
-import { Segment, Container } from "semantic-ui-react";
-// import API from "../../utils/API";
-// import { useAuth } from "../../utils/auth";
+import { Segment, Button, Icon, Container } from "semantic-ui-react";
 
 function NoteWidgetGen({ title, text }) {
   return (
@@ -36,6 +34,19 @@ function NoteWidgetGen({ title, text }) {
                   {text}
                 </p>
               </h2>
+              <Button
+                icon
+                secondary
+                inverted
+                style={{
+                  fontFamily: "Roboto",
+                  color: "white",
+                  marginTop: "10px",
+                }}
+                // onClick={addWeatherWidget}
+              >
+                <Icon name="pencil" />{" "}
+              </Button>
             </Container>
           </Segment>
         </>

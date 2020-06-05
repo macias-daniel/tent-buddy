@@ -43,7 +43,7 @@ function NoteWidgetGen() {
           id: uuidv4(),
         },
       ]);
-    } else{
+    } else {
       const note = notes.find(n => n.id === noteId);
       note.text = text;
       note.title = title;
@@ -55,14 +55,12 @@ function NoteWidgetGen() {
     setShowText(!showText);
     setTitle("");
     setText("");
-    
   };
 
   const setCurrentNote = note => {
     setText(note.text);
     setTitle(note.title);
     setNoteId(note.id);
-
   };
 
   //POST request to DB
@@ -158,7 +156,7 @@ function NoteWidgetGen() {
                                 style={{
                                   fontFamily: "Roboto",
                                   fontSize: "25px",
-                                  margin:"0px"
+                                  margin: "0px",
                                 }}
                               >
                                 {note.title}
