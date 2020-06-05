@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import TrailContainer from "../ProfileWidgets/TrailContainer";
+import { useAuth } from "../../utils/auth";
+import ToProfileButton from "../../components/ToProfileButton/ToProfileButton";
 import {
   Grid,
   Icon,
@@ -8,17 +9,28 @@ import {
   Dimmer,
   Loader,
   Segment,
+  Accordion,
+  Button,
 } from "semantic-ui-react";
+import API from "../../utils/API";
 import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
-import REI from "../../utils/REI";
+import ClimateCell from "../../utils/ClimateCell";
 
-function TrailWidgetGen() {
+function AirWidgetGen() {
   //Set Hook for weather API
+  const { user } = useAuth();
   const [citySearch, setCity] = useState("");
-  const [trailsWidget, setTrailsWidget] = useState([]);
+  const [currentEpa, setCurrentEpa] = useState([]);
+  const [currentFire, setCurrentFire] = useState([]);
+  const [currentCO, setCurrentCO] = useState([]);
+  const [currentPm10, setCurrentPm10] = useState([]);
+  const [currentO3, setCurrentO3] = useState([]);
   const [showText, setShowText] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [button, setButton] = useState("");
   const [spinner, setSpinner] = useState([]);
+  const [profileBtnVisibility, setProfileBtnVisibility] = useState(false);
   const [error, setError] = useState({ isVisible: false, errorMessage: "" });
 
   useEffect(() => {
@@ -26,10 +38,10 @@ function TrailWidgetGen() {
     setSpinner(
       <Step.Group>
         <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-          <Icon name="compass outline" style={{ color: "white" }} />
+          <Icon name="bolt" style={{ color: "white" }} />
           <Step.Content>
             <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
-              TRAILS
+              HAZARDS
             </Step.Title>
             <Step.Description
               style={{
@@ -38,12 +50,14 @@ function TrailWidgetGen() {
               }}
             >
               <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
-              <p style={{ fontSize: "10px" }}> RECEIVE TRAIL DETAILS</p>
+              <p style={{ fontSize: "10px" }}> RECEIVE CURRENT HAZARDS</p>
             </Step.Description>
           </Step.Content>
         </Step>
       </Step.Group>,
     );
+    //Widget is set to Add when page renders
+    setButton("Add Widget");
   }, []);
 
   function handleCitySearch() {
@@ -59,10 +73,10 @@ function TrailWidgetGen() {
         setSpinner(
           <Step.Group>
             <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-              <Icon name="compass outline" style={{ color: "white" }} />
+              <Icon name="bolt" style={{ color: "white" }} />
               <Step.Content>
                 <Step.Title style={{ color: "white", fontFamily: "Bungee" }}>
-                  TRAILS
+                  HAZARDS
                 </Step.Title>
                 <Step.Description
                   style={{
@@ -71,7 +85,7 @@ function TrailWidgetGen() {
                   }}
                 >
                   <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
-                  <p style={{ fontSize: "10px" }}> RECEIVE TRAIL DETAILS</p>
+                  <p style={{ fontSize: "10px" }}> RECEIVE CURRENT HAZARDS</p>
                 </Step.Description>
               </Step.Content>
             </Step>
@@ -86,34 +100,38 @@ function TrailWidgetGen() {
     OpenWeatherMap.getCurrent(citySearch).then(results => {
       const lat = results.data.coord.lat;
       const lon = results.data.coord.lon;
-      REITrails(lat, lon);
+      getClimateCell(lat, lon);
     });
 
-    function REITrails(lat, lon) {
+    function getClimateCell(lat, lon) {
       //API call for forecast
-      REI.getTrails(lat, lon).then(results => {
+      ClimateCell.getHazards(lat, lon).then(results => {
         //when results are rendered spinner turns off and results are displayed
         setSpinner("");
         setShowText(!showText);
-        setTrailsWidget(
-          results.data.routes.map(trails => {
-            return (
-              <>
-                <TrailContainer
-                  name={trails.name}
-                  src={trails.imgSmall}
-                  lat={trails.latitude.toFixed(2)}
-                  lon={trails.longitude.toFixed(2)}
-                  stars={trails.stars}
-                  url={trails.url}
-                />
-                <br></br>
-              </>
-            );
-          }),
-        );
+        setCurrentEpa(results.data.epa_health_concern.value);
+        setCurrentFire(results.data.fire_index.value.toFixed(2));
+        setCurrentCO(results.data.co.value);
+        setCurrentO3(results.data.o3.value);
+        setCurrentPm10(results.data.pm10.value);
       });
     }
+  }
+
+  //POST request to DB
+  const addHazardsWidget = event => {
+    event.preventDefault();
+    setProfileBtnVisibility(true);
+    setButton("Widget Added");
+    API.addUserWidget(user.id, "weather", { city: citySearch }).catch(err =>
+      alert(err),
+    );
+  };
+
+  //Accordion
+  function handleClick() {
+    const newIndex = activeIndex === -1 ? 0 : -1;
+    setActiveIndex(newIndex);
   }
 
   return (
@@ -146,12 +164,12 @@ function TrailWidgetGen() {
               setSpinner(
                 <Step.Group>
                   <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-                    <Icon name="compass outline" style={{ color: "white" }} />
+                    <Icon name="bolt" style={{ color: "white" }} />
                     <Step.Content>
                       <Step.Title
                         style={{ color: "white", fontFamily: "Bungee" }}
                       >
-                        TRAILS
+                        HAZARDS
                       </Step.Title>
                       <Step.Description
                         style={{
@@ -162,13 +180,14 @@ function TrailWidgetGen() {
                         <p style={{ fontSize: "10px" }}> SEARCH BY CITY</p>
                         <p style={{ fontSize: "10px" }}>
                           {" "}
-                          RECEIVE TRAIL DETAILS
+                          RECEIVE CURRENT HAZARDS
                         </p>
                       </Step.Description>
                     </Step.Content>
                   </Step>
                 </Step.Group>,
               );
+              setButton("Add Widget");
               setShowText("");
               setCity(event.target.value.toUpperCase());
             }}
@@ -182,11 +201,55 @@ function TrailWidgetGen() {
               backgroundColor: "rgba(27, 27, 27, 0.76)",
             }}
           >
-            {showText && trailsWidget}, {spinner}
+            {showText && (
+              <>
+                <Segment attached inverted>
+                  <h1 style={{fontFamily:"Roboto"}}>{citySearch}</h1>
+                  <div style={{ textAlign: "left", fontWeight: "bold" }}>
+                    <h3 className="wind1">
+                      FIRE INDEX:<span>&nbsp;&nbsp;</span>
+                      {currentFire}
+                    </h3>
+                    <h3 className="wind1">
+                      AIR QUALITY:<span>&nbsp;&nbsp;</span>
+                      {currentEpa}
+                    </h3>
+                  <p className="wind">
+                      CARBON MONOXIDE:<span>&nbsp;&nbsp;</span>
+                      {currentCO} ppm
+                    </p>
+                  <p className="wind">
+                      OZONE:<span>&nbsp;&nbsp;</span>
+                      {currentO3} ppb
+                    </p>
+                  <p className="wind">
+                      PARTICULATE MATTER:<span>&nbsp;&nbsp;</span>
+                      {currentPm10} µg/m3
+                    </p>
+                  </div>
+                </Segment>
+                <Button
+                  secondary
+                  inverted
+                  fluid
+                  style={{
+                    fontFamily: "Roboto",
+                    color: "white",
+                    marginTop: "10px",
+                  }}
+                  onClick={addHazardsWidget}
+                >
+                  {button}
+                </Button>
+              </>
+            )}
+            ,{" "}
+            {/* If the add to widget function and profileBtn visibility is set to true show go home button */}
+            {profileBtnVisibility && <ToProfileButton />},{spinner}
           </Segment>
         </Segment>
       </Grid>
     </div>
   );
 }
-export default TrailWidgetGen;
+export default AirWidgetGen;

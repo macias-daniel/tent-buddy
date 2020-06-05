@@ -35,6 +35,17 @@
   padding: 0px;
 }
 
+.wind1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  height: 13px;
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 0px;
+}
+
 .tempCity {
   margin: 5px;
   font-size: 13px;
