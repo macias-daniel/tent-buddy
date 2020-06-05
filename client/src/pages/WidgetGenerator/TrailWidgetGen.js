@@ -13,7 +13,7 @@ import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import OpenWeatherMap from "../../utils/OpenWeatherMap";
 import REI from "../../utils/REI";
 
-function WeatherWidgetGen() {
+function TrailWidgetGen() {
   //Set Hook for weather API
   const [citySearch, setCity] = useState("");
   const [trailsWidget, setTrailsWidget] = useState([]);
@@ -189,4 +189,4 @@ function WeatherWidgetGen() {
     </div>
   );
 }
-export default WeatherWidgetGen;
+export default TrailWidgetGen;

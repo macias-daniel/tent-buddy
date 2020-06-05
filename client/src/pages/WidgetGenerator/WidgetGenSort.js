@@ -3,6 +3,7 @@ import WeatherWidgetGen from "./WeatherWidgetGen";
 import ParkWidgetGen from "./ParkWidgetGen";
 import NoteWidgetGen from "./NoteWidgetGen";
 import TrailWidgetGen from "./TrailWidgetGen";
+import HazardsWidgetGen from "./HazardsWidgetGen";
 import { Menu, Segment, Grid } from "semantic-ui-react";
 
 const widgets = {
@@ -10,25 +11,26 @@ const widgets = {
     topic: "NOTES",
     class: "widgetDisplay",
     widgetType: <NoteWidgetGen />,
-    about: "Compose a note",
   },
   weather: {
     topic: "WEATHER",
     class: "weatherDisplay",
     widgetType: <WeatherWidgetGen />,
-    about: "Pick a City",
   },
   parks: {
     topic: "PARKS",
     class: "widgetDisplay",
     widgetType: <ParkWidgetGen />,
-    about: "Pick a National Park",
   },
   trails: {
     topic: "TRAILS",
     class: "widgetDisplay",
     widgetType: <TrailWidgetGen />,
-    about: "Find a Trail",
+  },
+  hazards: {
+    topic: "HAZARDS",
+    class: "widgetDisplay",
+    widgetType: <HazardsWidgetGen />,
   },
 };
 
@@ -49,7 +51,7 @@ export default class WidgetGeneratorSort extends Component {
         <Grid style={{ margin: "0px", padding: "0px" }} centered>
           <div style={{ margin: "0px", padding: "0px" }}>
             <Segment
-              style={{ width: "250px", margin: "0px", padding: "0px" }}
+              style={{ width: "350px", margin: "0px", padding: "0px" }}
               attached
               className="widgetForm"
               compact
@@ -83,6 +85,13 @@ export default class WidgetGeneratorSort extends Component {
                   title="trails"
                   name="TRAILS"
                   active={activeItem === "TRAILS"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  className="widgets"
+                  title="hazards"
+                  name="HAZARDS"
+                  active={activeItem === "HAZARDS"}
                   onClick={this.handleItemClick}
                 />
               </Menu>
