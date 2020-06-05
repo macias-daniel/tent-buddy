@@ -7,17 +7,34 @@ import {
   Container,
   Input,
 } from "semantic-ui-react";
+import API from "../../utils/API";
+import { useAuth } from "../../utils/auth";
 
 function NoteWidgetGen({ title, text }) {
+  const { user } = useAuth();
   const [showText, setShowText] = useState(true);
   const [showEdit, setShowEdit] = useState(false);
-  const [titleNew, setTitleNew] = useState("");
-  const [textNew, setTextNew] = useState("");
+  const [titleNew, setTitleNew] = useState(title);
+  const [textNew, setTextNew] = useState(text);
+  const [notes, setNotes] = useState([]);
 
   function editNote() {
     setShowText(false);
     setShowEdit(true);
   }
+
+  const saveNote = event => {
+    event.preventDefault();
+    setNotes([
+      {
+        title: titleNew,
+        text: textNew,
+      }])
+    //When user adds widget display button that takes them to the profile page
+    API.addUserWidget(user.id, "notes", {
+      notes: notes,
+    }).catch(err => alert(err));
+  };
 
   return (
     <>
@@ -73,25 +90,30 @@ function NoteWidgetGen({ title, text }) {
           <>
             <Segment attached inverted>
               <Container>
-                  <Input
-                    style={{ margin: "0px" }}
-                    value={title}
-                    onChange={event => {
-                      setTitleNew(event.target.value);
-                    }}
-                  />
-                  <Form.TextArea
-                    value={text}
-                    onChange={event => {
-                      text.props = event.target.value;
-                    }}
-                  />
-                  <p
-                    style={{
-                      fontFamily: "Roboto",
-                      fontSize: "15px",
-                    }}
-                  ></p>
+                <Input
+                  style={{
+                    margin: "0px",
+                    fontFamily: "Roboto",
+                    width: "150px",
+                  }}
+                  value={titleNew}
+                  onChange={event => {
+                    setTitleNew(event.target.value);
+                  }}
+                />
+                <Form.TextArea
+                  style={{ margin: "0px", fontFamily: "Roboto" }}
+                  value={textNew}
+                  onChange={event => {
+                    setTextNew(event.target.value);
+                  }}
+                />
+                <p
+                  style={{
+                    fontFamily: "Roboto",
+                    fontSize: "15px",
+                  }}
+                ></p>
 
                 <Button
                   icon
@@ -102,9 +124,9 @@ function NoteWidgetGen({ title, text }) {
                     color: "white",
                     marginTop: "10px",
                   }}
-                  onClick={editNote}
+                  onClick={saveNote}
                 >
-                  <Icon name="pencil" />{" "}
+                  <Icon name="save outline" />{" "}
                 </Button>
               </Container>
             </Segment>

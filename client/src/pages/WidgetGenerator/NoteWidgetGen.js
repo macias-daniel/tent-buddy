@@ -89,7 +89,7 @@ function NoteWidgetGen() {
           }}
         >
           <Input
-            style={{ margin: "10px", marginLeft: "0px" }}
+            style={{ margin: "10px", marginLeft: "0px", fontFamily: "Roboto" }}
             placeholder="TITLE"
             value={title}
             onChange={event => {
@@ -97,6 +97,7 @@ function NoteWidgetGen() {
             }}
           />
           <Form.TextArea
+            style={{ margin: "10px", marginLeft: "0px", fontFamily: "Roboto" }}
             placeholder="TEXT"
             name="noteText"
             value={text}
