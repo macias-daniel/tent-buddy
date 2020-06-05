@@ -1,7 +1,24 @@
-import React from "react";
-import { Segment, Button, Icon, Container } from "semantic-ui-react";
+import React, { useState } from "react";
+import {
+  Segment,
+  Button,
+  Icon,
+  Form,
+  Container,
+  Input,
+} from "semantic-ui-react";
 
 function NoteWidgetGen({ title, text }) {
+  const [showText, setShowText] = useState(true);
+  const [showEdit, setShowEdit] = useState(false);
+  const [titleNew, setTitleNew] = useState("");
+  const [textNew, setTextNew] = useState("");
+
+  function editNote() {
+    setShowText(false);
+    setShowEdit(true);
+  }
+
   return (
     <>
       <Segment
@@ -12,44 +29,87 @@ function NoteWidgetGen({ title, text }) {
           backgroundColor: "rgba(27, 27, 27, 0.76)",
         }}
       >
-        <>
-          <Segment attached inverted>
-            <Container>
-              <h2>
-                <p
+        {showText && (
+          <>
+            <Segment attached inverted>
+              <Container>
+                <h2>
+                  <p
+                    style={{
+                      fontFamily: "Roboto",
+                      fontSize: "25px",
+                      margin: "0px",
+                    }}
+                  >
+                    {title}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Roboto",
+                      fontSize: "15px",
+                    }}
+                  >
+                    {text}
+                  </p>
+                </h2>
+                <Button
+                  icon
+                  secondary
+                  inverted
                   style={{
                     fontFamily: "Roboto",
-                    fontSize: "25px",
-                    margin: "0px",
+                    color: "white",
+                    marginTop: "10px",
                   }}
+                  onClick={editNote}
                 >
-                  {title}
-                </p>
-                <p
+                  <Icon name="pencil" />{" "}
+                </Button>
+              </Container>
+            </Segment>
+          </>
+        )}
+        {showEdit && (
+          <>
+            <Segment attached inverted>
+              <Container>
+                  <Input
+                    style={{ margin: "0px" }}
+                    value={title}
+                    onChange={event => {
+                      setTitleNew(event.target.value);
+                    }}
+                  />
+                  <Form.TextArea
+                    value={text}
+                    onChange={event => {
+                      text.props = event.target.value;
+                    }}
+                  />
+                  <p
+                    style={{
+                      fontFamily: "Roboto",
+                      fontSize: "15px",
+                    }}
+                  ></p>
+
+                <Button
+                  icon
+                  secondary
+                  inverted
                   style={{
                     fontFamily: "Roboto",
-                    fontSize: "15px",
+                    color: "white",
+                    marginTop: "10px",
                   }}
+                  onClick={editNote}
                 >
-                  {text}
-                </p>
-              </h2>
-              <Button
-                icon
-                secondary
-                inverted
-                style={{
-                  fontFamily: "Roboto",
-                  color: "white",
-                  marginTop: "10px",
-                }}
-                // onClick={addWeatherWidget}
-              >
-                <Icon name="pencil" />{" "}
-              </Button>
-            </Container>
-          </Segment>
-        </>
+                  <Icon name="pencil" />{" "}
+                </Button>
+              </Container>
+            </Segment>
+          </>
+        )}
       </Segment>
     </>
   );
