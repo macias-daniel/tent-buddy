@@ -9,7 +9,6 @@ import {
   Dimmer,
   Loader,
   Segment,
-  Accordion,
   Button,
 } from "semantic-ui-react";
 import API from "../../utils/API";
@@ -22,16 +21,19 @@ function AirWidgetGen() {
   const { user } = useAuth();
   const [citySearch, setCity] = useState("");
   const [currentEpa, setCurrentEpa] = useState([]);
+  const [currentEpaWord, setCurrentEpaWord] = useState([]);
   const [currentFire, setCurrentFire] = useState([]);
+  const [currentFireWord, setCurrentFireWord] = useState([]);
   const [currentCO, setCurrentCO] = useState([]);
   const [currentPm10, setCurrentPm10] = useState([]);
   const [currentO3, setCurrentO3] = useState([]);
   const [showText, setShowText] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(-1);
   const [button, setButton] = useState("");
   const [spinner, setSpinner] = useState([]);
   const [profileBtnVisibility, setProfileBtnVisibility] = useState(false);
   const [error, setError] = useState({ isVisible: false, errorMessage: "" });
+  const [color, setColor] = useState("");
+  const [colorEpa, setColorEpa] = useState("");
 
   useEffect(() => {
     //Display add card when Page renders
@@ -109,12 +111,59 @@ function AirWidgetGen() {
         //when results are rendered spinner turns off and results are displayed
         setSpinner("");
         setShowText(!showText);
-        setCurrentEpa(results.data.epa_health_concern.value);
+        setCurrentEpa(results.data.epa_aqi.value);
         setCurrentFire(results.data.fire_index.value.toFixed(2));
         setCurrentCO(results.data.co.value);
         setCurrentO3(results.data.o3.value);
         setCurrentPm10(results.data.pm10.value);
       });
+      getColors();
+      getEpa();
+    }
+  }
+
+  function getColors() {
+    if (currentFire <= 11) {
+      setCurrentFireWord("Low");
+      setColor("#61fc8f");
+    }
+    if (currentFire <= 24 && currentFire > 11) {
+      setCurrentFireWord("Moderate");
+      setColor("#61dffc");
+    }
+    if (currentFire <= 49 && currentFire > 24) {
+      setCurrentFireWord("High");
+      setColor("#f4fc61");
+    }
+    if (currentFire <= 74 && currentFire > 49) {
+      setCurrentFireWord("Severe");
+      setColor("#fcbe61");
+    }
+    if (currentFire >= 75) {
+      setCurrentFireWord("Extreme");
+      setColor("#ec2b2b");
+    }
+  }
+  function getEpa () {
+    if (currentEpa <= 50){
+      setCurrentEpaWord("Good");
+      setColorEpa("#61fc8f");
+    }
+    if (currentEpa <= 100 && currentEpa > 50){
+      setCurrentEpaWord("Moderate");
+      setColorEpa("#61dffc");
+    }
+    if (currentEpa <= 200 && currentEpa > 100){
+      setCurrentEpaWord("Unhealthy");
+      setColorEpa("#f4fc61");
+    }
+    if (currentEpa <= 300 && currentEpa > 200){
+      setCurrentEpaWord("Very Unhealthy");
+      setColorEpa("#fcbe61");
+    }
+    if (currentEpa >= 300){
+      setCurrentEpaWord("Hazardous");
+      setColorEpa("#ec2b2b");
     }
   }
 
@@ -123,16 +172,10 @@ function AirWidgetGen() {
     event.preventDefault();
     setProfileBtnVisibility(true);
     setButton("Widget Added");
-    API.addUserWidget(user.id, "weather", { city: citySearch }).catch(err =>
+    API.addUserWidget(user.id, "hazards", { city: citySearch }).catch(err =>
       alert(err),
     );
   };
-
-  //Accordion
-  function handleClick() {
-    const newIndex = activeIndex === -1 ? 0 : -1;
-    setActiveIndex(newIndex);
-  }
 
   return (
     <div>
@@ -204,25 +247,31 @@ function AirWidgetGen() {
             {showText && (
               <>
                 <Segment attached inverted>
-                  <h1 style={{fontFamily:"Roboto"}}>{citySearch}</h1>
+                  <h1 style={{ fontFamily: "Roboto" }}>{citySearch}</h1>
                   <div style={{ textAlign: "left", fontWeight: "bold" }}>
-                    <h3 className="wind1">
+                    <h3 style={{ float: "left" }} className="wind1">
                       FIRE INDEX:<span>&nbsp;&nbsp;</span>
-                      {currentFire}
                     </h3>
-                    <h3 className="wind1">
+                    <p className="wind1" style={{ color: color }}>
+                      {" "}
+                      {currentFireWord}
+                    </p>
+                    <h3 className="wind1" style={{ float: "left" }}>
                       AIR QUALITY:<span>&nbsp;&nbsp;</span>
-                      {currentEpa}
                     </h3>
-                  <p className="wind">
+                    <p className="wind1" style={{ color: colorEpa }}>
+                      {" "}
+                      {currentEpaWord}
+                    </p>
+                    <p className="wind">
                       CARBON MONOXIDE:<span>&nbsp;&nbsp;</span>
                       {currentCO} ppm
                     </p>
-                  <p className="wind">
+                    <p className="wind">
                       OZONE:<span>&nbsp;&nbsp;</span>
                       {currentO3} ppb
                     </p>
-                  <p className="wind">
+                    <p className="wind">
                       PARTICULATE MATTER:<span>&nbsp;&nbsp;</span>
                       {currentPm10} µg/m3
                     </p>
