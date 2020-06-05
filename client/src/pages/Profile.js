@@ -60,7 +60,7 @@ function Profile() {
                 attached
                 inverted
                 style={{
-                  width: "280px",
+                  width: "325px",
                   backgroundColor: "rgba(27, 27, 27, 0.76)",
                 }}
               >
@@ -109,6 +109,16 @@ function Profile() {
                     <Icon name="compass outline" />
                   </Button>
 
+                  {/* Hazards */}
+                  <Button
+                    icon
+                    inverted
+                    onClick={() => {
+                      setFilter("hazards");
+                    }}
+                  >
+                    <Icon name="bolt" />
+                  </Button>
                   {/* ALl */}
                   <Button
                     icon
@@ -260,7 +270,7 @@ function Profile() {
                   </Grid>
                 </>
               );
-            }else if (widget.type === "hazards") {
+            } else if (widget.type === "hazards") {
               component = (
                 <>
                   <Grid style={{ margin: "0px", padding: "0px" }} centered>
@@ -269,7 +279,11 @@ function Profile() {
                         icon="bolt"
                         handleDeleteWidget={() => deleteWidget(widget)}
                       />
-                      <HazardsWidget lat={widget.data.lat} lon={widget.data.lon }city={widget.data.city} />
+                      <HazardsWidget
+                        lat={widget.data.lat}
+                        lon={widget.data.lon}
+                        city={widget.data.city}
+                      />
                     </div>
                   </Grid>
                 </>

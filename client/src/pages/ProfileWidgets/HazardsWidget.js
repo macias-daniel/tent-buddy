@@ -3,7 +3,7 @@ import "./style.css";
 import { Segment } from "semantic-ui-react";
 import ClimateCell from "../../utils/ClimateCell.js";
 
-function WeatherWidget({city, lat, lon }) {
+function WeatherWidget({ city, lat, lon }) {
   //Set Hook for weather API
   const [currentEpa, setCurrentEpa] = useState([]);
   const [currentEpaWord, setCurrentEpaWord] = useState([]);
@@ -25,11 +25,6 @@ function WeatherWidget({city, lat, lon }) {
       setCurrentO3(results.data.o3.value);
       setCurrentPm10(results.data.pm10.value);
     });
-    getColors();
-    getEpa();
-  }, [lat, lon]);
-
-  function getColors() {
     if (currentFire <= 11) {
       setCurrentFireWord("Low");
       setColor("#61fc8f");
@@ -50,29 +45,27 @@ function WeatherWidget({city, lat, lon }) {
       setCurrentFireWord("Extreme");
       setColor("#ec2b2b");
     }
-  }
-  function getEpa () {
-    if (currentEpa <= 50){
+    if (currentEpa <= 50) {
       setCurrentEpaWord("Good");
       setColorEpa("#61fc8f");
     }
-    if (currentEpa <= 100 && currentEpa > 50){
+    if (currentEpa <= 100 && currentEpa > 50) {
       setCurrentEpaWord("Moderate");
       setColorEpa("#61dffc");
     }
-    if (currentEpa <= 200 && currentEpa > 100){
+    if (currentEpa <= 200 && currentEpa > 100) {
       setCurrentEpaWord("Unhealthy");
       setColorEpa("#f4fc61");
     }
-    if (currentEpa <= 300 && currentEpa > 200){
+    if (currentEpa <= 300 && currentEpa > 200) {
       setCurrentEpaWord("Very Unhealthy");
       setColorEpa("#fcbe61");
     }
-    if (currentEpa >= 300){
+    if (currentEpa >= 300) {
       setCurrentEpaWord("Hazardous");
       setColorEpa("#ec2b2b");
     }
-  }
+  }, [lat, lon, currentEpa, currentFire]);
 
   //Component to render
   return (
