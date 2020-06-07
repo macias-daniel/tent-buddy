@@ -44,14 +44,26 @@ export default {
 
   //Delete a specific id by id from a specific user
   deleteUserWidget: (userID, widgetID) => {
-    return axios.delete(
-      "/api/user/widget",
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("id_token")}`,
-        },
-        data: { userID: userID, widgetID: widgetID },
-      }
-    );
+    return axios.delete("/api/user/widget", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+      },
+      data: { userID: userID, widgetID: widgetID },
+    });
+  },
+
+  //Delete a specific id by id from a specific user
+  editUserWidget: (userID, widgetID, widgetType, widgetData) => {
+    return axios.delete("/api/user/widget", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+      },
+      data: {
+        userID: userID,
+        widgetID: widgetID,
+        widgetType: widgetType,
+        widgetData: widgetData,
+      },
+    });
   },
 };
