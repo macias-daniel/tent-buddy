@@ -88,53 +88,65 @@ function NoteWidgetGen() {
             width: "250px",
           }}
         >
-          <Input
-            style={{ margin: "10px", marginLeft: "0px", fontFamily: "Roboto" }}
-            placeholder="TITLE"
-            value={title}
-            onChange={event => {
-              setTitle(event.target.value);
-            }}
-          />
-          <Form.TextArea
-            style={{ margin: "10px", marginLeft: "0px", fontFamily: "Roboto" }}
-            placeholder="TEXT"
-            name="noteText"
-            value={text}
-            onChange={event => {
-              setText(event.target.value);
-            }}
-          />{" "}
-          <Button
-            secondary
-            fluid
-            style={{
-              color: "white",
-              marginTop: "10px",
-            }}
-            onClick={upsertNote}
-          >
-            <Icon name="plus square outline" />{" "}
-          </Button>
-          <br></br>
-          {error.isVisible && <ErrorSegment>{error.errorMessage}</ErrorSegment>}
           <Segment
             compact
             attached
             style={{
+              textAlign: "center",
               backgroundColor: "rgba(27, 27, 27, 0.76)",
             }}
           >
-            {showText ? (
-              <>
-                <Segment
-                  compact
-                  attached
-                  style={{
-                    textAlign: "center",
-                    backgroundColor: "rgba(27, 27, 27, 0.76)",
-                  }}
-                >
+            <Input
+              style={{
+                margin: "10px",
+                marginLeft: "0px",
+                fontFamily: "Roboto",
+              }}
+              placeholder="TITLE"
+              value={title}
+              onChange={event => {
+                setTitle(event.target.value);
+              }}
+            />
+            <Form.TextArea
+              style={{
+                margin: "10px",
+                marginLeft: "0px",
+                fontFamily: "Roboto",
+              }}
+              placeholder="TEXT"
+              name="noteText"
+              value={text}
+              onChange={event => {
+                setText(event.target.value);
+              }}
+            />{" "}
+            <Button
+              secondary
+              inverted
+              fluid
+              style={{
+                fontFamily: "Roboto",
+                color: "white",
+                marginTop: "10px",
+              }}
+              onClick={upsertNote}
+            >
+              <Icon name="plus square outline" />{" "}
+            </Button>
+            <br></br>
+            {error.isVisible && (
+              <ErrorSegment>{error.errorMessage}</ErrorSegment>
+            )}
+            <Segment
+              compact
+              attached
+              style={{
+                backgroundColor: "rgba(27, 27, 27, 0.76)",
+              }}
+            >
+              {showText ? (
+                <>
                   <Step.Group>
                     <Step
                       style={{
@@ -176,49 +188,49 @@ function NoteWidgetGen() {
                       </Step.Content>
                     </Step>
                   </Step.Group>
-                </Segment>
-                <Button
-                  secondary
-                  inverted
-                  fluid
-                  style={{
-                    fontFamily: "Roboto",
-                    color: "white",
-                    marginTop: "10px",
-                  }}
-                  onClick={addNotesWidget}
-                >
-                  {button}
-                </Button>
-                {/* If the add to widget function and profileBtn visibility is set to true show go home button */}
-                {profileBtnVisibility && <ToProfileButton />}
-              </>
-            ) : (
-              <Step.Group>
-                <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
-                  <Icon name="pencil" style={{ color: "white" }} />
-                  <Step.Content>
-                    <Step.Title
-                      style={{ color: "white", fontFamily: "Bungee" }}
-                    >
-                      NOTES
-                    </Step.Title>
-                    <Step.Description
-                      style={{
-                        fontWeight: "100",
-                        color: "white",
-                      }}
-                    >
-                      <p style={{ fontSize: "10px" }}>
-                        {" "}
-                        ENTER A TITLE<br></br>ENTER TEXT
-                      </p>
-                      <p style={{ fontSize: "10px" }}> CREATE A NOTE</p>
-                    </Step.Description>
-                  </Step.Content>
-                </Step>
-              </Step.Group>
-            )}
+                  <Button
+                    secondary
+                    inverted
+                    fluid
+                    style={{
+                      fontFamily: "Roboto",
+                      color: "white",
+                      marginTop: "10px",
+                    }}
+                    onClick={addNotesWidget}
+                  >
+                    {button}
+                  </Button>
+                  {/* If the add to widget function and profileBtn visibility is set to true show go home button */}
+                  {profileBtnVisibility && <ToProfileButton />}
+                </>
+              ) : (
+                <Step.Group>
+                  <Step style={{ backgroundColor: "rgba(1, 1, 5, 0)" }}>
+                    <Icon name="pencil" style={{ color: "white" }} />
+                    <Step.Content>
+                      <Step.Title
+                        style={{ color: "white", fontFamily: "Bungee" }}
+                      >
+                        NOTES
+                      </Step.Title>
+                      <Step.Description
+                        style={{
+                          fontWeight: "100",
+                          color: "white",
+                        }}
+                      >
+                        <p style={{ fontSize: "10px" }}>
+                          {" "}
+                          ENTER A TITLE<br></br>ENTER TEXT
+                        </p>
+                        <p style={{ fontSize: "10px" }}> CREATE A NOTE</p>
+                      </Step.Description>
+                    </Step.Content>
+                  </Step>
+                </Step.Group>
+              )}
+            </Segment>
           </Segment>
         </Segment>
       </Grid>

@@ -7,34 +7,34 @@ import {
   Container,
   Input,
 } from "semantic-ui-react";
-import API from "../../utils/API";
-import { useAuth } from "../../utils/auth";
+// import API from "../../utils/API";
+// import { useAuth } from "../../utils/auth";
 
 function NoteWidgetGen({ title, text }) {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [showText, setShowText] = useState(true);
   const [showEdit, setShowEdit] = useState(false);
   const [titleNew, setTitleNew] = useState(title);
   const [textNew, setTextNew] = useState(text);
-  const [notes, setNotes] = useState([]);
+  // const [notes, setNotes] = useState([]);
 
   function editNote() {
     setShowText(false);
     setShowEdit(true);
   }
 
-  const saveNote = event => {
-    event.preventDefault();
-    setNotes([
-      {
-        title: titleNew,
-        text: textNew,
-      }])
-    //When user adds widget display button that takes them to the profile page
-    API.addUserWidget(user.id, "notes", {
-      notes: notes,
-    }).catch(err => alert(err));
-  };
+  // const saveNote = event => {
+  //   event.preventDefault();
+  //   setNotes([
+  //     {
+  //       title: titleNew,
+  //       text: textNew,
+  //     }])
+  //   //When user adds widget display button that takes them to the profile page
+  //   API.addUserWidget(user.id, "notes", {
+  //     notes: notes,
+  //   }).catch(err => alert(err));
+  // };
 
   return (
     <>
@@ -124,7 +124,7 @@ function NoteWidgetGen({ title, text }) {
                     color: "white",
                     marginTop: "10px",
                   }}
-                  onClick={saveNote}
+                  // onClick={saveNote}
                 >
                   <Icon name="save outline" />{" "}
                 </Button>
