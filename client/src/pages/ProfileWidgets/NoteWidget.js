@@ -24,8 +24,7 @@ function NoteWidgetGen({ widgetID, title, text }) {
     setShowEdit(true);
   }
 
-  const saveNote = event => {
-    event.preventDefault();
+  function saveNote() {
     newNote.push(
       {
         title: titleNew,
@@ -33,15 +32,15 @@ function NoteWidgetGen({ widgetID, title, text }) {
       },
     );
     renderSave();
-  };
+  }
 
   function renderSave() {
-    console.log(newNote);
     API.editUserWidget(user.id, widgetID, {
       notes: newNote,
     }).catch(err => alert(err));
     setShowEdit(false);
     setShowText(true);
+    window.location.reload(false);
   }
 
   return (
