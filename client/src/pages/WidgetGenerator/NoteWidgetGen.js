@@ -17,8 +17,6 @@ function NoteWidgetGen() {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [noteId, setNoteId] = useState("");
-  const [isNewNote, setIsNewNote] = useState(true);
   const [notes, setNotes] = useState([]);
   const [button, setButton] = useState("Add Widget");
   const [showText, setShowText] = useState(false);
@@ -34,14 +32,13 @@ function NoteWidgetGen() {
     } else {
       setError("");
     }
-    if (isNewNote) {
-      setNotes([
-        {
-          title,
-          text,
-        },
-      ]);
-    } 
+    setNotes([
+      {
+        title,
+        text,
+      },
+    ]);
+
     setShowText(!showText);
     setTitle("");
     setText("");
@@ -50,12 +47,11 @@ function NoteWidgetGen() {
   const setCurrentNote = note => {
     setText(note.text);
     setTitle(note.title);
-    setNoteId(note.id);
   };
 
   //POST request to DB
   const addNotesWidget = event => {
-    console.log(notes)
+    console.log(notes);
     event.preventDefault();
     setButton("Widget Added");
 

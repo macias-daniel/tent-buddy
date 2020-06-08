@@ -17,7 +17,7 @@ function NoteWidgetGen({ widgetID, title, text }) {
   const [titleNew, setTitleNew] = useState(title);
   const [textNew, setTextNew] = useState(text);
 
-  const newNote = []
+  const newNote = [];
 
   function editNote() {
     setShowText(false);
