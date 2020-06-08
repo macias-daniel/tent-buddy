@@ -41,15 +41,14 @@ router.delete("/api/user/widget", isAuthenticated, (req, res) => {
 });
 
 //Update widget data
-router.put("/api/user/widget", isAuthenticated, (req, res) => {
+router.put("/api/user/widget", (req, res) => {
   const userID = req.body.userID;
   const widgetID = req.body.widgetID;
   const widgetData = req.body.widgetData;
-  const widgetType = req.body.widgetType;
 
   // Call update widget function
   userController
-    .updateUserWidget(userID, widgetID, widgetData, widgetType)
+    .updateUserWidget(userID, widgetID, widgetData)
     .then(() => {
       res.sendStatus(200);
     })
