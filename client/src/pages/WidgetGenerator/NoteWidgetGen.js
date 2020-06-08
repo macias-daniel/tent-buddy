@@ -12,7 +12,6 @@ import API from "../../utils/API";
 import { useAuth } from "../../utils/auth";
 import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import ToProfileButton from "../../components/ToProfileButton/ToProfileButton";
-import { v4 as uuidv4 } from "uuid";
 
 function NoteWidgetGen() {
   const { user } = useAuth();
@@ -40,18 +39,9 @@ function NoteWidgetGen() {
         {
           title,
           text,
-          id: uuidv4(),
         },
       ]);
-    } else {
-      const note = notes.find(n => n.id === noteId);
-      note.text = text;
-      note.title = title;
-      setNotes([notes]);
-      setNoteId("");
-      setIsNewNote(true);
-    }
-
+    } 
     setShowText(!showText);
     setTitle("");
     setText("");
@@ -65,6 +55,7 @@ function NoteWidgetGen() {
 
   //POST request to DB
   const addNotesWidget = event => {
+    console.log(notes)
     event.preventDefault();
     setButton("Widget Added");
 
