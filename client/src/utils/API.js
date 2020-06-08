@@ -54,7 +54,7 @@ export default {
 
   //Delete a specific id by id from a specific user
   editUserWidget: (userID, widgetID, widgetType, widgetData) => {
-    return axios.delete("/api/user/widget", {
+    return axios.put("/api/user/widget", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("id_token")}`,
       },

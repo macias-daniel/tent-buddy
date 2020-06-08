@@ -9,7 +9,7 @@ router.post("/api/user/widget", isAuthenticated, (req, res) => {
   const widgetType = req.body.widgetType;
   const widgetData = req.body.widgetData;
 
-  //Checks if widget data is an object an will throw a error otherwise
+  //Checks if widget data is an object and will throw a error otherwise
   if (typeof widgetData !== "object") {
     throw new Error("widgetData must be an object");
   }
@@ -17,8 +17,11 @@ router.post("/api/user/widget", isAuthenticated, (req, res) => {
   //Calls user controller function
   userController
     .addUserWidget(userID, widgetType, widgetData)
-    .then((response) => {
-      res.send(response);
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
     });
 });
 
@@ -27,9 +30,32 @@ router.delete("/api/user/widget", isAuthenticated, (req, res) => {
   const userID = req.body.userID;
   const widgetID = req.body.widgetID;
   //Calls user controller function
-  userController.deleteUserWidgets(userID, widgetID).then((response) => {
-    res.send(response);
-  });
+  userController
+    .deleteUserWidgets(userID, widgetID)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+});
+
+//Update widget data
+router.put("/api/user/widget", isAuthenticated, (req, res) => {
+  const userID = req.body.userID;
+  const widgetID = req.body.widgetID;
+  const widgetData = req.body.widgetData;
+  const widgetType = req.body.widgetType;
+
+  // Call update widget function
+  userController
+    .updateUserWidget(userID, widgetID, widgetData, widgetType)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

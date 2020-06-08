@@ -20,4 +20,16 @@ const changeUserRole = (userID, userRole) => {
   return db.User.updateOne({ _id: userID }, { role: userRole });
 };
 
-module.exports = { addUserWidget, deleteUserWidgets, changeUserRole };
+const updateUserWidget = (userID, widgetID, data, type) => {
+  return db.User.updateOne(
+    { _id: userID },
+    { $set: { widgets: { _id: widgetID, data: data, type: type } } }
+  );
+};
+
+module.exports = {
+  addUserWidget,
+  deleteUserWidgets,
+  changeUserRole,
+  updateUserWidget,
+};
