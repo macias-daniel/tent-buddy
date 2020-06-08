@@ -41,7 +41,7 @@ router.delete("/api/user/widget", isAuthenticated, (req, res) => {
 });
 
 //Update widget data
-router.put("/api/user/widget", (req, res) => {
+router.put("/api/user/widget", isAuthenticated, (req, res) => {
   const userID = req.body.userID;
   const widgetID = req.body.widgetID;
   const widgetData = req.body.widgetData;
