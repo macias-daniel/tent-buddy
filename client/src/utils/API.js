@@ -52,6 +52,7 @@ export default {
     });
   },
 
+<<<<<<< HEAD
   //Delete a specific id by id from a specific user
   editUserWidget: (userID, widgetID, widgetData) => {
     return axios.put("/api/user/widget", {
@@ -59,10 +60,22 @@ export default {
         Authorization: `Bearer ${localStorage.getItem("id_token")}`,
       },
       data: {
+=======
+  //Edit a specific id by id from a specific user
+  editUserWidget: (userID, widgetID, widgetData) => {
+    return axios.put(
+      "/api/user/widget",
+      {
+>>>>>>> 3a76af506b88d27831a05b36f5c4b6d2a82e18b1
         userID: userID,
         widgetID: widgetID,
         widgetData: widgetData,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("id_token")}`,
+        },
+      },
+    );
   },
 };
