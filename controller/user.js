@@ -21,7 +21,6 @@ const changeUserRole = (userID, userRole) => {
 };
 
 const updateUserWidget = (userID, widgetID, data) => {
-  // const updatedWidget = { widgetID, data, type };
   return db.User.updateOne(
     { _id: userID, "widgets._id": widgetID },
     { $set: { "widgets.$.data": data } }
