@@ -11,7 +11,7 @@ const addUserWidget = (userID, type, data) => {
 const deleteUserWidgets = (userID, widgetID) => {
   return db.User.updateOne(
     { _id: userID },
-    { $pull: { widgets: { _id: widgetID } } },
+    { $pull: { widgets: { _id: widgetID } } }
   );
 };
 
