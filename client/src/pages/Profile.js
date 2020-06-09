@@ -197,7 +197,7 @@ function Profile() {
                         handleDeleteWidget={() => deleteWidget(widget)}
                       />
                       <NoteWidget
-                        key={widget._id}
+                        widgetID={widget._id}
                         title={widget.data.notes[0].title}
                         text={widget.data.notes[0].text}
                       />

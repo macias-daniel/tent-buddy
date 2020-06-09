@@ -20,10 +20,10 @@ const changeUserRole = (userID, userRole) => {
   return db.User.updateOne({ _id: userID }, { role: userRole });
 };
 
-const updateUserWidget = (userID, widgetID, data, type) => {
+const updateUserWidget = (userID, widgetID, data) => {
   return db.User.updateOne(
-    { _id: userID },
-    { $set: { widgets: { _id: widgetID, data: data, type: type } } }
+    { _id: userID, "widgets._id": widgetID },
+    { $set: { "widgets.$.data": data } }
   );
 };
 

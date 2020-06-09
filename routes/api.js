@@ -45,11 +45,10 @@ router.put("/api/user/widget", isAuthenticated, (req, res) => {
   const userID = req.body.userID;
   const widgetID = req.body.widgetID;
   const widgetData = req.body.widgetData;
-  const widgetType = req.body.widgetType;
 
   // Call update widget function
   userController
-    .updateUserWidget(userID, widgetID, widgetData, widgetType)
+    .updateUserWidget(userID, widgetID, widgetData)
     .then(() => {
       res.sendStatus(200);
     })

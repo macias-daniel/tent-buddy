@@ -12,14 +12,11 @@ import API from "../../utils/API";
 import { useAuth } from "../../utils/auth";
 import ErrorSegment from "../../components/ErrorSegment/ErrorSegment";
 import ToProfileButton from "../../components/ToProfileButton/ToProfileButton";
-import { v4 as uuidv4 } from "uuid";
 
 function NoteWidgetGen() {
   const { user } = useAuth();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [noteId, setNoteId] = useState("");
-  const [isNewNote, setIsNewNote] = useState(true);
   const [notes, setNotes] = useState([]);
   const [button, setButton] = useState("Add Widget");
   const [showText, setShowText] = useState(false);
@@ -35,22 +32,12 @@ function NoteWidgetGen() {
     } else {
       setError("");
     }
-    if (isNewNote) {
-      setNotes([
-        {
-          title,
-          text,
-          id: uuidv4(),
-        },
-      ]);
-    } else {
-      const note = notes.find(n => n.id === noteId);
-      note.text = text;
-      note.title = title;
-      setNotes([notes]);
-      setNoteId("");
-      setIsNewNote(true);
-    }
+    setNotes([
+      {
+        title,
+        text,
+      },
+    ]);
 
     setShowText(!showText);
     setTitle("");
@@ -60,11 +47,11 @@ function NoteWidgetGen() {
   const setCurrentNote = note => {
     setText(note.text);
     setTitle(note.title);
-    setNoteId(note.id);
   };
 
   //POST request to DB
   const addNotesWidget = event => {
+    console.log(notes);
     event.preventDefault();
     setButton("Widget Added");
 
